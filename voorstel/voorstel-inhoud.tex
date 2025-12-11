@@ -2,7 +2,8 @@
 \section{Inleiding}%
 \label{sec:inleiding}
 
-Freshfrozen werkt op dit moment nog veel met Excel. Specifiek voor dit voorstel gaat het over het gebruik van Excel voor stockbeheer van Leeggoedpalletten. Freshfrozen krijgt grondstoffen die gebruikt worden voor productie van dierenvoeding op deze Leeggoedpalletten. Zo ontstaat per klant een Excel file waar bijgehouden wordt hoeveel ze binnenkrijgen en hoeveel ze terugsturen. Hier kruipen op termijn fouten in en kan leiden tot grote verschillen. Deze Excels worden ingevuld door de verantwoordelijke van de productielijn. Daarna worden ze gecontroleerd door een bediende binnen het bedrijf. Aan beide kanten kunnen fouten gebeuren. De onderzoeksvraag luid dus als volgt: Hoe kan het beheer van leeggoedpalletten bij Freshfrozen For Pets efficiënter georganiseerd worden met als focus om tijdbesparing, foutenreductie, gebruiksvriendelijkheid en overzichtelijkheid te verbeteren?
+Freshfrozen werkt op dit moment nog veel met Excel. in deze specifieke casus gaat het over het gebruik van Excel voor stockbeheer van leeggoedpalletten. Freshfrozen krijgt grondstoffen die gebruikt worden voor productie van dierenvoeding op deze leeggoedpalletten binnen. Zo ontstaat per klant een Excel bestand waar bijgehouden wordt hoeveel palletten ze binnenkrijgen en hoeveel ze er terugsturen. Hier kruipen op termijn fouten in en dit kan leiden tot grote verschillen. Deze Excels worden ingevuld door de verantwoordelijke van de productielijn. Daarna worden ze gecontroleerd door een bediende binnen het bedrijf. Bij beide gebruikers kunnen fouten ontstaan. 
+Nadat ik dit vernam was ik zeer geïntresseerd over wat een betere oplossing zou kunnen zijn voor Freshfrozen. De onderzoeksvraag luid dus als volgt: Hoe kan het beheer van leeggoedpalletten bij Freshfrozen For Pets efficiënter georganiseerd worden met als focus om tijdbesparing, foutenreductie, gebruiksvriendelijkheid en overzichtelijkheid te verbeteren?
 
 Het doel is om een proof-of-concept te maken van een robuuste applicatie die integreert met het huidige ERP-systeem van Freshfrozen. Ik wil onderzoeken of het mogelijk is om in een bestaand ERP-systeem het mogelijk is om zelf een integratie te schrijven. Ik let daarbij op budget, benodigde tijd en of ik van de fabrikant zelf een integratie mag doen. Ik zie mijn bachelorproef als succes als ik opzenminst deze 3 routes heb geprobeerd om dit probleem op te lossen:
 
@@ -13,7 +14,7 @@ Het doel is om een proof-of-concept te maken van een robuuste applicatie die int
 \end{itemize}
 
 %---------- Stand van zaken ---------------------------------------------------
-
+%TODO Literatuurstudie
 \section{Literatuurstudie}%
 \label{sec:literatuurstudie}
 
@@ -41,24 +42,14 @@ Je mag deze sectie nog verder onderverdelen in subsecties als dit de structuur v
 \label{sec:methodologie}
 Zoals ik in de inleiding vermelde wil ik 3 luiken gaan onderzoeken/uitvoeren. Daardoor zal deze bachelorproef verlopen in 3 fases. 
 \subsection{Fase 1 - Implementatie in het ERP-systeem}
-In deze fase kijk ik hoe het huidige ERP-systeem in elkaar zit. Hieronder valt onderzoek doen naar wat het systeem precies is en contact opnemen met het bedrijf. Op die manier weet ik of ik met deze fase verder kan. Het doel in deze fase is een proof-of-concept maken dat directe implementatie in een bestaand ERP-systeem mogelijk is. Ook kijk ik naar de tijd dat dit zou kosten maar ook budget. De proof-of-concept bevat een duidelijk voorbeeld van een zelf geïmplementeerd systeem in de vorm van data die doorgegeven wordt binnen het systeem. In deze fase zal ik mij ook moeten aanpassen aan welke tools er op dit moment gebruikt worden om het ERP-systeem te bouwen. Afhankelijk van de tools en de mogelijkheid tot directe implementatie kan deze fase langer of korter duren. In het geval van geen mogelijke implentatie zal deze fase lopen over een termijn van 5 dagen. In het geval van mogelijke implentatie zal deze fase lopen over een termijn van 15 dagen.
+In deze fase kijk ik hoe het huidige ERP-systeem in elkaar zit. Hieronder valt onderzoek doen naar wat het systeem precies is en contact opnemen met het bedrijf. Op die manier weet ik of ik met deze fase verder kan. Het doel in deze fase is een proof-of-concept maken dat directe implementatie in een bestaand ERP-systeem mogelijk is. Ook kijk ik naar de tijd dat dit zou kosten maar ook budget. De proof-of-concept bevat een duidelijk voorbeeld van een zelf geïmplementeerd systeem in de vorm van data die doorgegeven wordt binnen het systeem. In deze fase zal ik mij ook moeten aanpassen aan welke tools er op dit moment gebruikt worden om het ERP-systeem te bouwen. Afhankelijk van de tools en de mogelijkheid tot directe implementatie kan deze fase langer of korter duren. In het geval van geen mogelijke implementatie zal deze fase lopen over een termijn van 5 dagen. In het geval van mogelijke implementatie zal deze fase lopen over een termijn van 10 dagen.
 \subsection{Fase 2 - Communicatie met het ERP-Systeem}
-Hier onderzoek ik of communicatie met het ERP-Systeem een optie is. Dit door middel van API-calls die van en naar het systeem worden gestuurd. Ook hier wordt gekeken naar tijd en budget. Het doel van deze fase is om opnieuw een proof-of-concept te maken. Deze keer bevat deze een duidelijk voorbeeld van communicatie tussen een eigen uitwerking en het ERP-systeem. Zo kan het ERP-systeem API-calls gebruiken om op een externe database CRUD operations te doen. Ook de mogelijkheid om dit te doen moet onderzocht en besproken worden met de leverancier van het ERP-systeem.
+Hier onderzoek ik of communicatie met het ERP-Systeem een optie is. Dit door middel van API-calls die van en naar het systeem worden gestuurd. Ook hier wordt gekeken naar tijd en budget. Het doel van deze fase is om opnieuw een proof-of-concept te maken. Deze keer bevat deze een duidelijk voorbeeld van communicatie tussen een eigen uitwerking en het ERP-systeem. Zo kan het ERP-systeem API-calls gebruiken om op een externe database CRUD operations te doen. Ook de mogelijkheid om dit te doen moet onderzocht en besproken worden met de leverancier van het ERP-systeem. Voor het uitwerken van deze fase maak ik gebruik van een .NET backend die werkt als basis voor de CRUD operations. Dit wordt ook het aanspreekpunt van het ERP-systeem om data op te halen door middel van API-calls. Deze fase loopt over een termijn van 10 dagen.
+\subsection{Fase 3 - Standalone applicatie}
+Na het uitwerken van de vorige 2 fases volgt het uitwerken van een standalone uitwerking die het probleem van Freshfrozen oplost. Ik onderzoek hierbij opnieuw het budget. Het doel van deze fase is een standalone applicatie uitwerken die aan alle criteria van de onderzoeksvraag voldoet. Deze zal gebruik maken van de industriestandaard die terug te vinden is in de literatuurstudie. Deze fase zal lopen over een termijn van 15 dagen. 
 
 
-
-Hier beschrijf je hoe je van plan bent het onderzoek te voeren. Welke onderzoekstechniek ga je toepassen om elk van je onderzoeksvragen te beantwoorden? Gebruik je hiervoor literatuurstudie, interviews met belanghebbenden (bv.~voor requirements-analyse), experimenten, simulaties, vergelijkende studie, risico-analyse, PoC, \ldots?
-
-Valt je onderwerp onder één van de typische soorten bachelorproeven die besproken zijn in de lessen Research Methods (bv.\ vergelijkende studie of risico-analyse)? Zorg er dan ook voor dat we duidelijk de verschillende stappen terug vinden die we verwachten in dit soort onderzoek!
-
-Vermijd onderzoekstechnieken die geen objectieve, meetbare resultaten kunnen opleveren. Enquêtes, bijvoorbeeld, zijn voor een bachelorproef informatica meestal \textbf{niet geschikt}. De antwoorden zijn eerder meningen dan feiten en in de praktijk blijkt het ook bijzonder moeilijk om voldoende respondenten te vinden. Studenten die een enquête willen voeren, hebben meestal ook geen goede definitie van de populatie, waardoor ook niet kan aangetoond worden dat eventuele resultaten representatief zijn.
-
-Uit dit onderdeel moet duidelijk naar voor komen dat je bachelorproef ook technisch voldoen\-de diepgang zal bevatten. Het zou niet kloppen als een bachelorproef informatica ook door bv.\ een student marketing zou kunnen uitgevoerd worden.
-
-Je beschrijft ook al welke tools (hardware, software, diensten, \ldots) je denkt hiervoor te gebruiken of te ontwikkelen.
-
-Probeer ook een tijdschatting te maken. Hoe lang zal je met elke fase van je onderzoek bezig zijn en wat zijn de concrete \emph{deliverables} in elke fase?
-
+%TODO Verwachte resultaat/conclusie
 %---------- Verwachte resultaten ----------------------------------------------
 \section{Verwacht resultaat, conclusie}%
 \label{sec:verwachte_resultaten}
