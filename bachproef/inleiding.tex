@@ -12,7 +12,9 @@ Freshfrozen is een KMO die dierenvoeding produceert en verkoopt. Het betreft ver
 
 Hoewel Excel een veelzijdige tool is, brengt het gebruik ervan voor het beheer van leegoedpaletten bij Freshfrozen significante risico's met zich mee. Door de versnippering van data over meerdere spreadsheets is de foutgevoeligheid hoog.
 
-Het destructieve karakter van data in Excel, waarbij handmatige aanpassingen eerdere invoer kunnen wissen, zorgt ervoor dat menselijke fouten makkelijk worden gemaakt en vaak te laat worden opgemerkt. Bovendien zorgt de betrokkenheid van verschillende medewerkers ervoor dat in diverse stadia van het proces fouten kunnen worden gemaakt. Het ontbreken van logging maakt het vervolgens zeer tijdrovend, dan wel onmogelijk, om de bron van verschillen te herleiden en deze te corrigeren. Dit leidt niet alleen tot administratieve inefficiëntie, maar mogelijk ook tot financiële verliezen door een incorrecte afwikkeling van het statiegeld.
+Het destructieve karakter van data in Excel, waarbij handmatige aanpassingen eerdere invoer kunnen wissen, zorgt ervoor dat menselijke fouten makkelijk worden gemaakt en vaak te laat worden opgemerkt. Bovendien zorgt de betrokkenheid van verschillende medewerkers ervoor dat in diverse stadia van het proces fouten kunnen worden gemaakt. Het ontbreken van logging maakt het vervolgens zeer tijdrovend, dan wel onmogelijk, om de bron van verschillen te herleiden en deze te corrigeren. Dit leidt niet alleen tot administratieve inefficiëntie, maar mogelijk ook tot financiële verliezen door een incorrecte teruggave van het statiegeld.
+
+Freshfrozen maakt al langer gebruik van een ERP-systeem. Deze werd gemaakt door het IT bedrijf MAPA uit Koekelare. Het beheer van de leeggoedpaletten zit niet in het ERP-systeem wat er ook voor zorgt dat data zich op verschillende plekken bevindt.
 
 \section{\IfLanguageName{dutch}{Onderzoeksvraag}{Research question}}%
 \label{sec:onderzoeksvraag}
@@ -42,7 +44,7 @@ Deelvragen met betrekking tot het oplossingsdomein:
 \section{\IfLanguageName{dutch}{Onderzoeksdoelstelling}{Research objective}}%
 \label{sec:onderzoeksdoelstelling}
 
-Wat is het beoogde resultaat van je bachelorproef? Wat zijn de criteria voor succes? Beschrijf die zo concreet mogelijk. Gaat het bv.\ om een proof-of-concept, een prototype, een verslag met aanbevelingen, een vergelijkende studie, enz.
+Het doel is om een proof-of-concept te maken die het probleem van Freshfrozen kan oplossen. Hiervoor zijn drie routes die genomen kunnen worden. Er is een bestaand ERP-systeem aanwezig, dus een directe integratie erin zou perfect zijn. Dit is de eerste route. Hierbij probeer ik om zelf het huidige ERP-systeem aan te passen zodat de verwerking van het leeggoed in diezelfde flow zit. De tweede route betreft een indirecte implementatie. Hierbij zou er een systeem ontwikkeld zijn waar data kan ingegeven worden. Deze data is dan zichtbaar in het huidige ERP-pakket door middel van API-calls. De derde en laatste route is een volledig standalone applicatie.
 
 \section{\IfLanguageName{dutch}{Opzet van deze bachelorproef}{Structure of this bachelor thesis}}%
 \label{sec:opzet-bachelorproef}
