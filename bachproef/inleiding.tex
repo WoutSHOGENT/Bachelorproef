@@ -20,7 +20,7 @@ Freshfrozen maakt al langer gebruik van een ERP-systeem. Deze werd gemaakt door 
 \label{sec:onderzoeksvraag}
 De onderzoeksvraag van deze Bachelorproef luidt als volgt:
 
-Hoe kan het beheer van leeggoedpaletten bij Freshfrozen For Pets efficiënter georganiseerd worden met als focus om tijdbesparing, foutenreductie, gebruiksvriendelijkheid en overzichtelijkheid te verbeteren?
+Hoe kan het beheer van leeggoedpaletten bij Freshfrozen For Pets efficiënter georganiseerd worden, met als focus om tijdbesparing, foutenreductie, procesmatige gebruiksvriendelijkheid en overzichtelijkheid te verbeteren?
 
 Naast deze overkoepelende onderzoekvraag zijn er ook verschillende deelvragen opgesteld. Deze vormen de basis van het onderzoek voor het probleem en uiteindelijke oplossing.
 
@@ -44,7 +44,24 @@ Deelvragen met betrekking tot het oplossingsdomein:
 \section{\IfLanguageName{dutch}{Onderzoeksdoelstelling}{Research objective}}%
 \label{sec:onderzoeksdoelstelling}
 
-Het doel is om een proof-of-concept te maken die het probleem van Freshfrozen kan oplossen. Hiervoor zijn drie routes die genomen kunnen worden. Er is een bestaand ERP-systeem aanwezig, dus een directe integratie erin zou perfect zijn. Dit is de eerste route. Hierbij probeer ik om zelf het huidige ERP-systeem aan te passen zodat de verwerking van het leeggoed in diezelfde flow zit. De tweede route betreft een indirecte implementatie. Hierbij zou er een systeem ontwikkeld zijn waar data kan ingegeven worden. Deze data is dan zichtbaar in het huidige ERP-pakket door middel van API-calls. De derde en laatste route is een volledig standalone applicatie. Deze bachelorproef wordt als een succes gezien als van deze drie routes een proof-of-concept gemaakt is. Aangezien er beperkte tijd is voor deze bachelorproef wordt er vooral gekeken naar de kernfunctionaliteiten en architecturale haalbaarheid van de proof-of-concepts. Hoe mooi de UI eruit is niet van groot belang voor deze bachelorproef.
+Het doel is om een proof-of-concept te maken die het probleem van Freshfrozen kan oplossen. Hiervoor zijn drie routes die genomen kunnen worden. Er is een bestaand ERP-systeem aanwezig, dus een directe integratie erin zou perfect zijn. Dit is de eerste route. Hierbij probeer ik om zelf het huidige ERP-systeem aan te passen zodat de verwerking van het leeggoed in diezelfde flow zit. De tweede route betreft een indirecte implementatie. Hierbij zou er een systeem ontwikkeld zijn waar data kan ingegeven worden. Deze data is dan zichtbaar in het huidige ERP-pakket door middel van API-calls. De derde en laatste route is een volledig standalone applicatie. Deze bachelorproef wordt als een succes gezien als van deze drie routes een proof-of-concept gemaakt is. Gezien de beschikbare tijd voor deze bachelorproef wordt er vooral gekeken naar de kernfunctionaliteiten en architecturale haalbaarheid van de proof-of-concepts. Hoe mooi de UI eruit is niet van groot belang voor deze bachelorproef.
+
+Het doel van dit onderzoek is het onderzoeken van drie technologische scenario's voor het beheer van leeggoedpaletten. Per scenario wordt een proof-of-concept ontwikkeld. Door de beschikbare tijd voor dit onderzoek ligt de focus op de architecturale haalbaarheid en de functionele flow.
+
+De drie te onderzoeken routes zijn:
+
+\begin{enumerate}
+    \item Directe integratie: Een implementatie waarbij het huidige ERP-systeem direct wordt aangepast om de verwerking van het leeggoed in de bestaande workflow te integreren.
+    \item Indirecte integratie: De ontwikkeling van een extern systeem voor data-invoer, waarbij de gegevens via API-calls gesynchroniseerd en zichtbaar worden in het huidige ERP-pakket.
+    \item Standalone applicatie: Een volledig onafhankelijke applicatie die losstaat van het huidige ERP-systeem voor specifieke registratiedoeleinden.
+\end{enumerate}
+
+Hoewel de visuele afwerking (UI) van de prototypes tot een functioneel minimum wordt beperkt, wordt de gebruiksvriendelijkheid getoetst op basis van de reductie in processtappen en de logica van de gegevensinvoer. Hiermee wordt bepaald welke architectuur de beste balans biedt tussen technische haalbaarheid en operationele efficiëntie voor Freshfrozen For Pets.
+
+Voor elke route die mogelijk is wordt ook een score gegeven volgens onderstaande tabel.
+
+
+
 
 \section{\IfLanguageName{dutch}{Opzet van deze bachelorproef}{Structure of this bachelor thesis}}%
 \label{sec:opzet-bachelorproef}
