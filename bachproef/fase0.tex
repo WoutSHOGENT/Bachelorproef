@@ -6,7 +6,7 @@ In dit hoofdstuk volgt een intern onderzoek dat gebeurde bij Freshfrozen.
 \section{Interviews}
 Ik bracht een bezoek een Freshfrozen om het systeem met eigen ogen te zien en enkele vragen te kunnen stellen. Ik sprak daarbij de CEO, de productiechef en één van de financieel bedienden.
 \subsection{CEO}
-Ik sprak eerst me de CEO, Piere Kemseke. Tijdens ons gesprek kreeg ik een uitgebreide uitleg over hoe het huidige systeem, ERP en excel, werkt. Het was een zeer leerrijk gesprek. Tijdens het interview kreeg ik antwoord op een aantal vragen. 
+Eerst sprak ik met de CEO, Piere Kemseke. Tijdens ons gesprek kreeg ik een uitgebreide uitleg over hoe het huidige systeem, ERP en excel, werkt. Het was een zeer leerrijk gesprek. Tijdens het interview kreeg ik antwoord op een aantal vragen. 
 \\
 \\
 Ten eerste gaf hij aan zelf weinig in contact te komen met de Excel-bestanden voor de leeggoedpaletten. De data wordt volledig beheerd door de productiechef en financieel bedienden.
@@ -16,7 +16,26 @@ Daarnaast bespraken we de factor budget. Hoewel ik de PoC kosteloos ontwikkel, s
 Tot slot stelde ik mijn drie mogelijke oplossingen voor. Pierre was zeer enthousiast over oplossing één (Rechtstreeks in het bestaande systeem implementeren) en oplossing drie (de eigen applicatie). Na even te spreken over oplossing twee kwamen we tot de conclusie dat deze niet de moeite waard is. Voor beide optie één en twee is de toegang tot de codebase van het ERP systeem nodig. Als optie één mogelijk is, is er geen tot weinig reden meer om optie twee uit te voeren. Optie twee is namelijk een complexere uitwerking van optie één en is ook moeilijker te onderhouden.
 \\
 \\
-Pierre heeft me ook laten zien hoe het ERP-systeem in werking gaat en waar het beheer en verwerking van het leeggoed mogelijk geïmplementeerd kan worden.
+Pierre liet me ook zien hoe het ERP-systeem in werking gaat en waar het beheer en verwerking van het leeggoed mogelijk geïmplementeerd kan worden.
 
 \subsection{Productiechef}
 
+Daarna sprak ik ook met de productiechef. Bij het aankomen en vertrekken van leveringen vult hij in hoeveel paletten/bakken worden binnengebracht en hoeveel er worden meegenomen door de leverancier. Hij vertekde dat hij dit zoveel mogelijk in balans probeert te houden. Als de Leverancier 20 paletten levert, nemen ze ook 20 paletten terug mee. 
+Hoewel dit een goed systeem is zijn er soms leveranciers die toch meer of minder meenemen dan nodig, waardoor verschillen ontstaan. Zo kan het gebeuren dat een leverancier 50 paletten/bakken moet terugkrijgen, maar dat er enkel 35 klaarstaan. Die leverancier is er dan de volgende keer 15 meer te goed, maar dit lukt niet altijd.
+
+\subsection{Financieel bedienden}
+
+Als laatst sprak ik met één van de financieel bedienden van Freshfrozen. Zij vertelde me dat ook zij een gelijkaardige functie heeft aan de productiechef: het ingeven van het leeggoed dat binnenkomt en vertrekt.
+
+\section{MAPA}
+
+MAPA, een West-Vlaams consultancybedrijf gefocust op ERP modules voor Kmo's, is de leverancier van het huidige ERP pakket.
+Ik ben met hen in contact gekomen om te bespreken of directe implementatie in het huidige ERP-systeem mogelijk zou zijn. Het contact verliep via e-mail.
+\\
+\\
+Al snel kreeg ik te horen dat zelf gebruik maken van de bestaande codebase niet mogelijk zal zijn. Het ERP systeem is gemaakt in Progress. Dit is een full-stack development platform gedesigned voor date-gedreven digitale oplossingen \autocite{PSC2026}. Hoewel Progress een goed provider is voor onderliggende technologie, zijn de licenties om het te kunnen gebruiken heel duur. 
+\\
+\\
+Verder waren er ook zorgen over aanpassingen aan de bestaande structuur, hoe die opgevangen moet worden door hen, enz.
+\\
+Ik vond het zeer jammer dit te horen. Door dit overleg is snel duidelijk geworden dat voor beide fase 1 en 2 geen concrete uitwerking mogelijk zal zijn. Wat wel nog kan is overlopen hoe de uitwerkingen theoretisch tot stand gekomen zouden kunnen zijn.
