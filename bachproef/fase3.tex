@@ -6,10 +6,13 @@ In dit hoofdstuk doorlopen we het proces van de beheersapplicatie te maken die b
 \section{Analyse}
 
 Voor er van start gegaan kan worden, moet eerst duidelijk zijn welke functionaliteiten de PoC allemaal nodig heeft. We doen dit door middel van een analyse, bestaande uit use cases en een EERD. Door deze op te stellen is er een duidelijk overzicht wat gedaan moet worden en kan de CEO waar nodig bijsturen. 
+\\
+\\
+Belangerijk is om te weten dat de data 
 
 \subsection{Use cases}
 
-\subsubsection{Receptiebon ingeven}
+\subsubsection{Receptiebon verwerken (leeggoedstock beweging)}
 
     \vspace{0.5em}
     
@@ -17,23 +20,36 @@ Voor er van start gegaan kan worden, moet eerst duidelijk zijn welke functionali
         \item[\textbf{Primaire actor:}] Productiechef, financieel bediende
         \item[\textbf{Stakeholders:}] /
         \item[\textbf{Precondities:}] De gebruiker is ingelogd
-        \item[\textbf{Postcondities:}] De nieuwe receptiebon is aangemaakt
+        \item[\textbf{Postcondities:}] Een receptiebon is verwerkt
     \end{itemize}
     
     \paragraph{Normaal verloop}
     \begin{enumerate}[nosep]
-        \item Klik
-        \item klik nog eens
-        \item einde
+        \item De gebruiker kiest een openstaande aankoopbon.
+        \item De gebruiker geeft een referentienummer naar een receptiebon in.
+        \item Het systeem valideert volgens DR\_RECEPTIEBON.
+        \item De gebruiker vult de stockbeweging van het leeggoed in.
+        \item het systeem registreert de stockbeweging van de receptiebon.
     \end{enumerate}
     
     \paragraph{Alternatieve verlopen}
     \begin{itemize}[nosep]
-        \item[1a.] <Omschrijving alternatief pad...>
+        \item[3A.] Het systeem detecteert dat de validatie volgens DR\_RECEPTIEBON faalt
+        \begin{itemize}
+            \item[3A1.] Het systeem toont een gepaste melding.
+            \item[3A2.] We keren terug naar stap 2 
+        \end{itemize}
     \end{itemize}
     
     \paragraph{Domeinspecifieke regels}
-    \textbf{DR\_<Naam\_Regel>}: <Omschrijving domeinregel>
+    DR\_RECEPTIEBON
+    \begin{itemize}
+        \item referentiecode
+        \begin{itemize}
+            \item verplicht
+            \item maximum 6 tekens lang
+        \end{itemize}
+    \end{itemize}
     
     \vspace{1cm}
 
@@ -46,3 +62,20 @@ Voor er van start gegaan kan worden, moet eerst duidelijk zijn welke functionali
 \subsubsection{Stockcorrectie uitvoeren}
 
 \subsubsection{Inloggen}
+
+\subsection{EERD}
+TODO
+
+\section{UCD}
+
+Zoals in de literatuurstudie vermeld speelt UCD een grote rol in hoe een applicatie wordt opgevat. De gebruiker staat eerst. Om dit te bereiken zijn er voor deze specifieke case enkele ideeën. Er wordt vooral een focus gelegd op het verlagen van de drempel om over te stappen op een nieuw systeem.
+\paragraph{Layout}
+Op dit moment wordt er met het ERP systeem van MAPA gewerkt. het ideale scenario is om in dezelfde omgeving een uitwerking te maken. Dat is hier niet het geval. Wat wel kan is kijken naar hoe het huidige ERP systeem eruit ziet en zoveel mogelijk elementen overnemen van de layout. Enkele belangerijke punten:
+\begin{itemize}
+    \item Waar bevindt zich systeemnavigatie?
+    \item Hoe zien de schermen eruit?
+    \item opties zoals uitklapbare navigatie, thema's, etc.?
+    \item etc.
+\end{itemize}
+
+%TODO printscreens met omkaderingen en uitleg
