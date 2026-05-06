@@ -6,10 +6,8 @@ In dit hoofdstuk doorlopen we het proces van de beheersapplicatie te maken die b
 \section{Analyse}
 
 Voor er van start gegaan kan worden, moet eerst duidelijk zijn welke functionaliteiten de PoC allemaal nodig heeft. We doen dit door middel van een analyse, bestaande uit use cases en een EERD. Door deze op te stellen is er een duidelijk overzicht wat gedaan moet worden en kan de CEO waar nodig bijsturen. 
-\\
-\\
-Belangerijk is om te weten dat de data 
 
+\pagebreak
 \subsection{Use cases}
 
 \subsubsection{Receptiebon verwerken (leeggoedstock beweging)}
@@ -18,13 +16,14 @@ Belangerijk is om te weten dat de data
     
     \begin{itemize}[leftmargin=3.5cm, labelsep=0.5cm, nosep]
         \item[\textbf{Primaire actor:}] Productiechef, financieel bediende
-        \item[\textbf{Stakeholders:}] /
+        \item[\textbf{Stakeholders:}] CEO
         \item[\textbf{Precondities:}] De gebruiker is ingelogd
         \item[\textbf{Postcondities:}] Een receptiebon is verwerkt
     \end{itemize}
     
     \paragraph{Normaal verloop}
     \begin{enumerate}[nosep]
+        \item De gebruiker wil een Receptiebon verwerken.
         \item De gebruiker kiest een openstaande aankoopbon.
         \item De gebruiker geeft een referentienummer naar een receptiebon in.
         \item Het systeem valideert volgens DR\_RECEPTIEBON.
@@ -52,13 +51,111 @@ Belangerijk is om te weten dat de data
     \end{itemize}
     
     \vspace{1cm}
-
+\pagebreak
 \subsubsection{Historiek bekijken}
 
+    \vspace{0.5em}
+    
+    \begin{itemize}[leftmargin=3.5cm, labelsep=0.5cm, nosep]
+        \item[\textbf{Primaire actor:}] Productiechef, financieel bediende, CEO
+        \item[\textbf{Stakeholders:}] /
+        \item[\textbf{Precondities:}] De gebruiker is ingelogd
+        \item[\textbf{Postcondities:}] De gebruiker kan de historiek van stockbewegingen bezichtigen.
+    \end{itemize}
+    
+    \paragraph{Normaal verloop}
+    \begin{enumerate}[nosep]
+        \item de gebruiker wil de historiek van stockbewegingen bekijken.
+        \item De gebruiker navigeert naar het scherm voor historiek.
+        \item De gebruiker kiest het gewenste leeggoedtype waar de historiek van bezichtigd wil worden.
+        \item Het systeem toont alle historiek voor het gekozen leeggoedtype.
+    \end{enumerate}
+    
+    \paragraph{Alternatieve verlopen}
+    /
+    
+    \paragraph{Domeinspecifieke regels}
+    /
+    
+    \vspace{1cm}
+    
 \subsubsection{Stock bekijken}
 
+    \vspace{0.5em}
+    
+    \begin{itemize}[leftmargin=3.5cm, labelsep=0.5cm, nosep]
+        \item[\textbf{Primaire actor:}] Productiechef, financieel bediende, CEO
+        \item[\textbf{Stakeholders:}] /
+        \item[\textbf{Precondities:}] De gebruiker is ingelogd
+        \item[\textbf{Postcondities:}] De gebruiker kan de stock van alle leeggoedtypes voor elke leverancier bezichtigen.
+    \end{itemize}
+    
+    \paragraph{Normaal verloop}
+    \begin{enumerate}[nosep]
+        \item de gebruiker wil de stock van alle leeggoedtypes per leverancier bekijken.
+        \item De gebruiker navigeert naar het scherm voor stockbeheer.
+        \item Het systeem toont de totale stock van elk leeggoedtype per leverancier.
+    \end{enumerate}
+    
+    \paragraph{Alternatieve verlopen}
+    /
+    
+    \paragraph{Domeinspecifieke regels}
+    /
+    
+    \vspace{1cm}
+\pagebreak
 \subsubsection{Stock filteren}
 
+    \vspace{0.5em}
+    
+    \begin{itemize}[leftmargin=3.5cm, labelsep=0.5cm, nosep]
+        \item[\textbf{Primaire actor:}] Productiechef, financieel bediende, CEO
+        \item[\textbf{Stakeholders:}] /
+        \item[\textbf{Precondities:}] De gebruiker is ingelogd
+        \item[\textbf{Postcondities:}] De gebruiker kan een gefilterde lijst van stock bezichtigen.
+    \end{itemize}
+    
+    \paragraph{Normaal verloop}
+    \begin{enumerate}[nosep]
+        \item de gebruiker wil de stock voor een specifieke leverancier bezichtigen.
+        \item De gebruiker navigeert naar het scherm voor stockbeheer.
+        \item Het systeem toont de totale stock van elk leeggoedtype per leverancier.
+        \item De gebruiker kiest de gewenste filters.
+        \item Het systeem valideert de filters volgens DR\_STOCK\_FILTERS.
+        \item het systeem toont alle stock voor de gekozen filters.
+    \end{enumerate}
+    
+    \paragraph{Alternatieve verlopen}
+    \begin{itemize}[nosep]
+        \item[5A.] De validatie volgens DR\_STOCK\_FILTERS faalt.
+        \begin{itemize}
+            \item[5A1.] Het systeem toont een gepaste melding.
+            \item[5A2.] We keren terug naar stap 4
+        \end{itemize}
+        
+        \item[5B.] Het systeem detecteert dat voor de gekozen filters geen resultaten zijn.
+        \begin{itemize}
+            \item[5B1.] Het systeem toont een gepaste melding.
+            \item[5B2.] We keren terug naar stap 4
+        \end{itemize}
+    \end{itemize}
+    
+    \paragraph{Domeinspecifieke regels}
+    DR\_STOCK\_FILTERS
+    \begin{itemize}
+        \item Leverancier
+        \begin{itemize}
+            \item gekozen leverancier moet bestaan in het systeem
+        \end{itemize}
+        \item Leeggoedtype
+        \begin{itemize}
+            \item gekozen leeggoedtype moet bestaan in het systeem
+        \end{itemize}
+    \end{itemize}
+    
+    \vspace{1cm}
+\pagebreak
 \subsubsection{Stockcorrectie uitvoeren}
 
 \subsubsection{Inloggen}
