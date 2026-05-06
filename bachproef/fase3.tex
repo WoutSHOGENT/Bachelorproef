@@ -158,6 +158,72 @@ Voor er van start gegaan kan worden, moet eerst duidelijk zijn welke functionali
 \pagebreak
 \subsubsection{Stockcorrectie uitvoeren}
 
+    \begin{itemize}[leftmargin=3.5cm, labelsep=0.5cm, nosep]
+        \item[\textbf{Primaire actor:}] Productiechef, financieel bediende, CEO
+        \item[\textbf{Stakeholders:}] /
+        \item[\textbf{Precondities:}] De gebruiker is ingelogd
+        \item[\textbf{Postcondities:}] De gebruiker heeft de stock van een leeggoedtype voor een specifieke leverancier aangepast.
+    \end{itemize}
+    
+    \paragraph{Normaal verloop}
+    \begin{enumerate}[nosep]
+        \item De gebruiker wil de stock van een leeggoedtype voor een specifieke leverancier aanpassen
+        \item De gebruiker navigeert naar het scherm voor stockbeheer.
+        \item Het systeem toont de totale stock van elk leeggoedtype per leverancier.
+        \item De gebruiker kiest de optie om een stockcorrectie uit te voeren.
+        \item De gebruiker geeft het gewenste leeggoedtype en de leverancier in waarvoor een stockcorrectie uitgevoerd moet worden.
+        \item Het systeem valideert volgens DR\_STOCKCORRECTIE\_FILTERS.
+        \item De gebruiker geeft de gegevens van de correctie in.
+        \item Het systeem valideert volgens DR\_STOCKCORRECTIE en DR\_STOCKCORRECTIE\_VERDACHT.
+        \item Het systeem voert de stockcorrectie uit.
+        \item Het systeem toont een gepaste melding.
+    \end{enumerate}
+    
+    \paragraph{Alternatieve verlopen}
+    \begin{itemize}[nosep]
+        \item[6A.] De validatie volgens  DR\_STOCKCORRECTIE\_FILTERS faalt.
+        \begin{itemize}
+            \item[6A1.] Het systeem toont een gepaste melding.
+            \item[6A2.] We keren terug naar stap 5
+        \end{itemize}
+        \item[6B.] Het systeem detecteert dat voor de gekozen filters geen resultaten zijn.
+        \begin{itemize}
+            \item[6B1.] Het systeem toont een gepaste melding.
+            \item[6B2.] We keren terug naar stap 5
+        \end{itemize}
+        \item[8A.] De validatie volgens DR\_STOCKCORRECTIE faalt.
+        \begin{itemize}
+            \item[8A1.] Het systeem toont een gepaste melding.
+            \item[8A2.] We keren terug naar stap 7
+        \end{itemize}
+        
+        \item[8B.] Het systeem detecteert een verdachte correctie volgens DR\_STOCKCORRECTIE\_VERDACHT
+        \begin{itemize}
+            \item[8B1.] Het systeem vraagt om een bevesteging.
+            \begin{itemize}
+                \item[8B1A.] De gebruiker bevestigd de actie.
+                \begin{itemize}
+                    \item[8B1A1.] Het systeem toont een gepaste melding
+                    \item[8B1A2.] We gaan verder naar stap 9
+                \end{itemize}
+                \item[8B1B.] De gebruiker bevestigd niet.
+                \begin{itemize}
+                    \item[8B1B1.] Het systeem toont een gepaste melding. 
+                    \item[8B1B2.] We keren terug naar stap 7
+                \end{itemize}
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+    
+    \paragraph{Domeinspecifieke regels}
+    DR\_STOCKCORRECTIE\_FILTERS
+    \\
+    DR\_STOCKCORRECTIE
+    \\
+    DR\_STOCKCORRECTIE\_VERDACHT
+    
+    \vspace{1cm}
+
 \subsubsection{Inloggen}
 
 \subsection{EERD}
