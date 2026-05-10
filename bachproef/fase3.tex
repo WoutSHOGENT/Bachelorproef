@@ -217,7 +217,7 @@ Voor er van start gegaan kan worden, moet eerst duidelijk zijn welke functionali
     
     \paragraph{Domeinspecifieke regels}
     DR\_STOCKCORRECTIE\_FILTERS
-    \\
+    \\ %TODO
     DR\_STOCKCORRECTIE
     \\
     DR\_STOCKCORRECTIE\_VERDACHT
@@ -226,8 +226,56 @@ Voor er van start gegaan kan worden, moet eerst duidelijk zijn welke functionali
 
 \subsubsection{Inloggen}
 
+    \vspace{0.5em}
+    
+    \begin{itemize}[leftmargin=3.5cm, labelsep=0.5cm, nosep]
+        \item[\textbf{Primaire actor:}] Productiechef, financieel bediende, CEO
+        \item[\textbf{Stakeholders:}] /
+        \item[\textbf{Precondities:}] /
+        \item[\textbf{Postcondities:}] Het systeem heeft de succesvolle aanmeldpoging van de gebruiker geregistreerd.
+    \end{itemize}
+    
+    \paragraph{Normaal verloop}
+    \begin{enumerate}[nosep]
+        \item De gebruiker wenst aan te melden.
+        \item Het systeem vraagt gebruikersnaam en wachtwoord.
+        \item De gebruiker voert de gegevens in.
+        \item Het systeem valideert volgens DR\_AANMELDEN
+        \item Het systeem registreert de succesvolle aanmeldpoging volgens DR\_LOG\_AANMELDEN
+        \item Het systeem toont een overzicht aan beschikbare acties op basis van de rol van de aangemelde gebruiker
+    \end{enumerate}
+    
+    \paragraph{Alternatieve verlopen}
+    \begin{itemize}[nosep]
+        \item[4A.] Het systeem detecteert dat de gebruikersnaam en/of wachtwoord niet ingevuld zijn faalt
+        \begin{itemize}
+            \item[4A1.] Het systeem toont een gepaste melding.
+            \item[4A2.] We keren terug naar stap 2
+        \end{itemize}
+        
+        \item[4B.] Het systeem detecteert dat de gebruikersnaam niet overeenstemd met bijhorende wachtwoord
+        \begin{itemize}
+            \item[4B1.] Het systeem toont een gepaste melding.
+            \item[4B2.] Het systeem logt de foutieve aanmelding poging volgens DR\_LOG\_AANMELDEN
+            \item[4B1.] Keer terug naar stap 2 van het normale verloop
+        \end{itemize}
+    \end{itemize}
+
+    \paragraph{Domeinspecifieke regels}
+    DR\_AANMELDEN
+    \begin{itemize}
+        \item gebruikersnaam en wachtwoord zijn verplicht
+        \item gebruikersnaam en wachtwoord moeten overeenstemmen.
+    \end{itemize}
+    
+    DR\_LOG\_AANMELDEN
+    \begin{itemize}
+        \item Indien succesvolle poging: login, datum/uur, "correcte login"
+        \item Indien foutieve poging: login, paswoord, datum/uur, "correcte login"
+    \end{itemize}
+
 \subsection{EERD}
-TODO
+% TODO
 
 \section{UCD}
 
