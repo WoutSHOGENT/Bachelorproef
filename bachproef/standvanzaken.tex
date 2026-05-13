@@ -51,12 +51,62 @@ Een PtP is krachtig omdat het helemaal kan afgesteld worden op de noden van het 
 \\
 In beide vermelde opties is voor de eindgebruikers binnen Freshfrozen heel weinig aanpassing nodig. Het systeem dat reeds gebruikt werd bevat dan nog een deel van het leveringsprocess. Er moet echter wel de mogelijkheid zijn om te implementeren in het ERP systeem. Contact met de leverancier is dus vereist.
 
+\subsection{Progress}
+
+In dit deel nemen we een diepere kijk naar Progress. Progress is het bedrijf die de toolbox aanbied waarmee het huidige ERP-pakket gebouwt is. Er wordt onderzocht wat zij aanbieden dat hun platform zo krachtig maakt voor businessoplossingen.
+
+\subsubsection{Wie is Progress}
+Progress is een Amerikaans bedrijf dat al voor 40 jaar een fundamentele rol speelt in de wereld van bedrijfssoftware. Hun missie is simpelweg: De ontwikkeling van bedrijfsapplicaties versnellen. 
+\\
+\\
+Ze doen dit door hun toolbox, genaamd OpenEdge, te ontwikkelen. OpenEdge is de omvattende naam van alles dat je nodig kunt hebben om een bedrijfsapplicatie te bouwen. Database, Frameworks, Cloud servers, etc. Alles zit erin. Doordat al deze tools door dezelfde provider (Progress), worden aangeboden, heb je geen enkele last van compatibiliteitsproblemen. Dit zorgt ook voor een lagere Time-To-Value (ToV), wat in de eerste plaats ook hun missie is.
+\subsubsection{De Technologie}
+
+\paragraph{Advanced Bussiness language}
+Openedge gebruikt hun eigen Advanced Bussiness Language (ABL). Deze high-level programmeertaal is Data-centric en staat heel dicht bij bestaande data. De structuur van de data en hoe het allemaal aan elkaar zit, is meteen gekend voor de taal. Er is geen nood aan een domeinlaag/Entity Framework om bij te houden welk object welke data heeft. het gevolg hiervan is dat transacties tussen de applicatie en database snel en efficiënt gebeuren en ook zeer diep beveiligd tegen fouten.
+\\
+\\
+ABL is een high-level programming language. Dit betekent dat achter elke lijn die geschreven wordt, er een hele bundle code achter zit. Dit zorgt er dan ook voor dat één statement in ABL, er 100 zijn in bijvoorbeeld Java. Een voorbeeld gegeven in de officiële documentatie is deze: `A single ABL statement can bring data all the way from the application database to the user interface, or return a user's changes back to the database \autocite{Progress2026}.` Veel van de tools vermeld in OpenEdge zijn ook zelf geschreven in ABL.
+\paragraph{Database}
+OpenEdge heeft zijn eigen OpenEdge RDBMS systeem. Dit is kort voor Relationeel Database Management Systeem. De database die aan het middelpunt van de structuur staat is een door hen zelf ontwikkelde technologie die gespecialiseerd is in transacties.
+RDBMS heeft een specifieke structuur die altijd gebruikt wordt.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.8\textwidth]
+    {images/openedge_database}
+    \caption{\label{fig:openedgedbstructuur1}OpenEdge RDBMS structuur \autocite{Progress2026a}.}
+\end{figure}
+
+Ik zal niet elk deel van deze infrastructuur bespreken. \\
+Het belangerijkste is de OpenEdge Database die in het midden staat. Deze database is 'record-based'. Dat betekent dat deze gefocust is op het verwerken van specifieke records (bv. een Receptiebon) en alle relaties die deze record heeft. Elke aanpassing aan een record gebeurt snel en efficiënt. 
+
 \section{Een eigen applicatie als oplossing} %TODO meer uitleg
 Naast integratie in het bestaande systeem, is er ook nog de optie om zelf een applicatie te schrijven. Een aparte applicatie geeft ons complete vrijheid over wat er geïmplementeerd wordt en op welke manier. Volgens een projectrapport door \textcite{Machado2023} is .NET en Blazor WebAssembly een goede optie om een beheerapplicatie te maken. Dit komt door de voordelen op vlak van beveiliging en snelheid. Volgens een artikel door \textcite{Amaro2025} wordt een aangepaste digitale oplossing zelfs aangeraden voor kmo's. zelfs het herwerken van een klein bedrijfsproces kan een katalysator zijn voor digitale maturiteit binnen een bedrijf. Aan een standalone applicatie zijn ook enkele mogelijke valkuilen gebonden die geïdentificeerd en vermeden moeten worden.
-\\
-\\
+\subsection{Data silo's}
 \textcite{Rahman2025} beschrijft dat het implementeren van systemen in isolatie data silo's maakt. Dit fenomeen zorgt ervoor dat data geen goede flow meer heeft binnen verschillende departementen van een bedrijf \autocite{JeleelOjuade2024}. Dit wil zeggen dat als bv. in het ERP systeem een leverancier toegevoegd wordt, deze ook nog manueel toegevoegd moet worden aan het andere, geïsoleerde systeem. Data silo's moeten zoveel mogelijk vermeden worden. In het geval van deze case study zijn er dan 3 systemen: Excel, het ERP-systeem en de leeggoed applicatie. Deze 3 systemen zijn elk een data silo.
+\subsection{UCD}
+Een tweede valkuil is User-Centric Design (UCD) \autocite{Rahman2025}. UCD gaat niet enkel over of de applicatie er mooi uitziet. Helemaal niet zelfs. Het gaat over de ervaring van de gebruiker, ook User experience (UX) genoemt. Het belangerijkste om UCD tot een goed einde te brengen is weten voor wie je een oplossing aan het maken bent. Waar werken ze nu mee?; hoe ziet het er uit?; Zijn er frustraties die blijven terugkomen? De antwoorden op deze vragen zorgen ervoor dat de oplossing die gemaakt wordt beter werkt voor die specifieke case. De ene layout zal goed werken bij de ene, maar niet bij de andere. Als UCD achterwege wordt gelaten bij het bouwen van een ERP applicatie, leidt dit tot frustratie, inefficiëntie en slecht gebruik van het systeem. Een applicatie die voor een eindgebruiker niet goed is, wordt niet gebruikt en zelfs vermeden.
 \\
 \\
-Een tweede valkuil is User-Centric Design (UCD) \autocite{Rahman2025}. UCD gaat niet enkel over of de applicatie er mooi uitziet. Helemaal niet zelfs. Het gaat over de ervaring van de gebruiker, ook User experience (UX) genoemt. Het belangerijkste om UCD tot een goed einde te brengen is weten voor wie je een oplossing aan het maken bent. Waar werken ze nu mee?; hoe ziet het er uit?; Zijn er frustraties die blijven terugkomen? De antwoorden op deze vragen zorgen voor ervoor dat de oplossing die gemaakt wordt beter werkt voor die specifieke case. De ene layout zal goed werken bij de ene, maar niet bij de andere. Als UCD achterwege wordt gelaten bij het bouwen van een ERP applicatie, leidt dit tot frustratie, inefficiëntie en slecht gebruik van het systeem. Een applicatie die voor een eindgebruiker niet goed is, wordt niet gebruikt en zelfs vermeden.
+De gebruiker staat eerst. Om dit te bereiken zijn er voor deze specifieke case enkele ideeën. Er wordt vooral een focus gelegd op het verlagen van de drempel om over te stappen op een nieuw systeem. Het is de bedoeling dat de gebruiker zich thuis voelt vanaf het eerste gebruik.
+\paragraph{Layout} %TODO printscreens met omkaderingen en uitleg
+Op dit moment wordt er met het ERP systeem van MAPA gewerkt. Wat best gedaan wordt is kijken naar hoe het huidige ERP systeem eruit ziet en zoveel mogelijk elementen overnemen van de layout. Enkele belangerijke punten:
+\begin{itemize}
+    \item Waar bevindt zich systeemnavigatie?
+    \item Hoe zien de schermen eruit?
+    \item etc.
+\end{itemize}
+
+\paragraph{Mentale model}
+Het mentale model omvat elementen zoals:
+\begin{itemize}
+    \item terminologie
+    \item iconen
+    \item flow van het proces
+\end{itemize}
+
+Door deze elementen consistent te houden met het huidige systeem voelt de applicatie al snel familiair aan.
+
+\paragraph{Onboarding}
+Door gebruik te maken van een onboarding bij eerste opstart en tooltips toe te voegen wanneer men over bepaalde items hovered. Deze kleine elementen kunnen het verschil om iemand bij het eerste gebruik al meteen op gang te zetten.
 
