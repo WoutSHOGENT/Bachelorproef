@@ -12,5 +12,56 @@ In dit hoofdstuk wordt er bekeken hoe een ERP systeem kan samenwerken met een ex
     \caption{\label{fig:structuur_fase2}Voorstelling van de structuur van deze fase.}
 \end{figure}
 
+Figuur \ref{fig:structuur_fase2} toont de opbouw van deze oplossing. Er bestaan twee systemen naast elkaar. Aan de rechterzijde staat het bestaande ERP-systeem van MAPA met zijn eigen database. Aan de linkerzijde komt een nieuw, licht leeggoedsysteem met een eigen, afzonderlijke database. Beide systemen wisselen gegevens uit via API-calls.
+
+Het kernprincipe van deze opzet is dat het ERP-systeem de single source of truth blijft voor alles wat met de levering zelf te maken heeft. Het leeggoedsysteem werkt als een eigen systeem: het is enkel verantwoordelijk voor het beheer van de leeggoedpaletten en haalt alle bijkomende context op uit het ERP-systeem. Ondertussen krijgt ook het ERP-systeem informatie van het leeggoedsysteem binnen. Zo blijft het ERP-systeem de centrale bron van informatie. Zoals in de stand van zaken beschreven, gaat het hier om een point-to-point (PtP) integratie: één bestaand systeem dat informatie uitwisselt met één nieuw systeem.
+
+In de praktijk betekent dit dat het ERP-systeem één nieuwe module krijgt. Die module leest de database van het leeggoedsysteem uit en toont de stock en stockbewegingen per leeggoedtype en per leverancier binnen het ERP-systeem zelf. Aan de databank, de schermen en de bestaande workflows van het ERP-systeem hoeft verder niets gewijzigd te worden.
+
+\section{Werking}
+
+Het grootste risico bij twee systemen die naast elkaar bestaan, is dubbele data-invoer. Wanneer een gebruiker dezelfde gegevens, zoals de leverancier en de leveringsdetails, in beide systemen opnieuw moet ingeven, ontstaan opnieuw foutgevoeligheid en tijdverlies. Dat zijn net de problemen die opgelost moeten worden. Deze opzet vermijdt dit door enkel de strikt noodzakelijke gegevens manueel te laten ingeven en de rest automatisch op te halen via de API.
+
+Het verloop van een levering ziet er als volgt uit:
+
+\begin{enumerate}
+    \item \textbf{In het ERP-systeem.} De gebruiker verwerkt de receptiebon op de gebruikelijke manier in het ERP-systeem. Daarbij genereert het ERP-systeem een uniek referentienummer voor die receptiebon.
+    \item \textbf{In het leeggoedsysteem.} De gebruiker opent het leeggoedsysteem en ziet welke receptiebonnen nog niet in het leeggoedsysteem verwerkt zijn.
+    \item \textbf{De manuele invoer.} Het enige dat de gebruiker zelf invult, zijn de twee aantallen die het ERP-systeem niet kent: het aantal binnengebrachte paletten en het aantal meegegeven paletten.
+    \item \textbf{Het resultaat.} Het leeggoedsysteem bewaart deze stockbeweging in zijn eigen database, gekoppeld aan het referentienummer uit het ERP-systeem.
+    \item \textbf{Terug in het ERP-systeem.} De nieuwe module in het ERP-systeem leest de database van het leeggoedsysteem uit en toont de bijgewerkte stock per leeggoedtype. Zo blijft het overzicht beschikbaar binnen het vertrouwde ERP-systeem.
+\end{enumerate}
+
+Op die manier blijft de manuele invoer beperkt tot twee getallen, terwijl de koppeling met de oorspronkelijke receptiebon toch behouden blijft.
+
+\section{Voordelen en afweging}
+
+\subsection{Minimale impact op het ERP-systeem}
+
+In fase 0 werd duidelijk dat een rechtstreekse aanpassing van het ERP-systeem niet evident is. Een directe implementatie (hoofdstuk~\ref{ch:fase1}) vereist immers aanpassingen aan de schermen voor receptiebonnen, extra databasetabellen voor de leeggoedhistoriek en een audittrail. Dergelijke ingrepen raken aan kernprocessen en brengen het risico met zich mee om bestaande financiële workflows te verstoren. Bovendien zijn ze duur door de licentiekosten van Progress en de consultancykosten van MAPA.
+
+Deze opzet beperkt de aanpassingen aan het ERP-systeem tot één nieuwe module. Die module is bovendien enkel leesgericht: ze haalt gegevens op uit de database van het leeggoedsysteem, zonder de bestaande databank, schermen of workflows te wijzigen. Alle nieuwe logica en de volledige leeggoedhistoriek bevinden zich in het afzonderlijke leeggoedsysteem. Het risico om bestaande processen te verstoren blijft daardoor klein. Voor het bouwen van die ene module blijft medewerking van MAPA wel noodzakelijk, wat de reden is dat ook deze fase, net als fase 1, in de praktijk enkel theoretisch uitgewerkt wordt.
+
+\subsection{Geen data silo}
+
+Een veelvoorkomende valkuil bij het naast elkaar plaatsen van systemen is het ontstaan van data silo's. Zoals in de stand van zaken beschreven, raakt data dan geïsoleerd in één systeem en stroomt ze niet langer door naar de rest van het bedrijf. Een volledig standalone applicatie (hoofdstuk~\ref{ch:fase3}) loopt net dat risico.
+
+In deze opzet wordt dat vermeden. De nieuwe module zorgt ervoor dat de gegevens uit het leeggoedsysteem doorstromen naar het ERP-systeem en daar zichtbaar zijn. Het leeggoedsysteem staat dus niet op zichzelf: de leeggoedgegevens blijven raadpleegbaar binnen het centrale systeem dat de medewerkers al gebruiken.
+
+\subsection{Het leeggoedsaldo}
+
+Het beheer van leeggoedpaletten is niet enkel een kwestie van losse receptiebonnen, maar van een doorlopend saldo per leverancier. Uit de interviews in fase 0 bleek dat een leverancier een tegoed kan opbouwen wanneer hij minder paletten meekrijgt dan waar hij recht op heeft. De CEO gaf expliciet aan dat het systeem per leverancier moet kunnen tonen hoeveel leeggoed nog openstaat.
+
+Omdat het leeggoedsysteem een eigen database heeft, kan het de volledige historiek van alle stockbewegingen bijhouden. Daaruit volgt eenvoudig het actuele saldo per leverancier en per leeggoedtype. Via de nieuwe module wordt dat overzicht bovendien zichtbaar in het ERP-systeem. Zo levert deze oplossing de historiek die in Excel ontbrak, zonder daarvoor een volwaardige boekhoudkundige module in het ERP-systeem te moeten bouwen.
+
+\subsection{Gebruikerservaring aan het laaddok}
+
+ERP-schermen zijn vaak druk en complex. Zoals in de stand van zaken bij User-Centric Design beschreven, leidt een omslachtige interface tot frustratie en vermijdingsgedrag. Een productiechef die met een tablet aan een laadkade staat, wil niet door meerdere ERP-menu's navigeren om een eenvoudige palettelling te registreren.
+
+Omdat het leeggoedsysteem losstaat van het ERP-systeem, kan de interface volledig toegespitst worden op die ene taak. De applicatie bestaat in de praktijk uit slechts enkele knoppen: de gebruiker kiest een openstaande receptiebon en vult de twee aantallen in. Doordat de invoer zo beperkt blijft, daalt ook de kans op fouten.
+
+\subsection{Afweging}
+
+Deze opzet brengt ook aandachtspunten met zich mee. Er moet een tweede systeem met een eigen database gebouwd en onderhouden worden, en het ERP-systeem en het leeggoedsysteem moeten correct op elkaar afgestemd blijven. Bovendien blijft, zoals eerder vermeld, medewerking van MAPA nodig om de module aan ERP-zijde te bouwen. Stel dat er nog enkele andere nieuwe systemen komen die dezelfde structuur volgen, wordt het onderhouden van al die systemen snel complex en kost veel tijd.
 
 \section{Evaluatie}
