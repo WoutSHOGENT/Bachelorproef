@@ -34,17 +34,48 @@ Het verloop van een levering ziet er als volgt uit:
 
 Op die manier blijft de manuele invoer beperkt tot twee getallen, terwijl de koppeling met de oorspronkelijke receptiebon toch behouden blijft.
 
+\subsection{Wireframes van de stockapplicatie}
+
+Om concreter te maken hoe het leeggoedsysteem er voor de gebruiker zou uitzien, zijn er enkele wireframes opgesteld. Een wireframe is een vereenvoudigde schets van een scherm, zonder definitieve vormgeving, die vooral de opbouw en de functionaliteit toont. Onderstaande figuren geven een eerste beeld van de stockapplicatie.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.6\textwidth]
+    {images/main_page_2}
+    \caption{\label{fig:wireframe_hoofdscherm}Wireframe van het startscherm met de openstaande receptiebonnen.}
+\end{figure}
+Figuur~\ref{fig:wireframe_hoofdscherm} toont het startscherm. Aan de linkerzijde staat een lijst met de receptiebonnen die nog niet in het leeggoedsysteem verwerkt zijn. De gebruiker kiest hier eenvoudigweg de receptiebon waarmee hij aan de slag wil. Daarnaast is er een knop om verder te gaan naar het scherm om een stockcorrectie uit te voeren.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.6\textwidth]
+    {images/proccessing_2}
+    \caption{\label{fig:wireframe_receptiebon}Wireframe van het scherm om een receptiebon te verwerken.}
+\end{figure}
+
+Nadat een receptiebon gekozen is, verschijnt het scherm uit figuur~\ref{fig:wireframe_receptiebon}. De gebruiker selecteert het leeggoedtype uit de dropdown en vult de twee aantallen in: het aantal binnengebrachte paletten (\# In) en het aantal meegegeven paletten (\# Out). Met de knop \emph{Submit} wordt de stockbeweging opgeslagen. Dit scherm bevat dus precies de beperkte, manuele invoer die eerder beschreven werd.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.6\textwidth]
+    {images/stockcorrectie_2}
+    \caption{\label{fig:wireframe_stockcorrectie}Wireframe van het scherm voor een stockcorrectie.}
+\end{figure}
+
+Tot slot toont figuur~\ref{fig:wireframe_stockcorrectie} het scherm voor een stockcorrectie. Niet elke stockbeweging hoort immers bij een receptiebon; soms moet de voorraad manueel rechtgezet worden. De gebruiker kiest het leeggoedtype en de leverancier en geeft de getelde hoeveelheid in. Zo blijft de stock in het systeem overeenstemmen met de werkelijke telling.
+
+
 \section{Voordelen en afweging}
 
 \subsection{Minimale impact op het ERP-systeem}
 
-In fase 0 werd duidelijk dat een rechtstreekse aanpassing van het ERP-systeem niet evident is. Een directe implementatie (hoofdstuk~\ref{ch:fase1}) vereist immers aanpassingen aan de schermen voor receptiebonnen, extra databasetabellen voor de leeggoedhistoriek en een audittrail. Dergelijke ingrepen raken aan kernprocessen en brengen het risico met zich mee om bestaande financiële workflows te verstoren. Bovendien zijn ze duur door de licentiekosten van Progress en de consultancykosten van MAPA.
+In fase 0 werd duidelijk dat een rechtstreekse aanpassing van het ERP-systeem niet evident is. Een directe implementatie (hoofdstuk~\ref{ch:fase1}) vereist immers aanpassingen aan de schermen voor receptiebonnen, extra databasetabellen voor de leeggoedhistoriek en een audittrail. Deze ingrepen raken kernprocessen aan en brengen het risico met zich mee om bestaande financiële workflows te verstoren.
 
 Deze opzet beperkt de aanpassingen aan het ERP-systeem tot één nieuwe module. Die module is bovendien enkel leesgericht: ze haalt gegevens op uit de database van het leeggoedsysteem, zonder de bestaande databank, schermen of workflows te wijzigen. Alle nieuwe logica en de volledige leeggoedhistoriek bevinden zich in het afzonderlijke leeggoedsysteem. Het risico om bestaande processen te verstoren blijft daardoor klein. Voor het bouwen van die ene module blijft medewerking van MAPA wel noodzakelijk, wat de reden is dat ook deze fase, net als fase 1, in de praktijk enkel theoretisch uitgewerkt wordt.
 
 \subsection{Geen data silo}
 
-Een veelvoorkomende valkuil bij het naast elkaar plaatsen van systemen is het ontstaan van data silo's. Zoals in de stand van zaken beschreven, raakt data dan geïsoleerd in één systeem en stroomt ze niet langer door naar de rest van het bedrijf. Een volledig standalone applicatie (hoofdstuk~\ref{ch:fase3}) loopt net dat risico.
+Een veelvoorkomende valkuil bij het naast elkaar plaatsen van systemen is het ontstaan van data silo's. Zoals in de literatuurstudie beschreven, raakt data dan geïsoleerd in één systeem en stroomt ze niet langer door naar de rest van het bedrijf. Een volledig standalone applicatie (hoofdstuk~\ref{ch:fase3}) loopt net dat risico.
 
 In deze opzet wordt dat vermeden. De nieuwe module zorgt ervoor dat de gegevens uit het leeggoedsysteem doorstromen naar het ERP-systeem en daar zichtbaar zijn. Het leeggoedsysteem staat dus niet op zichzelf: de leeggoedgegevens blijven raadpleegbaar binnen het centrale systeem dat de medewerkers al gebruiken.
 
