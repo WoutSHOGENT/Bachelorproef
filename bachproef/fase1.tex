@@ -1,10 +1,58 @@
 \chapter{\IfLanguageName{dutch}{Fase 1 - Directe implementatie}{Fase 1 - Direct Implementation}}
 \label{ch:fase1}
 
-In dit hoofdstuk doorlopen we hoe in een bestaand ERP-systeem een nieuw bedrijfsproces geïmplementeerd kan worden.
+In dit hoofdstuk wordt bekeken hoe het leeggoedbeheer rechtstreeks in het bestaande ERP-systeem van MAPA geïmplementeerd zou kunnen worden. Zoals in hoofdstuk~\ref{ch:fase0} aangegeven, bleek een concrete uitvoering in de praktijk niet haalbaar omdat MAPA geen toegang verleent tot de Progress-codebase. Wat volgt is bijgevolg een theoretische uitwerking van hoe de oplossing er binnen het bestaande systeem zou uitzien.
 
-\section{Theoretische uitwerking}
+\section{Structuur}
 
-TODO
+Bij deze opzet bestaat er maar één systeem. Het bestaande ERP-systeem van MAPA blijft de centrale toepassing waarin alle gegevens beheerd worden. Er komt geen tweede applicatie naast te staan en er is dus ook geen koppeling of data-uitwisseling tussen verschillende systemen nodig. Het leeggoedbeheer wordt volledig binnen het ERP-systeem opgevangen door drie uitbreidingen op de bestaande functionaliteit.
 
-\section{evaluatie}
+De eerste uitbreiding is bij het productbeheer: leeggoed wordt als een product opgenomen in de bestaande artikellijst. Er wordt wel een nieuw veld toegevoegd aan de producttabel: de categorie van het artikel. Door dit veld kan er later onderscheid gemaakt worden tussen de twee categorieën doorheen de applicatie. Doordat leeggoed nu een gewoon product is, kan het bovendien mee op de bestaande receptiebon staan, waardoor de ingave van leeggoed via dezelfde flow verloopt als de overige goederen. De tweede uitbreiding voorziet een nieuwe module die per leverancier en per leeggoedtype toont hoeveel stock er nog tegoed is en welke bewegingen er in het verleden plaatsvonden. De derde uitbreiding voorziet een afzonderlijke stockcorrectiemodule voor leeggoed, in hoofdzaak bedoeld om paletten uit de stock te schrijven wanneer een leverancier ze komt ophalen.
+
+Aan de databank, de schermen en de bestaande workflows van het ERP-systeem worden enkele gerichte aanpassingen gedaan, maar de algemene opzet van het systeem blijft hetzelfde. De gebruiker werkt vanuit de vertrouwde omgeving.
+
+\section{Werking}
+
+Het verloop van het leeggoedbeheer steunt in deze oplossing volledig op de bestaande processen van het ERP-systeem. De drie modules werken samen rond de receptiebon, die ook vandaag al verantwoordelijk zijn voor het ontvangstproces van producten. Hieronder worden de drie modules besproken.
+
+\subsection{Leeggoed als product}
+
+In het ERP-systeem worden vandaag enkel productieproducten als product geregistreerd. Om leeggoed mee te kunnen opnemen in de bestaande flows, zou leeggoed eveneens als een product in het systeem opgenomen worden. Concreet zou er voor elk type leeggoed een nieuwe artikelcode volgens het formaat \texttt{LG001} aangemaakt worden, zodat dit op dezelfde manier behandeld kan worden als de overige producten op de receptiebon. 
+
+Om productieproducten en leeggoed van elkaar te onderscheiden, zou aan de producttabel een nieuw veld "categorie" toegevoegd worden. Dit veld kent twee mogelijke waarden: \emph{productie} en \emph{leeggoed}. Op die manier blijft de bestaande artikellijst overzichtelijk en kunnen de schermen en rapporten op basis van die categorie gefilterd worden waar nodig.
+
+Een bijkomend voordeel van leeggoed als product te behandelen, is dat de ingave geen aparte flow vereist. Bij elke levering kan de bijhorende hoeveelheid leeggoed gewoon mee op de receptiebon ingegeven worden, op dezelfde manier als de andere producten die binnenkomen. De bestaande receptiebon-flow vervult zo automatisch de rol van ingavemodule voor leeggoed.
+
+% TODO: screenshot van de huidige receptiebon met producten erin.
+
+\subsection{Stockoverzicht en historiek}
+
+De tweede module is een dedicated overzichts- en historiekscherm voor leeggoed. Deze module verloopt bewust niet via de gewone voorraadlijst, omdat het beheer van leeggoed een ander karakter heeft dan dat van productieproducten: het draait niet zozeer om één totale voorraad, maar om de stand per leverancier en per leeggoedtype.
+
+Concreet zou de module drie overzichten bundelen. Ten eerste een overzicht per leverancier en per leeggoedtype, met de stand van wat de leverancier nog tegoed heeft. Ten tweede een totaalbeeld per leeggoedtype, dat aangeeft hoeveel paletten van dat type op dat moment in stock zijn. Ten derde een historiek per leverancier, die per datum toont hoeveel leeggoed er binnen en buiten ging. Zoals in hoofdstuk~\ref{ch:fase0} aangegeven, was dit overzicht net wat in het Excel-bestand ontbrak: de CEO vroeg expliciet om per leverancier te kunnen zien hoeveel leeggoed nog openstaat.
+
+% TODO: screenshot van een bestaand overzichts- of historiekscherm in het ERP-systeem invoegen.
+
+\subsection{Stockcorrectie}
+
+Niet elke beweging van leeggoed gebeurt op het ogenblik van een levering. Wanneer een leverancier ook paletten meeneemt, moet die teruggave alsnog uit de stock geboekt kunnen worden. Daarvoor zou een aparte stockcorrectiemodule voor leeggoed voorzien worden.
+
+Het hoofddoel van deze module is het uitschrijven van leeggoed uit de stock. De gebruiker geeft een leverancierscode en het type leeggoed in waardoor de stock van het desbetreffende leeggoedtype daalt. Omdat het in essentie om een stockcorrectie gaat, kan dezelfde module in principe ook gebruikt worden voor een correctie naar boven, bijvoorbeeld wanneer bij een telling een verschil opgemerkt wordt. Aangezien de reguliere ingave van leeggoed steeds via de bestaande receptiebon verloopt, is de hoofdtaak van deze module dus om leeggoed uit te schrijven.
+
+% TODO: screenshot van een bestaand correctiescherm in het ERP-systeem invoegen.
+
+\section{Voordelen en afweging}
+
+\subsection{Eén centraal systeem}
+
+Omdat het volledige leeggoedbeheer binnen het ERP-systeem zelf wordt opgenomen, ontstaat er geen tweede systeem dat onderhouden moet worden en is er ook geen koppeling of API-uitwisseling nodig. Het ERP-systeem blijft de enige source of truth voor zowel de leveringen als het leeggoed. Het risico op data silo's is hier minimaal. Alle gegevens stromen samen in hetzelfde systeem en zijn voor iedereen op dezelfde plaats raadpleegbaar.
+
+\subsection{Vertrouwde interface}
+
+De gebruikers werken vandaag al dagelijks met het ERP-systeem. Doordat het leeggoedbeheer geïntegreerd wordt in de bestaande schermen en flows, zoals de receptiebon, blijft de leercurve beperkt.
+
+\subsection{Afweging}
+
+Hier tegenover staat dat deze opzet ingrijpt op kernprocessen van het ERP-systeem. De productfiche moet uitgebreid worden met een extra veld en er komen nieuwe modules bij voor het overzicht, de historiek en de stockcorrectie van leeggoed. Elke aanpassing aan dat soort centrale schermen brengt het risico met zich mee om bestaande, vaak financieel relevante, workflows te verstoren.
+
+\section{Evaluatie}
