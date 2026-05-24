@@ -23,7 +23,14 @@ Om productieproducten en leeggoed van elkaar te onderscheiden, zou aan de produc
 
 Een bijkomend voordeel van leeggoed als product te behandelen, is dat de ingave geen aparte flow vereist. Bij elke levering kan de bijhorende hoeveelheid leeggoed gewoon mee op de receptiebon ingegeven worden, op dezelfde manier als de andere producten die binnenkomen. De bestaande receptiebon-flow vervult zo automatisch de rol van ingavemodule voor leeggoed.
 
-% TODO: screenshot van de huidige receptiebon met producten erin.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.9\textwidth]
+    {images/receptiebon_detail}
+    \caption{\label{fig:receptiebon} huidige uitzicht receptiebonscherm.}
+\end{figure}
+
+Dit is het detailscherm van een receptiebon. Daarin staat een lijst van alle producten die bij de levering zijn binnengekomen. In dit scherm wordt dus vermeld welk leeggoed er is binnengekomen.
 
 \subsection{Stockoverzicht en historiek}
 
@@ -31,15 +38,11 @@ De tweede module is een dedicated overzichts- en historiekscherm voor leeggoed. 
 
 Concreet zou de module drie overzichten bundelen. Ten eerste een overzicht per leverancier en per leeggoedtype, met de stand van wat de leverancier nog tegoed heeft. Ten tweede een totaalbeeld per leeggoedtype, dat aangeeft hoeveel paletten van dat type op dat moment in stock zijn. Ten derde een historiek per leverancier, die per datum toont hoeveel leeggoed er binnen en buiten ging. Zoals in hoofdstuk~\ref{ch:fase0} aangegeven, was dit overzicht net wat in het Excel-bestand ontbrak: de CEO vroeg expliciet om per leverancier te kunnen zien hoeveel leeggoed nog openstaat.
 
-% TODO: screenshot van een bestaand overzichts- of historiekscherm in het ERP-systeem invoegen.
-
 \subsection{Stockcorrectie}
 
 Niet elke beweging van leeggoed gebeurt op het ogenblik van een levering. Wanneer een leverancier ook paletten meeneemt, moet die teruggave alsnog uit de stock geboekt kunnen worden. Daarvoor zou een aparte stockcorrectiemodule voor leeggoed voorzien worden.
 
 Het hoofddoel van deze module is het uitschrijven van leeggoed uit de stock. De gebruiker geeft een leverancierscode en het type leeggoed in waardoor de stock van het desbetreffende leeggoedtype daalt. Omdat het in essentie om een stockcorrectie gaat, kan dezelfde module in principe ook gebruikt worden voor een correctie naar boven, bijvoorbeeld wanneer bij een telling een verschil opgemerkt wordt. Aangezien de reguliere ingave van leeggoed steeds via de bestaande receptiebon verloopt, is de hoofdtaak van deze module dus om leeggoed uit te schrijven.
-
-% TODO: screenshot van een bestaand correctiescherm in het ERP-systeem invoegen.
 
 \section{Voordelen en afweging}
 
