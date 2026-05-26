@@ -17,9 +17,9 @@ Het verloop van het leeggoedbeheer steunt in deze oplossing volledig op de besta
 
 \subsection{Leeggoed als product}
 
-In het ERP-systeem worden vandaag enkel productieproducten als product geregistreerd. Om leeggoed mee te kunnen opnemen in de bestaande flows, zou leeggoed eveneens als een product in het systeem opgenomen worden. Concreet zou er voor elk type leeggoed een nieuwe artikelcode volgens het formaat \texttt{LG001} aangemaakt worden, zodat dit op dezelfde manier behandeld kan worden als de overige producten op de receptiebon. 
+In het ERP-systeem worden vandaag enkel grondstoffen en eindproducten als product geregistreerd. Om leeggoed mee te kunnen opnemen in de bestaande flows, zou leeggoed eveneens als een product in het systeem opgenomen worden. Concreet zou er voor elk type leeggoed een nieuwe artikelcode volgens het formaat \texttt{LG001} aangemaakt worden, zodat dit op dezelfde manier behandeld kan worden als de overige producten op de receptiebon. 
 
-Om productieproducten en leeggoed van elkaar te onderscheiden, zou aan de producttabel een nieuw veld "categorie" toegevoegd worden. Dit veld kent twee mogelijke waarden: \emph{productie} en \emph{leeggoed}. Op die manier blijft de bestaande artikellijst overzichtelijk en kunnen de schermen en rapporten op basis van die categorie gefilterd worden waar nodig.
+Om productieproducten en leeggoed van elkaar te onderscheiden, is het belangrijk dat elk soort leeggoed een artikelcode heeft die start met ''LG''. Op die manier blijft de bestaande artikellijst overzichtelijk en kunnen de schermen en rapporten op basis van die code gefilterd worden waar nodig.
 
 Een bijkomend voordeel van leeggoed als product te behandelen, is dat de ingave geen aparte flow vereist. Bij elke levering kan de bijhorende hoeveelheid leeggoed gewoon mee op de receptiebon ingegeven worden, op dezelfde manier als de andere producten die binnenkomen. De bestaande receptiebon-flow vervult zo automatisch de rol van ingavemodule voor leeggoed. Daarmee wordt ook het in de enquête (sectie~\ref{sec:enquete}) meest genoemde knelpunt aangepakt, namelijk dat leeggoedbewegingen in het huidige Excel-systeem vergeten kunnen worden: door de koppeling aan de receptiebon is een aparte, vergeetbare invoerstap niet meer nodig.
 
