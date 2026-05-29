@@ -14,15 +14,15 @@
 % Heeft het onderzoek geleid tot nieuwe vragen die uitnodigen tot verder 
 %onderzoek?
 
-\subsection{Antwoorden op deelvragen}
+\section{Antwoorden op deelvragen}
 
 In de introductie werden enkele deelvragen opgesteld die zouden leiden naar een duidelijke uitwerking voor de hoofdonderzoeksvraag en de technische uitwerking van de PoC. Hieronder zijn die vragen beantwoord.
 
-\subsubsection{Hoe verloopt het beheer van leeggoedpaletten binnen Freshfrozen For Pets op dit moment, en waar treden de meeste inefficiënties en fouten op?}
+\subsection{Hoe verloopt het beheer van leeggoedpaletten binnen Freshfrozen For Pets op dit moment, en waar treden de meeste inefficiënties en fouten op?}
 
 Het beheer van leeggoed gebeurt op dit moment volledig in Microsoft Excel. Per leverancier wordt bijgehouden welk leeggoed binnenkomt van de desbetreffende leverancier. Wanneer een levering binnenkomt voert de productiechef of een financieel bediende de correcte gegevens in. De waarde die genoteerd wordt overschrijft een andere waarde. Daar vinden we de eerste fout. Waarden die ook betrekking hebben op vorige leveringen worden destructief overschreven en zijn nadien niet meer beschikbaar. Daarbovenop is het bij bepaalde leveranciers niet voorspelbaar hoeveel leeggoed ze leveren en ook terug meenemen, deze waardes zijn vaak niet hetzelfde. De meeste fouten gebeuren dus bij het ingeven van aantallen bij het in en uitschrijven van leeggoed, maar ook het feit dat af en toe een waarde bij de verkeerde leverancier beland. aangezien er geen historiek is, kan deze fout ook niet rechtgezet worden.
 
-\subsubsection{Hoe ervaren de productiechef, de financieel bedienden en de CEO het systeem op dit moment, en wat zijn voor hun de grootste voor- en nadelen?}
+\subsection{Hoe ervaren de productiechef, de financieel bedienden en de CEO het systeem op dit moment, en wat zijn voor hun de grootste voor- en nadelen?}
 
 Om op deze vraag te kunnen antwoorden liet ik de medewerkers van Freshfrozen een enquête invullen (zie hoofdstuk~\ref{sec:enquete}). De resultaten geven een genuanceerd beeld: Excel wordt niet als een slecht hulpmiddel ervaren, maar de manier waarop het vandaag voor leeggoedbeheer wordt ingezet brengt problemen met zich mee. De medewerkers wijzen er op dat Excel niet zonder reden gebruikt wordt. Het wordt beschreven als eenvoudig, doeltreffend, flexibel en goed raadpleegbaar. Bovendien biedt het de mogelijkheid om snel statistieken te trekken via draaitabellen en filters en functioneert het ondertussen als register dat in geval van twijfel geraadpleegd kan worden.
 
@@ -33,7 +33,7 @@ Het grootste pijnpunt is dat het invullen van de Excel-bestanden op geen enkel m
 Tot slot wordt het feit dat Excel volledig losstaat van het ERP-pakket als een gemis beschouwd, omdat de leeggoedstroom inhoudelijk wel degelijk samenhangt met de goederenstroom die in het ERP-systeem geregistreerd wordt. Die nadelen vertalen zich ook in de manier waarop fouten in de praktijk ontstaan, namelijk door het vergeten van een ingave, door typfouten bij de manuele invoer en door het per ongeluk wijzigen of verwijderen van bestaande lijnen of het invullen van gegevens in het verkeerde bestand. Door het ontbreken van logging en validatie blijven dergelijke fouten lange tijd onopgemerkt.
 Samengevat ervaren de productiechef, de financieel bedienden en de CEO het huidige systeem dus als een vertrouwd eenvoudig hulpmiddel dat gewaardeerd wordt voor zijn flexibiliteit en raadpleegbaarheid, maar dat tegelijk structureel onbetrouwbaar is door het ontbreken van afdwingbaarheid, logging, overkoepelend overzicht en koppeling met het ERP.
 
-\subsubsection{Wat zijn 3 concrete voor- en nadelen van een centrale technische oplossing ten opzichte van het gebruik van Excel voor overzicht?}
+\subsection{Wat zijn 3 concrete voor- en nadelen van een centrale technische oplossing ten opzichte van het gebruik van Excel voor overzicht?}
 
 Deze deelvraag is eerder een samenvatting van de vorige twee deelvragen. Op basis van het interne onderzoek, de enquête en de stand van zaken kunnen drie concrete voordelen en drie concrete nadelen van een centrale technische oplossing tegenover Excel naar voren geschoven worden.
 \\
@@ -51,7 +51,7 @@ Deze deelvraag is eerder een samenvatting van de vorige twee deelvragen. Op basi
     \item[3.] \textbf{Afhankelijkheid van techniek en beschikbaarheid.} Wanneer de centrale applicatie of de databaseserver tijdelijk onbeschikbaar is, kan er ook geen leeggoed ingegeven of geraadpleegd worden. Een Excel-bestand werkt offline en is altijd lokaal beschikbaar.
 \end{enumerate}
 
-\subsubsection{Kan er direct geïmplementeerd worden in het huidige ERP-systeem van Mapa dat gebruikt wordt door Freshfrozen?}
+\subsection{Kan er direct geïmplementeerd worden in het huidige ERP-systeem van Mapa dat gebruikt wordt door Freshfrozen?}
 
 \textbf{Nee.} Na contact met MAPA was het duidelijk dat er niet direct in het bestaande ERP-systeem gewerkt zou kunnen worden. Enkele redenen waren:
 \begin{itemize}
@@ -61,7 +61,7 @@ Deze deelvraag is eerder een samenvatting van de vorige twee deelvragen. Op basi
     \item ...
 \end{itemize}
 
-\subsubsection{Met welke best-practices werken andere bedrijven?}
+\subsection{Met welke best-practices werken andere bedrijven?}
 
 Uit de literatuurstudie (hoofdstuk~\ref{ch:stand-van-zaken}) komen vier best-practices naar voren die rechtstreeks van toepassing zijn op de case van Freshfrozen.
 
@@ -73,7 +73,7 @@ De derde best-practice is het \textbf{vermijden van data silo's}. \textcite{Rahm
 
 De vierde best-practice is \textbf{User-Centric Design (UCD)}. \textcite{Rahman2025} beschrijft dat een ERP- of beheerapplicatie die de eindgebruiker uit het oog verliest tot frustratie, inefficiëntie en uiteindelijk vermijdingsgedrag leidt. Goede praktijken die andere bedrijven daarbij hanteren zijn het overnemen van de bestaande terminologie en het respecteren van het mentale model van de gebruiker (iconen, flow, gewone benamingen).
 
-\subsubsection{Welke 2 verbeteringen zijn van het grootste belang voor Freshfrozen en leveren dus de grootste klantenwaarde?}
+\subsection{Welke 2 verbeteringen zijn van het grootste belang voor Freshfrozen en leveren dus de grootste klantenwaarde?}
 
 Het antwoord op deze vraag werd duidelijk na het gesprek met de CEO van Freshfrozen (hoofdstuk~\ref{ch:fase0}). Tijdens dat gesprek gaf Pierre Kemseke expliciet aan welke twee functionaliteiten voor hem en voor het bedrijf de meeste waarde zouden opleveren.
 
@@ -81,7 +81,7 @@ De eerste en belangrijkste verbetering is het kunnen tonen van het \textbf{tegoe
 
 De tweede verbetering is het bijhouden van een \textbf{volledige historiek van alle leeggoedbewegingen}. In de huidige Excel-werkwijze worden bestaande waardes destructief overschreven bij elke nieuwe levering, waardoor de oorzaak van een verschil achteraf bijna nooit nog te achterhalen is. Voor de CEO is dat een rechtstreeks financieel risico. Een fout die niet vindbaar is kan ook niet rechtgezet worden, en het statiegeld dat verbonden is aan het leeggoed gaat dan ook verloren. Een systeem dat elke beweging als een afzonderlijk record met datum en context bewaart, lost dit op.
 
-\subsection{Antwoord op de onderzoeksvraag}
+\section{Antwoord op de onderzoeksvraag}
 
 De overkoepelende onderzoeksvraag van deze bachelorproef luidt: 
 \\
@@ -110,5 +110,21 @@ De point-to-point uitwerking lost dit voor een deel op. De databases zijn geconn
 De meest bekende applicatie voor de gebruiker is de implementatie in het huidige ERP-Systeem. Receptiebonnen en leeggoed leven in dezelfde omgeving en er kan afgedwongen worden om leeggoed in te vullen op een receptiebon. Er is geen tweede applicatie nodig tijdens het verwerken van een receptiebon en alle voordelen van de andere twee uitwerkingen zijn ook hier aanwezig. Er wordt veel tijd gewonnen door niet te moeten schakelen en de kans op fouten is miniem door het afdwingen van de waardes, validatie en historiek. De afwegingen zijn minimale ingrepen die eenmaal uitgevoerd moeten worden.
 
 Het beheer van leeggoedpaletten bij Freshfrozen For Pets kan dus het meest efficiënt georganiseerd worden door de modules en gebruikerservaring van de eigen applicatie uit fase 3 verder te laten uitwerken binnen het bestaande ERP-systeem van MAPA, zodat de afdwingbaarheid en de afwezigheid van data silo's uit fase 1 gecombineerd kan worden met de overzichtelijkheid en gebruiksvriendelijkheid van fase 3, om zo alle vier de pijlers van de onderzoeksvraag tegelijk te beantwoorden.
+
+\section{Bijdrage van het onderzoek}
+
+Dit onderzoek draagt bij door inzicht te bieden in de mogelijkheden voor het maken van een dedicated digitale oplossing voor een bedrijfsproces. Andere KMO's kunnen deze bachelorproef lezen en kritisch evalueren of een bepaalde uitwerking wel of niet voor hen ook een oplossing kan zijn.
+
+Specifiek voor Freshfrozen biedt deze bachelorproef een oplossing voor hun probleem. De CEO vertelde dat er met de uitwerking in fase 1 zeker verder gewerkt en geïtereerd kan worden. Door de gemaakte eigen PoC heeft Freshfrozen wel al een concreet beeld van wat ze verwachten van de uitwerking in MAPA. 
+
+\section{Discussie}
+
+In alle eerlijkheid was deze uitkomst niet verrassend. Na het gesprek met de CEO werd duidelijk dat hij zelf ook heel grote voorstander was van een uitwerking die direct geïntegreerd is met MAPA. Na onderzoek en uitwerking werd ook duidelijk wat de concrete voor- en nadelen waren van elke uitwerking. 
+
+Hoewel er in deze case gekozen is voor een directe integratie in een bestaand systeem, zijn er zeker en vast cases waar dit niet het geval zou zijn. Denk bijvoorbeeld aan een businessproces waar alleen een bepaalde groep werknemers aan werkt en dit proces ook weinig te maken heeft met hetgeen een bestaand systeem doet. Dit zou leiden tot een veel te complex systeem waar niet iedereen alles van gebruikt.
+
+\section{Toekomstig werk}
+
+De uitwerking van fase 1 en screenshots van fase 3 in deze bachelorproef worden ook met MAPA gecommuniceerd. Zo komt er voor Freshfrozen een concrete oplossing op hun probleem. Ikzelf werd door Pierre verantwoordelijk gesteld om dit tot een goed einde te brengen, wat ook de intentie is.
 
 
