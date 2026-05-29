@@ -21,7 +21,7 @@ Deze bijlage bevat de volledige uitwerking van de use cases die werden opgesteld
         \item De gebruiker geeft een referentiecode in.
         \item De gebruiker kiest de juiste leverancier.
         \item De gebruiker kiest alle leeggoedtypes die van toepassing zijn.
-        \item de gebruiker kiest de hoeveelheden voor elk leeggoedtype.
+        \item De gebruiker kiest de hoeveelheden voor elk leeggoedtype.
         \item Het systeem valideert volgens DR\_RECEPTIEBON.
         \item Het systeem registreert de receptiebon en de bijhorende stockbewegingen.
         \item Het systeem werkt het tegoed van de leverancier en de fysieke voorraad bij.
@@ -73,7 +73,7 @@ Deze bijlage bevat de volledige uitwerking van de use cases die werden opgesteld
 
     \paragraph{Normaal verloop}
     \begin{enumerate}[nosep]
-        \item de gebruiker wil de historiek van stockbewegingen bekijken.
+        \item De gebruiker wil de historiek van stockbewegingen bekijken.
         \item De gebruiker navigeert naar het scherm voor historiek.
         \item De gebruiker kiest het gewenste leeggoedtype waar de historiek van bezichtigd wil worden.
         \item Het systeem toont alle historiek voor het gekozen leeggoedtype.
@@ -101,7 +101,7 @@ Deze bijlage bevat de volledige uitwerking van de use cases die werden opgesteld
 
     \paragraph{Normaal verloop}
     \begin{enumerate}[nosep]
-        \item de gebruiker wil het tegoed van alle leeggoedtypes per leverancier bekijken.
+        \item De gebruiker wil het tegoed van alle leeggoedtypes per leverancier bekijken.
         \item De gebruiker navigeert naar het scherm voor stockoverzicht.
         \item Het systeem toont de totale stock van elk leeggoedtype per leverancier.
     \end{enumerate}
@@ -128,12 +128,12 @@ Deze bijlage bevat de volledige uitwerking van de use cases die werden opgesteld
 
     \paragraph{Normaal verloop}
     \begin{enumerate}[nosep]
-        \item de gebruiker wil het tegoed voor een specifieke leverancier bezichtigen.
+        \item De gebruiker wil het tegoed voor een specifieke leverancier bezichtigen.
         \item De gebruiker navigeert naar het scherm voor stockbeheer.
         \item Het systeem toont de totale stock van elk leeggoedtype per leverancier.
         \item De gebruiker kiest de gewenste filters.
         \item Het systeem valideert de filters volgens DR\_STOCK\_FILTERS.
-        \item het systeem toont alle stock voor de gekozen filters.
+        \item Het systeem toont alle stock voor de gekozen filters.
     \end{enumerate}
 
     \paragraph{Alternatieve verlopen}
@@ -189,7 +189,7 @@ Deze bijlage bevat de volledige uitwerking van de use cases die werden opgesteld
 
     \paragraph{Alternatieve verlopen}
     \begin{itemize}[nosep]
-        \item[6A.] het systeem detecteerd dat de validatie volgens DR\_STOCKCORRECTIE\_FILTERS faalt.
+        \item[6A.] Het systeem detecteert dat de validatie volgens DR\_STOCKCORRECTIE\_FILTERS faalt.
         \begin{itemize}
             \item[6A1.] Het systeem toont een gepaste melding.
             \item[6A2.] We keren terug naar stap 5
@@ -207,14 +207,14 @@ Deze bijlage bevat de volledige uitwerking van de use cases die werden opgesteld
 
         \item[8B.] Het systeem detecteert een verdachte correctie volgens DR\_STOCKCORRECTIE\_VERDACHT
         \begin{itemize}
-            \item[8B1.] Het systeem vraagt om een bevesteging.
+            \item[8B1.] Het systeem vraagt om een bevestiging.
             \begin{itemize}
-                \item[8B1A.] De gebruiker bevestigd de actie.
+                \item[8B1A.] De gebruiker bevestigt de actie.
                 \begin{itemize}
                     \item[8B1A1.] Het systeem toont een gepaste melding
                     \item[8B1A2.] We gaan verder naar stap 9
                 \end{itemize}
-                \item[8B1B.] De gebruiker bevestigd niet.
+                \item[8B1B.] De gebruiker bevestigt niet.
                 \begin{itemize}
                     \item[8B1B1.] Het systeem toont een gepaste melding.
                     \item[8B1B2.] We keren terug naar stap 7

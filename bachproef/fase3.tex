@@ -22,13 +22,13 @@ Om duidelijk te maken welke functionaliteiten de PoC nodig heeft, werden use cas
 
 Zoals in het EERD te zien is er bewust voor gekozen om twee verschillende stockconcepten van elkaar te scheiden. Enerzijds is er de \textbf{fysieke voorraad}. Dit is hoeveel exemplaren van een bepaald leeggoedtype zich daadwerkelijk in het magazijn bevinden. Deze waarde wordt rechtstreeks op de \texttt{Leeggoed}-entiteit bijgehouden via het attribuut \texttt{aantal}, omdat de fysieke voorraad onafhankelijk is van welke leverancier de stukken oorspronkelijk leverde. Anderzijds is er het \textbf{tegoed per leverancier}: de boekhoudkundige hoeveelheid die nog terug verschuldigd is aan elke individuele leverancier. Die laatste informatie hoort niet op \texttt{Leeggoed} of \texttt{Leverancier} zelf thuis, omdat ze enkel betekenis heeft in de combinatie van beide.
 
-Naast de actuele voorraad is het ook heel belangrijk om inzicht te hebben in de historiek. Zo kan snel gevonden worden waar mogelijks een verkeerde stockbeweging gebeurd. Elke wijziging in voorraad wordt daarom vastgelegd als een \texttt{Stockbeweging}, die normaal gekoppeld is aan een \texttt{Receptiebon}. Een stockbeweging heeft echter ook de mogelijkheid om geen receptiebon te hebben, zo is het mogelijk om manueel stockcorrecties uit te voeren. Het onderscheid tussen beide gevallen wordt expliciet gemaakt via het \texttt{manueel}-attribuut.
+Naast de actuele voorraad is het ook heel belangrijk om inzicht te hebben in de historiek. Zo kan snel gevonden worden waar mogelijks een verkeerde stockbeweging gebeurd is. Elke wijziging in voorraad wordt daarom vastgelegd als een \texttt{Stockbeweging}, die normaal gekoppeld is aan een \texttt{Receptiebon}. Een stockbeweging heeft echter ook de mogelijkheid om geen receptiebon te hebben, zo is het mogelijk om manueel stockcorrecties uit te voeren. Het onderscheid tussen beide gevallen wordt expliciet gemaakt via het \texttt{manueel}-attribuut.
 
 Voor de leverancierspecifieke gegevens is een samengevoegde tabel \texttt{Leeggoed\_Leverancier} ingevoerd die de veel-op-veel-relatie tussen \texttt{Leverancier} en \texttt{Leeggoed} verrijkt met twee attributen: \texttt{prijs} en \texttt{aantal\_tegoed}. De prijs hoort op die plaats omdat hetzelfde leeggoedtype een verschillende waarde kan hebben afhankelijk van de leverancier, en het \texttt{aantal\_tegoed} hoort daar om dezelfde reden: het is enkel zinvol per leverancier-leeggoed-combinatie. Door beide attributen in één tabel te bundelen blijft het schema compact, terwijl elke entiteit nog steeds zuiver verantwoordelijk is voor zijn eigen domein.
 
 \section{UCD}
 
-Omdat de toekomstige gebruikers van de PoC vandaag al elke dag met het ERP-systeem van MAPA werken, is de uitgangspositie voor het ontwerp geen leeg blad. De productiechef en de financieel bediende kennen de bestaande receptiebonschermen al heel goed, en elk afwijkend ontwerp betekent dus ook een nieuwe manier van werken. Het uitgangspunt van het UCD voor deze PoC is daarom om de bestaande visuele en functionele patronen waar mogelijk te respecteren en enkel te vereenvoudigen waar bestaande scherm overbodige complexiteit toevoegen voor het specifieke leeggoedproces.
+Omdat de toekomstige gebruikers van de PoC vandaag al elke dag met het ERP-systeem van MAPA werken, is de uitgangspositie voor het ontwerp geen leeg blad. De productiechef en de financieel bediende kennen de bestaande receptiebonschermen al heel goed, en elk afwijkend ontwerp betekent dus ook een nieuwe manier van werken. Het uitgangspunt van het UCD voor deze PoC is daarom om de bestaande visuele en functionele patronen waar mogelijk te respecteren en enkel te vereenvoudigen waar bestaande schermen overbodige complexiteit toevoegen voor het specifieke leeggoedproces.
 
 \subsection{Vertrekpunt: De bestaande ERP-schermen}
 
@@ -54,8 +54,8 @@ Doorklikken op een receptiebon resulteert in een 2e scherm zoals in Figuur \ref{
 Een aantal elementen uit het bestaande scherm sluiten goed aan bij de behoeften van de PoC en blijven dus bewust herkenbaar:
 
 \begin{itemize}
-    \item \textbf{De layout} We behouden zeker en vast de layout. De navigatiebalk met de verschillende modules en categorieën vormt dan meteen een familiare omgeving.
-    \item \textbf{Terminologie} Termen zoals receptiebon, artikel, stockcorrectie en leverancier worden rechtstreeks overgenomen. Zo vermijden we verwaring bij het gebruik van de PoC.
+    \item \textbf{De layout} We behouden zeker en vast de layout. De navigatiebalk met de verschillende modules en categorieën vormt dan meteen een familiaire omgeving.
+    \item \textbf{Terminologie} Termen zoals receptiebon, artikel, stockcorrectie en leverancier worden rechtstreeks overgenomen. Zo vermijden we verwarring bij het gebruik van de PoC.
     \item \textbf{De flow.} Een lijst van gegevens zien en de mogelijkheid om door te klikken is vrij standaard voor een beheerapplicatie. Dit wordt ook zeker overgenomen.
 \end{itemize}
 
@@ -72,7 +72,7 @@ De PoC is uitgewerkt als een Blazor WebAssembly-frontend bovenop een ASP.NET-API
 
 \subsection{Aanmelden en navigatie}
 
-Bij het opstarten van de applicatie krijgt de gebruiker bij ontbreken van een sessie automatisch het inlogscherm te zien. Na een succesvolle aanmelding bouwt de navigatiebalk (navbar) zich op (figuur \ref{fig:sidenav}). Alle modules zijn genummerd binnen twee duidelijke groepen, \textit{Beheer} en \textit{Overzicht}. De nummers voor de modules in de navbar duiden ook aan hoe de flow binnen de applicatie verloopt. Bijvoorbeeld: de gebruiker zal eerst een receptiebon toevoegen waarbij leeggoed binnenkomt via de receptiebonmodule en vervolgens het leeggoed afschrijven die de leverancier terug meeneemt door de stockcorrectiemodule te gebruiken.
+Bij het opstarten van de applicatie krijgt de gebruiker bij ontbreken van een sessie automatisch het inlogscherm te zien. Na een succesvolle aanmelding bouwt de navigatiebalk (navbar) zich op (figuur \ref{fig:sidenav}). Alle modules zijn genummerd binnen twee duidelijke groepen, \textit{Beheer} en \textit{Overzicht}. De nummers voor de modules in de navbar duiden ook aan hoe de flow binnen de applicatie verloopt. Bijvoorbeeld: de gebruiker zal eerst een receptiebon toevoegen waarbij leeggoed binnenkomt via de receptiebonmodule en vervolgens het leeggoed afschrijven dat de leverancier terug meeneemt door de stockcorrectiemodule te gebruiken.
 
 \begin{figure}[H]
     \centering
