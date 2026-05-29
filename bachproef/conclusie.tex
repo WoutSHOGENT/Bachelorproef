@@ -82,3 +82,33 @@ De eerste en belangrijkste verbetering is het kunnen tonen van het \textbf{tegoe
 De tweede verbetering is het bijhouden van een \textbf{volledige historiek van alle leeggoedbewegingen}. In de huidige Excel-werkwijze worden bestaande waardes destructief overschreven bij elke nieuwe levering, waardoor de oorzaak van een verschil achteraf bijna nooit nog te achterhalen is. Voor de CEO is dat een rechtstreeks financieel risico. Een fout die niet vindbaar is kan ook niet rechtgezet worden, en het statiegeld dat verbonden is aan het leeggoed gaat dan ook verloren. Een systeem dat elke beweging als een afzonderlijk record met datum en context bewaart, lost dit op.
 
 \subsection{Antwoord op de onderzoeksvraag}
+
+De overkoepelende onderzoeksvraag van deze bachelorproef luidt: 
+\\
+\\
+\emph{``Hoe kan het beheer van leeggoedpaletten bij Freshfrozen For Pets efficiënter georganiseerd worden, met als focus om tijdbesparing, foutenreductie, procesmatige gebruiksvriendelijkheid en overzichtelijkheid te verbeteren?''}
+\\
+\\
+Door de antwoorden op de deelvragen, de drie fases en de evaluatie volgens de scoretabellen uit de inleiding kan deze vraag nu beantwoord worden.
+
+Het korte antwoord op deze vraag is dat het beheer van leeggoedpaletten bij Freshfrozen efficiënter georganiseerd kan worden door een centrale technische oplossing te maken die invoer afdwingt en een bewegingshistoriek en overzicht van tegoeden invoert.
+\\
+\\
+Doorheen deze bachelorproef zijn drie manieren onderzocht om dit probleem op te lossen: een directe implementatie in het bestaande ERP-Systeem, een point-to-point uitwerking en een eigen applicatie. Ze hebben alle drie hebben hun eigen voor- en nadelen die meer invloed hebben op het tweede deel van de onderzoeksvraag: de tijdsbesparing, foutenreductie, gebruiksvriendelijkheid en overzichtelijkheid. 
+
+De eigen applicatie is gebouwd om het probleem van freshfrozen op te lossen en doet dat best goed, maar mist enkele belangerijke pijlers die de andere uitwerkingen wel oplossen. Dit zijn:
+
+\begin{itemize}
+    \item Afdwingbaarheid
+    \item Data silo's
+\end{itemize}
+
+De eigen applicatie kan niet afdwingen dat de gebruiker het leeggoed invult voor elke receptiebon. Dit is dan ook een gevolg van de tweede pijler. Referentiecodes van receptiebonnen moeten zelf worden ingevuld en pas daarna kan het invullen van de cijfers afgedwongen worden. Daarbovenop kan een referentiecode verkeerd ingevuld worden en kan de applicatie out-of-sync raken met de huidige staat van de ERP-database. Al deze factoren zorgen ervoor dat bij deze uitwerking mogelijks tijd verloren gaat en fouten voorkomen.
+
+De point-to-point uitwerking lost dit voor een deel op. De databases zijn geconnecteerd en referentiebonnen komen zo direct in het leeggoedbeheersysteem. Daarna worden ze aangevuld en in het leeggoedbeheersysteem opgeslaan. Maar ook dit is een apart systeem. Als de productiechef of financieel bediende de applicatie vergeet te openen bij het verwerken van een receptiebon, dan wordt het leeggoed ook niet aangevuld.
+
+De meest bekende applicatie voor de gebruiker is de implementatie in het huidige ERP-Systeem. Receptiebonnen en leeggoed leven in dezelfde omgeving en er kan afgedwongen worden om leeggoed in te vullen op een receptiebon. Er is geen tweede applicatie nodig tijdens het verwerken van een receptiebon en alle voordelen van de andere twee uitwerkingen zijn ook hier aanwezig. Er wordt veel tijd gewonnen door niet te moeten schakelen en de kans op fouten is miniem door het afdwingen van de waardes, validatie en historiek. De afwegingen zijn minimale ingrepen die eenmaal uitgevoerd moeten worden.
+
+Het beheer van leeggoedpaletten bij Freshfrozen For Pets kan dus het meest efficiënt georganiseerd worden door de modules en gebruikerservaring van de eigen applicatie uit fase 3 verder te laten uitwerken binnen het bestaande ERP-systeem van MAPA, zodat de afdwingbaarheid en de afwezigheid van data silo's uit fase 1 gecombineerd kan worden met de overzichtelijkheid en gebruiksvriendelijkheid van fase 3, om zo alle vier de pijlers van de onderzoeksvraag tegelijk te beantwoorden.
+
+
