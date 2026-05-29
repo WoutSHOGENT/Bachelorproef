@@ -15,6 +15,70 @@
 %onderzoek?
 
 \subsection{Antwoorden op deelvragen}
+
 In de introductie werden enkele deelvragen opgesteld die zouden leiden naar een duidelijke uitwerking voor de hoofdonderzoeksvraag en de technische uitwerking van de PoC. Hieronder zijn die vragen beantwoord.
+
 \subsubsection{Hoe verloopt het beheer van leeggoedpaletten binnen Freshfrozen For Pets op dit moment, en waar treden de meeste inefficiënties en fouten op?}
 
+Het beheer van leeggoed gebeurt op dit moment volledig in Microsoft Excel. Per leverancier wordt bijgehouden welk leeggoed binnenkomt van de desbetreffende leverancier. Wanneer een levering binnenkomt voert de productiechef of een financieel bediende de correcte gegevens in. De waarde die genoteerd wordt overschrijft een andere waarde. Daar vinden we de eerste fout. Waarden die ook betrekking hebben op vorige leveringen worden destructief overschreven en zijn nadien niet meer beschikbaar. Daarbovenop is het bij bepaalde leveranciers niet voorspelbaar hoeveel leeggoed ze leveren en ook terug meenemen, deze waardes zijn vaak niet hetzelfde. De meeste fouten gebeuren dus bij het ingeven van aantallen bij het in en uitschrijven van leeggoed, maar ook het feit dat af en toe een waarde bij de verkeerde leverancier beland. aangezien er geen historiek is, kan deze fout ook niet rechtgezet worden.
+
+\subsubsection{Hoe ervaren de productiechef, de financieel bedienden en de CEO het systeem op dit moment, en wat zijn voor hun de grootste voor- en nadelen?}
+
+Om op deze vraag te kunnen antwoorden liet ik de medewerkers van Freshfrozen een enquête invullen (zie hoofdstuk~\ref{sec:enquete}). De resultaten geven een genuanceerd beeld: Excel wordt niet als een slecht hulpmiddel ervaren, maar de manier waarop het vandaag voor leeggoedbeheer wordt ingezet brengt problemen met zich mee. De medewerkers wijzen er op dat Excel niet zonder reden gebruikt wordt. Het wordt beschreven als eenvoudig, doeltreffend, flexibel en goed raadpleegbaar. Bovendien biedt het de mogelijkheid om snel statistieken te trekken via draaitabellen en filters en functioneert het ondertussen als register dat in geval van twijfel geraadpleegd kan worden.
+
+Dat is meteen ook de reden waarom een nieuw systeem die gebruiksvriendelijkheid en raadpleegbaarheid zou moeten evenaren. Tegenover die voordelen staat echter een reeks nadelen.
+
+Het grootste pijnpunt is dat het invullen van de Excel-bestanden op geen enkel moment afdwingbaar is, waardoor in de praktijk regelmatig een leeggoedbeweging vergeten wordt. Daarnaast wordt het versnipperde karakter van de bestanden als hinderlijk ervaren. Elke leverancier heeft immers een eigen spreadsheet die bovendien op de juiste locatie in de Dropbox teruggevonden moet worden, waardoor een algemeen overzicht van het leeggoed over alle leveranciers heen ontbreekt.
+
+Tot slot wordt het feit dat Excel volledig losstaat van het ERP-pakket als een gemis beschouwd, omdat de leeggoedstroom inhoudelijk wel degelijk samenhangt met de goederenstroom die in het ERP-systeem geregistreerd wordt. Die nadelen vertalen zich ook in de manier waarop fouten in de praktijk ontstaan, namelijk door het vergeten van een ingave, door typfouten bij de manuele invoer en door het per ongeluk wijzigen of verwijderen van bestaande lijnen of het invullen van gegevens in het verkeerde bestand. Door het ontbreken van logging en validatie blijven dergelijke fouten lange tijd onopgemerkt.
+Samengevat ervaren de productiechef, de financieel bedienden en de CEO het huidige systeem dus als een vertrouwd eenvoudig hulpmiddel dat gewaardeerd wordt voor zijn flexibiliteit en raadpleegbaarheid, maar dat tegelijk structureel onbetrouwbaar is door het ontbreken van afdwingbaarheid, logging, overkoepelend overzicht en koppeling met het ERP.
+
+\subsubsection{Wat zijn 3 concrete voor- en nadelen van een centrale technische oplossing ten opzichte van het gebruik van Excel voor overzicht?}
+
+Deze deelvraag is eerder een samenvatting van de vorige twee deelvragen. Op basis van het interne onderzoek, de enquête en de stand van zaken kunnen drie concrete voordelen en drie concrete nadelen van een centrale technische oplossing tegenover Excel naar voren geschoven worden.
+\\
+\textbf{Voordelen:}
+\begin{enumerate}
+    \item[1.] \textbf{Eén centraal overzicht in plaats van versnipperde bestanden.} Een centrale oplossing brengt alle date nodig voor leeggoedbeheer samen op één plaats, terwijl Excel vandaag werkt met één spreadsheet per leverancier in Dropbox. Daardoor wordt de vraag van de CEO, namelijk per leverancier weten hoeveel leeggoed nog openstaat, in één scherm beantwoordbaar in plaats van door meerdere bestanden te moeten zoeken. Ook een totaalbeeld over alle leveranciers heen, dat in de huidige werkwijze volledig ontbreekt, wordt zo mogelijk.
+    \item[2.] \textbf{Afdwingbare ingave en validatie.} In Excel steunt het invullen volledig op de gebruiker, waardoor het invullen van het leeggoed vergeten kan worden. Een centrale technische oplossing kan verplichte velden, geldige waardes en koppelingen aan een bestaande receptiebon afdwingen, en kan waarschuwingen tonen bij verdachte waarden. Hierdoor wordt het in de enquête meest genoemde knelpunt, namelijk de niet-afdwingbaarheid van de ingave, structureel weggenomen.
+    \item[3.] \textbf{Logging en historiek in plaats van destructief overschrijven.} In Excel worden bestaande waarden bij een nieuwe ingave overschreven, waardoor de geschiedenis van een leeggoedbeweging verloren gaat en fouten achteraf niet meer vindbaar zijn. Een centrale oplossing kan elke beweging bijhouden als een afzonderlijk item met datum en context, zodat afwijkingen achteraf opgespoord en gecorrigeerd kunnen worden.
+\end{enumerate}
+
+\textbf{Nadelen:}
+\begin{enumerate}
+    \item[1.] \textbf{Hogere ontwikkel- en onderhoudskost.} Een centrale oplossing moet ontwikkeld, gehost en op termijn onderhouden worden, terwijl Excel reeds onderdeel is van de bestaande Office-omgeving en geen bijkomende infrastructuur vereist. Voor een KMO als Freshfrozen is dit een reële drempel, ook al gaf de CEO aan welwillend te staan tegenover een uitwerking door MAPA na de PoC.
+    \item[2.] \textbf{Verlies van flexibiliteit voor de eindgebruiker.} Excel laat toe om snel een kolom bij te voegen, een nieuwe leverancier op te nemen of een draaitabel te maken zonder tussenkomst van een developer. In een centrale oplossing zitten flows en velden vooraf vast: kleine wijzigingen of eenmalige analyses vereisen aanpassingen aan de applicatie. Net die flexibiliteit en raadpleegbaarheid werden in de enquête als sterke punten van Excel benoemd.
+    \item[3.] \textbf{Afhankelijkheid van techniek en beschikbaarheid.} Wanneer de centrale applicatie of de databaseserver tijdelijk onbeschikbaar is, kan er ook geen leeggoed ingegeven of geraadpleegd worden. Een Excel-bestand werkt offline en is altijd lokaal beschikbaar.
+\end{enumerate}
+
+\subsubsection{Kan er direct geïmplementeerd worden in het huidige ERP-systeem van Mapa dat gebruikt wordt door Freshfrozen?}
+
+\textbf{Nee.} Na contact met MAPA was het duidelijk dat er niet direct in het bestaande ERP-systeem gewerkt zou kunnen worden. Enkele redenen waren:
+\begin{itemize}
+    \item De Progress ontwikkelingsomgeving is niet zomaar beschikbaar en vereisen vrij dure licenties.
+    \item Zorgen over het onderhoud van de applicatie. Waar start en stopt de ene of de andere zijn verantwoordelijkheid?
+    \item wijzigingen aan de database zijn nodig voor de uitwerking, ook MAPA moet hiermee verder werken.
+    \item ...
+\end{itemize}
+
+\subsubsection{Met welke best-practices werken andere bedrijven?}
+
+Uit de literatuurstudie (hoofdstuk~\ref{ch:stand-van-zaken}) komen vier best-practices naar voren die rechtstreeks van toepassing zijn op de case van Freshfrozen.
+
+De eerste is het \textbf{centraliseren van bedrijfsprocessen in één ERP-systeem}. \textcite{Sarferaz2025} beschrijft dat grote spelers zoals SAP, Odoo en Oracle hun positie net te danken hebben aan dit principe: bedrijfsprocessen worden simpeler en efficiënter wanneer ze over meerdere departementen heen in één centraal systeem zitten in plaats van een spreiding over losse bestanden of tools.
+
+De tweede best-practice is het \textbf{bouwen van een aangepaste digitale oplossing met moderne webtechnologie}, specifiek voor KMO's. \textcite{Machado2023} beschrijft .NET met Blazor WebAssembly als een geschikte technologische stack voor beheerapplicaties, vooral door de voordelen op vlak van beveiliging en snelheid. \textcite{Amaro2025} gaat een stap verder en stelt dat het uitwerken van zelfs één klein bedrijfsproces als katalysator kan dienen voor de bredere digitale maturiteit van een KMO.
+
+De derde best-practice is het \textbf{vermijden van data silo's}. \textcite{Rahman2025} en \textcite{JeleelOjuade2024} waarschuwen dat het ontwikkelen van systemen in isolatie ervoor zorgt dat data niet langer doorheen de verschillende departementen van een bedrijf stroomt. In het geval van Freshfrozen zou dat betekenen dat een leverancier die in het ERP-systeem wordt toegevoegd ook nog manueel in de leeggoedapplicatie ingegeven moet worden. Een uitwerking die ervoor zorgt dat alle data in éénzelfde systeem blijft is dus gewenst.
+
+De vierde best-practice is \textbf{User-Centric Design (UCD)}. \textcite{Rahman2025} beschrijft dat een ERP- of beheerapplicatie die de eindgebruiker uit het oog verliest tot frustratie, inefficiëntie en uiteindelijk vermijdingsgedrag leidt. Goede praktijken die andere bedrijven daarbij hanteren zijn het overnemen van de bestaande terminologie en het respecteren van het mentale model van de gebruiker (iconen, flow, gewone benamingen).
+
+\subsubsection{Welke 2 verbeteringen zijn van het grootste belang voor Freshfrozen en leveren dus de grootste klantenwaarde?}
+
+Het antwoord op deze vraag werd duidelijk na het gesprek met de CEO van Freshfrozen (hoofdstuk~\ref{ch:fase0}). Tijdens dat gesprek gaf Pierre Kemseke expliciet aan welke twee functionaliteiten voor hem en voor het bedrijf de meeste waarde zouden opleveren.
+
+De eerste en belangrijkste verbetering is het kunnen tonen van het \textbf{tegoed per leverancier en per leeggoedtype}. De CEO gaf aan dat hij in één oogopslag wil kunnen zien hoeveel leeggoed elke leverancier nog tegoed heeft. Door dit als een dedicated overzicht aan te bieden vervalt het zoekwerk volledig.
+
+De tweede verbetering is het bijhouden van een \textbf{volledige historiek van alle leeggoedbewegingen}. In de huidige Excel-werkwijze worden bestaande waardes destructief overschreven bij elke nieuwe levering, waardoor de oorzaak van een verschil achteraf bijna nooit nog te achterhalen is. Voor de CEO is dat een rechtstreeks financieel risico. Een fout die niet vindbaar is kan ook niet rechtgezet worden, en het statiegeld dat verbonden is aan het leeggoed gaat dan ook verloren. Een systeem dat elke beweging als een afzonderlijk record met datum en context bewaart, lost dit op.
+
+\subsection{Antwoord op de onderzoeksvraag}
