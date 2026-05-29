@@ -1,11 +1,11 @@
 \chapter{\IfLanguageName{dutch}{Fase 3 - Custom made application}{Fase 0 - Custom made application}}
 \label{ch:fase3}
 
-In dit hoofdstuk doorlopen we het proces van de beheersapplicatie te maken die beantwoord aan de vragen van deze case.
+In dit hoofdstuk doorlopen we het proces om de beheersapplicatie te maken die beantwoordt aan de vragen van deze case.
 
 \section{Analyse}
 
-Voor er van start gegaan kan worden, moet eerst duidelijk zijn welke functionaliteiten de PoC allemaal nodig heeft. We doen dit door middel van een analyse, bestaande uit use cases en een EERD. Door deze op te stellen is er een duidelijk overzicht wat gedaan moet worden en kan de CEO waar nodig bijsturen. 
+Voordat er van start gegaan kan worden, moet eerst duidelijk zijn welke functionaliteiten de PoC allemaal nodig heeft. We doen dit door middel van een analyse, bestaande uit use cases en een EERD. Door deze op te stellen is er een duidelijk overzicht wat gedaan moet worden en kan de CEO waar nodig bijsturen. 
 
 \subsection{Use cases}
 \label{sec:fase3-usecases}
@@ -32,7 +32,7 @@ Omdat de toekomstige gebruikers van de PoC vandaag al elke dag met het ERP-syste
 
 \subsection{Vertrekpunt: De bestaande ERP-schermen}
 
-Figuur \ref{fig:receptiebon_list} toont het scherm met alle receptiebonnen. De layout is duidelijk. Aan de linkerzijde is een navigatiebalk voorzien met alle modules. de rest van het scherm wordt benut voor informatie en input. 
+Figuur \ref{fig:receptiebon_list} toont het scherm met alle receptiebonnen. De layout is duidelijk. Aan de linkerzijde is een navigatiebalk voorzien met alle modules. De rest van het scherm wordt benut voor informatie en input. 
 Doorklikken op een receptiebon resulteert in een 2e scherm zoals in Figuur \ref{fig:receptiebon_detail}. Hier zien we details van de receptiebon en ook welke producten eraan vasthangen.
 
 \begin{figure}[H]
@@ -55,7 +55,7 @@ Een aantal elementen uit het bestaande scherm sluiten goed aan bij de behoeften 
 
 \begin{itemize}
     \item \textbf{De layout} We behouden zeker en vast de layout. De navigatiebalk met de verschillende modules en categorieën vormt dan meteen een familiare omgeving.
-    \item \textbf{terminologie} termen zoals receptiebon, artikel, stockcorrectie en leverancier worden rechtstreeks overgenomen. Zo vermijden we verwaring bij het gebruik van de PoC.
+    \item \textbf{Terminologie} Termen zoals receptiebon, artikel, stockcorrectie en leverancier worden rechtstreeks overgenomen. Zo vermijden we verwaring bij het gebruik van de PoC.
     \item \textbf{De flow.} Een lijst van gegevens zien en de mogelijkheid om door te klikken is vrij standaard voor een beheerapplicatie. Dit wordt ook zeker overgenomen.
 \end{itemize}
 
@@ -101,7 +101,7 @@ Voordat de receptiebon en stockcorrecties uitgevoerd kunnen worden, moeten de le
 
 \subsection{Verwerking van een receptiebon}
 
-op figuur \ref{fig:poc_receipts_list} zien we het receptiebonoverzicht. Per rij wordt de referentie, de leverancier, het ontvangstmoment en het totaal aan ingeboekte stuks getoond. Een vrije zoekbalk laat toe zowel op referentie als op leveranciersnaam te filteren, en de tabel is gepagineerd op 20 rijen om de laadtijd kort te houden bij groeiende historiek. Doorklikken op een rij opent het detailscherm met de algemene info en de tabel van bewegingen die op die bon werden geregistreerd (figuur \ref{fig:poc_receipt_detail}).
+Op figuur \ref{fig:poc_receipts_list} zien we het receptiebonoverzicht. Per rij wordt de referentie, de leverancier, het ontvangstmoment en het totaal aan ingeboekte stuks getoond. Een vrije zoekbalk laat toe zowel op referentie als op leveranciersnaam te filteren, en de tabel is gepagineerd op 20 rijen om de laadtijd kort te houden bij groeiende historiek. Doorklikken op een rij opent het detailscherm met de algemene info en de tabel van bewegingen die op die bon werden geregistreerd (figuur \ref{fig:poc_receipt_detail}).
 
 \begin{figure}[H]
     \centering
@@ -148,7 +148,7 @@ Het stockoverzicht (figuur \ref{fig:poc_stock_overview}) toont per combinatie va
 
 \subsection{Stockhistoriek}
 
-Het scherm met stockbewegingen (figuur \ref{fig:poc_stock_history}) hergebruikt dezelfde doorzoekbare dropdowns als het overzicht en breidt ze uit met een datumbereik, een bronfilter (manueel of via receptiebon uitgevoerd) en een vrije zoekbalk. Elke beweging wordt chronologisch getoond met haar bron als gekleurde tag en, indien van toepassing, de referentie van de receptiebon waaraan ze gekoppeld is. Positieve en negatieve hoeveelheden worden respectievelijk in groen en rood weergegeven, zodat afwijkende correcties direct opvallen. Met deze feature kan de gebruiker eventueel foute bewegingen terugvinden en corigeren. 
+Het scherm met stockbewegingen (figuur \ref{fig:poc_stock_history}) hergebruikt dezelfde doorzoekbare dropdowns als het overzicht en breidt ze uit met een datumbereik, een bronfilter (manueel of via receptiebon uitgevoerd) en een vrije zoekbalk. Elke beweging wordt chronologisch getoond met haar bron als gekleurde tag en, indien van toepassing, de referentie van de receptiebon waaraan ze gekoppeld is. Positieve en negatieve hoeveelheden worden respectievelijk in groen en rood weergegeven, zodat afwijkende correcties direct opvallen. Met deze feature kan de gebruiker eventueel foute bewegingen terugvinden en corrigeren. 
 
 \begin{figure}[H]
     \centering
@@ -183,9 +183,9 @@ De ontwerpkeuzes hierboven zijn elk gericht op één of meerdere pijlers van de 
 
 \paragraph{Tijdsbesparing.} Lange lijsten van leveranciers en leeggoedtypes worden uitgesloten via doorzoekbare dropdowns waarin de gebruiker direct typt om te filteren, in plaats van te scrollen. Daarbovenop filteren deze vanzelf welke waardes relevant zijn indien al een filter gekozen is. Eén enkel receptiebonformulier laat toe om alle bewegingen van een levering in één keer in te boeken, terwijl in Excel daarvoor doorheen meerdere bestanden gewerkt moest worden. De vrije zoekvelden en de paginering op alle lijsten houden de schermen snel, ook wanneer de historiek aangroeit. 
 
-Zoals daarnet besproken is er geen mogelijkheid om een bulkimport te doen van nieuwe receptiebonnen. De receptiebon zelf invoeren neemt tijd. Dit komt in beide fase 1 en fase 2 niet voor doordat deze met het bestaande systeem samen werken.
+Zoals daarnet besproken is er geen mogelijkheid om een bulkimport te doen van nieuwe receptiebonnen. De receptiebon zelf invoeren neemt tijd. Dit komt in beide fase 1 en fase 2 niet voor doordat deze met het bestaande systeem samenwerken.
 
-Het systeem helpt allesinds heel veel bij het terugvinden van tegoeden voor specifieke leveranciers, wat in Excel nu niet mogelijk is.
+Het systeem helpt alleszins heel veel bij het terugvinden van tegoeden voor specifieke leveranciers, wat in Excel nu niet mogelijk is.
 
 \paragraph{Foutenreductie.} Validatie gebeurt op twee niveaus: Blazor-formuliervalidatie geeft onmiddellijke feedback aan de gebruiker, en dezelfde regels worden afgedwongen op de server zodat manipulatie via de API niet mogelijk is. De wederzijds filterende dropdowns voorkomen dat de gebruiker een onbestaande combinatie van leverancier en leeggoedtype kiest. Het automatisch leegmaken van bewegingsregels bij het wisselen van leverancier voorkomt dat bewegingen onder de verkeerde leverancier worden geboekt. De bevestigingsstap op grote stockcorrecties vangt typfouten op. Tot slot wordt er voor elke beweging (zowel via een receptiebon als manueel) een log bijgehouden in de stockbewegingen.
 
@@ -227,7 +227,7 @@ Vergeleken met de andere fases is dit het zwakste punt van fase 3. \textbf{Fase 
     \centering
     \begin{tabular}{|p{4cm}|p{3cm}|p{3cm}|p{3cm}|}
         \hline
-        & \textbf{Men verkiest het vorig systeem} & \textbf{Het wordt verkozen boven Excel} & \textbf{Overschrijd verwachtingen} \\
+        & \textbf{Men verkiest het vorige systeem} & \textbf{Het wordt verkozen boven Excel} & \textbf{Overschrijd verwachtingen} \\
         \hline
         \textbf{Gebruiksvriendelijk-heid} &  & \textbf{X} &  \\
         \hline
@@ -265,7 +265,7 @@ Dit is meteen waar fase 1 en fase 2 fundamenteel sterker staan: in beide gevalle
     \centering
     \begin{tabular}{|p{4cm}|p{3cm}|p{3cm}|p{3cm}|}
         \hline
-        & \textbf{Het systeem is weinig overzichtelijk} & \textbf{50\% van de eindgebruikers vind snel data terug} & \textbf{Alle eindgebruikers vinden alle data terug} \\
+        & \textbf{Het systeem is weinig overzichtelijk} & \textbf{50\% van de eindgebruikers vinden snel data terug} & \textbf{Alle eindgebruikers vinden alle data terug} \\
         \hline
         \textbf{Overzichtelijkheid} &  &  & \textbf{X} \\
         \hline
@@ -275,5 +275,5 @@ Dit is meteen waar fase 1 en fase 2 fundamenteel sterker staan: in beide gevalle
 
 Op overzichtelijkheid haalt fase 3 de hoogste score. De opsplitsing van de data in de PoC in hun eigen modules zorgt ervoor dat men weet waar te zoeken. Per pagina kan er gefilterd worden op de benodigde waardes en tijdspannes bij bijvoorbeeld receptiebonnen. Na testen bij een financieel bediende kan er bevestigd worden dat alle data die nodig is voor het verwerken en controleren van de stockbewegingen aanwezig en makkelijk terug te vinden is.
 
-In vergelijking met fase 1 oogt fase 3 wel veel rustiger. Bij fase 1 zouden de modules in het bestaande ERP-systeem terecht komen. Fase 2 staat hier dan ook weer sterker in en is qua layout meer vergelijkbaar met fase 3. In beide 2 en 3 zijn de modules eigen aan de applicatie.
+In vergelijking met fase 1 oogt fase 3 wel veel rustiger. Bij fase 1 zouden de modules in het bestaande ERP-systeem terecht komen. Fase 2 staat hier dan ook weer sterker in en is qua layout meer vergelijkbaar met fase 3. In beide fase 2 en fase 3 zijn de modules eigen aan de applicatie.
 

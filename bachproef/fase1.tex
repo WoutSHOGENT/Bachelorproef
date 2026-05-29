@@ -13,13 +13,13 @@ Aan de databank, de schermen en de bestaande workflows van het ERP-systeem worde
 
 \section{Werking}
 
-Het verloop van het leeggoedbeheer steunt in deze oplossing volledig op de bestaande processen van het ERP-systeem. De drie modules werken samen rond de receptiebon, die ook vandaag al verantwoordelijk zijn voor het ontvangstproces van producten. Hieronder worden de drie modules besproken.
+Het verloop van het leeggoedbeheer steunt in deze oplossing volledig op de bestaande processen van het ERP-systeem. De drie modules werken samen rond de receptiebon, die ook vandaag al verantwoordelijk is voor het ontvangstproces van producten. Hieronder worden de drie modules besproken.
 
 \subsection{Leeggoed als product}
 
 In het ERP-systeem worden vandaag enkel grondstoffen en eindproducten als product geregistreerd. Om leeggoed mee te kunnen opnemen in de bestaande flows, zou leeggoed eveneens als een product in het systeem opgenomen worden. Concreet zou er voor elk type leeggoed een nieuwe artikelcode volgens het formaat \texttt{LG001} aangemaakt worden, zodat dit op dezelfde manier behandeld kan worden als de overige producten op de receptiebon. 
 
-Om productieproducten en leeggoed van elkaar te onderscheiden, is het belangrijk dat elk soort leeggoed een artikelcode heeft die start met ''LG''. Op die manier blijft de bestaande artikellijst overzichtelijk en kunnen de schermen en rapporten op basis van die code gefilterd worden waar nodig.
+Om productieproducten en leeggoed van elkaar te onderscheiden, is het belangrijk dat elk soort leeggoed een artikelcode heeft die start met \texttt{LG}. Op die manier blijft de bestaande artikellijst overzichtelijk en kunnen de schermen en rapporten op basis van die code gefilterd worden waar nodig.
 
 Een bijkomend voordeel van leeggoed als product te behandelen, is dat de ingave geen aparte flow vereist. Bij elke levering kan de bijhorende hoeveelheid leeggoed gewoon mee op de receptiebon ingegeven worden, op dezelfde manier als de andere producten die binnenkomen. De bestaande receptiebon-flow vervult zo automatisch de rol van ingavemodule voor leeggoed. Daarmee wordt ook het in de enquête (sectie~\ref{sec:enquete}) meest genoemde knelpunt aangepakt, namelijk dat leeggoedbewegingen in het huidige Excel-systeem vergeten kunnen worden: door de koppeling aan de receptiebon is een aparte, vergeetbare invoerstap niet meer nodig.
 
@@ -27,7 +27,7 @@ Een bijkomend voordeel van leeggoed als product te behandelen, is dat de ingave 
     \centering
     \includegraphics[width=.9\textwidth]
     {images/receptiebon_detail}
-    \caption{\label{fig:receptiebon} huidige uitzicht receptiebonscherm.}
+    \caption{\label{fig:receptiebon} Huidige uitzicht receptiebonscherm.}
 \end{figure}
 
 Dit is het detailscherm van een receptiebon. Daarin staat een lijst van alle producten die bij de levering zijn binnengekomen. In dit scherm wordt dus vermeld welk leeggoed er is binnengekomen.

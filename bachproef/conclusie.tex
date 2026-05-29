@@ -20,13 +20,13 @@ In de introductie werden enkele deelvragen opgesteld die zouden leiden naar een 
 
 \subsection{Hoe verloopt het beheer van leeggoedpaletten binnen Freshfrozen For Pets op dit moment, en waar treden de meeste inefficiënties en fouten op?}
 
-Het beheer van leeggoed gebeurt op dit moment volledig in Microsoft Excel. Per leverancier wordt bijgehouden welk leeggoed binnenkomt van de desbetreffende leverancier. Wanneer een levering binnenkomt voert de productiechef of een financieel bediende de correcte gegevens in. De waarde die genoteerd wordt overschrijft een andere waarde. Daar vinden we de eerste fout. Waarden die ook betrekking hebben op vorige leveringen worden destructief overschreven en zijn nadien niet meer beschikbaar. Daarbovenop is het bij bepaalde leveranciers niet voorspelbaar hoeveel leeggoed ze leveren en ook terug meenemen, deze waardes zijn vaak niet hetzelfde. De meeste fouten gebeuren dus bij het ingeven van aantallen bij het in en uitschrijven van leeggoed, maar ook het feit dat af en toe een waarde bij de verkeerde leverancier beland. aangezien er geen historiek is, kan deze fout ook niet rechtgezet worden.
+Het beheer van leeggoed gebeurt op dit moment volledig in Microsoft Excel. Per leverancier wordt bijgehouden welk leeggoed binnenkomt van de desbetreffende leverancier. Wanneer een levering binnenkomt voert de productiechef of een financieel bediende de correcte gegevens in. De waarde die genoteerd wordt overschrijft een andere waarde. Daar vinden we de eerste fout. Waarden die ook betrekking hebben op vorige leveringen worden destructief overschreven en zijn nadien niet meer beschikbaar. Daarbovenop is het bij bepaalde leveranciers niet voorspelbaar hoeveel leeggoed ze leveren en ook terug meenemen, deze waardes zijn vaak niet hetzelfde. De meeste fouten gebeuren dus bij het ingeven van aantallen bij het in en uitschrijven van leeggoed, maar ook het feit dat af en toe een waarde bij de verkeerde leverancier belandt. Aangezien er geen historiek is, kan deze fout ook niet rechtgezet worden.
 
-\subsection{Hoe ervaren de productiechef, de financieel bedienden en de CEO het systeem op dit moment, en wat zijn voor hun de grootste voor- en nadelen?}
+\subsection{Hoe ervaren de productiechef, de financieel bedienden en de CEO het systeem op dit moment, en wat zijn voor hen de grootste voor- en nadelen?}
 
-Om op deze vraag te kunnen antwoorden liet ik de medewerkers van Freshfrozen een enquête invullen (zie hoofdstuk~\ref{sec:enquete}). De resultaten geven een genuanceerd beeld: Excel wordt niet als een slecht hulpmiddel ervaren, maar de manier waarop het vandaag voor leeggoedbeheer wordt ingezet brengt problemen met zich mee. De medewerkers wijzen er op dat Excel niet zonder reden gebruikt wordt. Het wordt beschreven als eenvoudig, doeltreffend, flexibel en goed raadpleegbaar. Bovendien biedt het de mogelijkheid om snel statistieken te trekken via draaitabellen en filters en functioneert het ondertussen als register dat in geval van twijfel geraadpleegd kan worden.
+Om op deze vraag te kunnen antwoorden liet ik de medewerkers van Freshfrozen een enquête invullen (zie hoofdstuk~\ref{sec:enquete}). De resultaten geven een genuanceerd beeld: Excel wordt niet als een slecht hulpmiddel ervaren, maar de manier waarop het vandaag voor leeggoedbeheer wordt ingezet brengt problemen met zich mee. De medewerkers wijzen erop dat Excel niet zonder reden gebruikt wordt. Het wordt beschreven als eenvoudig, doeltreffend, flexibel en goed raadpleegbaar. Bovendien biedt het de mogelijkheid om snel statistieken te trekken via draaitabellen en filters en functioneert het ondertussen als register dat in geval van twijfel geraadpleegd kan worden.
 
-Dat is meteen ook de reden waarom een nieuw systeem die gebruiksvriendelijkheid en raadpleegbaarheid zou moeten evenaren. Tegenover die voordelen staat echter een reeks nadelen.
+Dat is meteen ook de reden waarom een nieuw systeem diezelfde gebruiksvriendelijkheid en raadpleegbaarheid zou moeten evenaren. Tegenover die voordelen staan echter een reeks nadelen.
 
 Het grootste pijnpunt is dat het invullen van de Excel-bestanden op geen enkel moment afdwingbaar is, waardoor in de praktijk regelmatig een leeggoedbeweging vergeten wordt. Daarnaast wordt het versnipperde karakter van de bestanden als hinderlijk ervaren. Elke leverancier heeft immers een eigen spreadsheet die bovendien op de juiste locatie in de Dropbox teruggevonden moet worden, waardoor een algemeen overzicht van het leeggoed over alle leveranciers heen ontbreekt.
 
@@ -39,7 +39,7 @@ Deze deelvraag is eerder een samenvatting van de vorige twee deelvragen. Op basi
 \\
 \textbf{Voordelen:}
 \begin{enumerate}
-    \item[1.] \textbf{Eén centraal overzicht in plaats van versnipperde bestanden.} Een centrale oplossing brengt alle date nodig voor leeggoedbeheer samen op één plaats, terwijl Excel vandaag werkt met één spreadsheet per leverancier in Dropbox. Daardoor wordt de vraag van de CEO, namelijk per leverancier weten hoeveel leeggoed nog openstaat, in één scherm beantwoordbaar in plaats van door meerdere bestanden te moeten zoeken. Ook een totaalbeeld over alle leveranciers heen, dat in de huidige werkwijze volledig ontbreekt, wordt zo mogelijk.
+    \item[1.] \textbf{Eén centraal overzicht in plaats van versnipperde bestanden.} Een centrale oplossing brengt alle data nodig voor leeggoedbeheer samen op één plaats, terwijl Excel vandaag werkt met één spreadsheet per leverancier in Dropbox. Daardoor wordt de vraag van de CEO, namelijk per leverancier weten hoeveel leeggoed nog openstaat, in één scherm beantwoordbaar in plaats van door meerdere bestanden te moeten zoeken. Ook een totaalbeeld over alle leveranciers heen, dat in de huidige werkwijze volledig ontbreekt, wordt zo mogelijk.
     \item[2.] \textbf{Afdwingbare ingave en validatie.} In Excel steunt het invullen volledig op de gebruiker, waardoor het invullen van het leeggoed vergeten kan worden. Een centrale technische oplossing kan verplichte velden, geldige waardes en koppelingen aan een bestaande receptiebon afdwingen, en kan waarschuwingen tonen bij verdachte waarden. Hierdoor wordt het in de enquête meest genoemde knelpunt, namelijk de niet-afdwingbaarheid van de ingave, structureel weggenomen.
     \item[3.] \textbf{Logging en historiek in plaats van destructief overschrijven.} In Excel worden bestaande waarden bij een nieuwe ingave overschreven, waardoor de geschiedenis van een leeggoedbeweging verloren gaat en fouten achteraf niet meer vindbaar zijn. Een centrale oplossing kan elke beweging bijhouden als een afzonderlijk item met datum en context, zodat afwijkingen achteraf opgespoord en gecorrigeerd kunnen worden.
 \end{enumerate}
@@ -55,7 +55,7 @@ Deze deelvraag is eerder een samenvatting van de vorige twee deelvragen. Op basi
 
 \textbf{Nee.} Na contact met MAPA was het duidelijk dat er niet direct in het bestaande ERP-systeem gewerkt zou kunnen worden. Enkele redenen waren:
 \begin{itemize}
-    \item De Progress ontwikkelingsomgeving is niet zomaar beschikbaar en vereisen vrij dure licenties.
+    \item De Progress-ontwikkelingsomgeving is niet zomaar beschikbaar en vereist vrij dure licenties.
     \item Zorgen over het onderhoud van de applicatie. Waar start en stopt de ene of de andere zijn verantwoordelijkheid?
     \item wijzigingen aan de database zijn nodig voor de uitwerking, ook MAPA moet hiermee verder werken.
     \item ...
@@ -94,22 +94,22 @@ Door de antwoorden op de deelvragen, de drie fases en de evaluatie volgens de sc
 Het korte antwoord op deze vraag is dat het beheer van leeggoedpaletten bij Freshfrozen efficiënter georganiseerd kan worden door een centrale technische oplossing te maken die invoer afdwingt en een bewegingshistoriek en overzicht van tegoeden invoert.
 \\
 \\
-Doorheen deze bachelorproef zijn drie manieren onderzocht om dit probleem op te lossen: een directe implementatie in het bestaande ERP-Systeem, een point-to-point uitwerking en een eigen applicatie. Ze hebben alle drie hebben hun eigen voor- en nadelen die meer invloed hebben op het tweede deel van de onderzoeksvraag: de tijdsbesparing, foutenreductie, gebruiksvriendelijkheid en overzichtelijkheid. 
+Doorheen deze bachelorproef zijn drie manieren onderzocht om dit probleem op te lossen: een directe implementatie in het bestaande ERP-systeem, een point-to-point uitwerking en een eigen applicatie. Ze hebben alle drie hun eigen voor- en nadelen die meer invloed hebben op het tweede deel van de onderzoeksvraag: de tijdsbesparing, foutenreductie, gebruiksvriendelijkheid en overzichtelijkheid. 
 
-De eigen applicatie is gebouwd om het probleem van freshfrozen op te lossen en doet dat best goed, maar mist enkele belangerijke pijlers die de andere uitwerkingen wel oplossen. Dit zijn:
+De eigen applicatie is gebouwd om het probleem van Freshfrozen op te lossen en doet dat best goed, maar mist enkele belangrijke pijlers die de andere uitwerkingen wel oplossen. Dit zijn:
 
 \begin{itemize}
     \item Afdwingbaarheid
     \item Data silo's
 \end{itemize}
 
-De eigen applicatie kan niet afdwingen dat de gebruiker het leeggoed invult voor elke receptiebon. Dit is dan ook een gevolg van de tweede pijler. Referentiecodes van receptiebonnen moeten zelf worden ingevuld en pas daarna kan het invullen van de cijfers afgedwongen worden. Daarbovenop kan een referentiecode verkeerd ingevuld worden en kan de applicatie out-of-sync raken met de huidige staat van de ERP-database. Al deze factoren zorgen ervoor dat bij deze uitwerking mogelijks tijd verloren gaat en fouten voorkomen.
+De eigen applicatie kan niet afdwingen dat de gebruiker het leeggoed invult voor elke receptiebon. Dit is dan ook een gevolg van de tweede pijler. Referentiecodes van receptiebonnen moeten zelf worden ingevuld en pas daarna kan het invullen van de cijfers afgedwongen worden. Daarbovenop kan een referentiecode verkeerd ingevuld worden en kan de applicatie out-of-sync raken met de huidige staat van de ERP-database. Al deze factoren zorgen ervoor dat bij deze uitwerking mogelijks tijd verloren gaat en fouten ontstaan.
 
-De point-to-point uitwerking lost dit voor een deel op. De databases zijn geconnecteerd en referentiebonnen komen zo direct in het leeggoedbeheersysteem. Daarna worden ze aangevuld en in het leeggoedbeheersysteem opgeslaan. Maar ook dit is een apart systeem. Als de productiechef of financieel bediende de applicatie vergeet te openen bij het verwerken van een receptiebon, dan wordt het leeggoed ook niet aangevuld.
+De point-to-point uitwerking lost dit voor een deel op. De databases zijn geconnecteerd en referentiebonnen komen zo direct in het leeggoedbeheersysteem. Daarna worden ze aangevuld en in het leeggoedbeheersysteem opgeslagen. Maar ook dit is een apart systeem. Als de productiechef of financieel bediende de applicatie vergeet te openen bij het verwerken van een receptiebon, dan wordt het leeggoed ook niet aangevuld.
 
-De meest bekende applicatie voor de gebruiker is de implementatie in het huidige ERP-Systeem. Receptiebonnen en leeggoed leven in dezelfde omgeving en er kan afgedwongen worden om leeggoed in te vullen op een receptiebon. Er is geen tweede applicatie nodig tijdens het verwerken van een receptiebon en alle voordelen van de andere twee uitwerkingen zijn ook hier aanwezig. Er wordt veel tijd gewonnen door niet te moeten schakelen en de kans op fouten is miniem door het afdwingen van de waardes, validatie en historiek. De afwegingen zijn minimale ingrepen die eenmaal uitgevoerd moeten worden.
+De meest bekende applicatie voor de gebruiker is de implementatie in het huidige ERP-systeem. Receptiebonnen en leeggoed leven in dezelfde omgeving en er kan afgedwongen worden om leeggoed in te vullen op een receptiebon. Er is geen tweede applicatie nodig tijdens het verwerken van een receptiebon en alle voordelen van de andere twee uitwerkingen zijn ook hier aanwezig. Er wordt veel tijd gewonnen door niet te moeten schakelen en de kans op fouten is miniem door het afdwingen van de waardes, validatie en historiek. De afwegingen zijn minimale ingrepen die eenmaal uitgevoerd moeten worden.
 
-Het beheer van leeggoedpaletten bij Freshfrozen For Pets kan dus het meest efficiënt georganiseerd worden door de modules en gebruikerservaring van de eigen applicatie uit fase 3 verder te laten uitwerken binnen het bestaande ERP-systeem van MAPA, zodat de afdwingbaarheid en de afwezigheid van data silo's uit fase 1 gecombineerd kan worden met de overzichtelijkheid en gebruiksvriendelijkheid van fase 3, om zo alle vier de pijlers van de onderzoeksvraag tegelijk te beantwoorden.
+Het beheer van leeggoedpaletten bij Freshfrozen For Pets kan dus het meest efficiënt georganiseerd worden door de modules en gebruikerservaring van de eigen applicatie uit fase 3 verder te laten uitwerken binnen het bestaande ERP-systeem van MAPA, zodat de afdwingbaarheid en de afwezigheid van data silo's uit fase 1 gecombineerd kunnen worden met de overzichtelijkheid en gebruiksvriendelijkheid van fase 3, om zo alle vier de pijlers van de onderzoeksvraag tegelijk te beantwoorden.
 
 \section{Bijdrage van het onderzoek}
 
@@ -125,6 +125,6 @@ Hoewel er in deze case gekozen is voor een directe integratie in een bestaand sy
 
 \section{Toekomstig werk}
 
-De uitwerking van fase 1 en screenshots van fase 3 in deze bachelorproef worden ook met MAPA gecommuniceerd. Zo komt er voor Freshfrozen een concrete oplossing op hun probleem. Ikzelf werd door Pierre verantwoordelijk gesteld om dit tot een goed einde te brengen, wat ook de intentie is.
+De uitwerking van fase 1 en screenshots van fase 3 in deze bachelorproef worden ook met MAPA gecommuniceerd. Zo komt er voor Freshfrozen een concrete oplossing op hun probleem. De auteur werd door Pierre verantwoordelijk gesteld om dit tot een goed einde te brengen, wat ook zijn intentie is.
 
 
