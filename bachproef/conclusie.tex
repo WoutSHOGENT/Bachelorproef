@@ -20,7 +20,7 @@ In de introductie werden enkele deelvragen opgesteld die zouden leiden naar een 
 
 \subsection{Hoe verloopt het beheer van leeggoedpaletten binnen Freshfrozen For Pets op dit moment, en waar treden de meeste inefficiënties en fouten op?}
 
-Het beheer van leeggoed gebeurt op dit moment volledig in Microsoft Excel. Per leverancier wordt bijgehouden welk leeggoed binnenkomt van de desbetreffende leverancier. Wanneer een levering binnenkomt voert de productiechef of een financieel bediende de correcte gegevens in. De waarde die genoteerd wordt overschrijft een andere waarde. Daar vinden we de eerste fout. Waarden die ook betrekking hebben op vorige leveringen worden destructief overschreven en zijn nadien niet meer beschikbaar. Daarbovenop is het bij bepaalde leveranciers niet voorspelbaar hoeveel leeggoed ze leveren en ook terug meenemen, deze waardes zijn vaak niet hetzelfde. De meeste fouten gebeuren dus bij het ingeven van aantallen bij het in en uitschrijven van leeggoed, maar ook het feit dat af en toe een waarde bij de verkeerde leverancier belandt. Aangezien er geen historiek is, kan deze fout ook niet rechtgezet worden.
+Het beheer van leeggoed gebeurt op dit moment volledig in Microsoft Excel. Per leverancier wordt bijgehouden welk leeggoed binnenkomt van de desbetreffende leverancier. Wanneer een levering binnenkomt voert de productiechef of een financieel bediende de correcte gegevens in. De waarde die genoteerd wordt overschrijft een andere waarde. Daar vinden we de eerste fout. Waarden die ook betrekking hebben op vorige leveringen worden destructief overschreven en zijn nadien niet meer beschikbaar. Daarbovenop is het bij bepaalde leveranciers niet voorspelbaar hoeveel leeggoed ze leveren en ook terug meenemen, deze waardes zijn daardoor dynamisch. De meeste fouten gebeuren dus bij het ingeven van aantallen bij het in en uitschrijven van leeggoed, maar ook het feit dat af en toe een waarde bij de verkeerde leverancier belandt. Aangezien er geen historiek is, kan deze fout ook niet rechtgezet worden.
 
 \subsection{Hoe ervaren de productiechef, de financieel bedienden en de CEO het systeem op dit moment, en wat zijn voor hen de grootste voor- en nadelen?}
 
@@ -77,7 +77,7 @@ De vierde best-practice is \textbf{User-Centric Design (UCD)}. \textcite{Rahman2
 
 Het antwoord op deze vraag werd duidelijk na het gesprek met de CEO van Freshfrozen (hoofdstuk~\ref{ch:fase0}). Tijdens dat gesprek gaf Pierre Kemseke expliciet aan welke twee functionaliteiten voor hem en voor het bedrijf de meeste waarde zouden opleveren.
 
-De eerste en belangrijkste verbetering is het kunnen tonen van het \textbf{tegoed per leverancier en per leeggoedtype}. De CEO gaf aan dat hij in één oogopslag wil kunnen zien hoeveel leeggoed elke leverancier nog tegoed heeft. Door dit als een dedicated overzicht aan te bieden vervalt het zoekwerk volledig.
+De eerste en belangrijkste verbetering is het kunnen tonen van het \textbf{tegoed per leverancier en per leeggoedtype}. De CEO gaf aan dat hij in één oogopslag wil kunnen zien hoeveel leeggoed elke leverancier nog tegoed heeft. Door dit als een toegewijd overzicht aan te bieden vervalt het zoekwerk volledig.
 
 De tweede verbetering is het bijhouden van een \textbf{volledige historiek van alle leeggoedbewegingen}. In de huidige Excel-werkwijze worden bestaande waardes destructief overschreven bij elke nieuwe levering, waardoor de oorzaak van een verschil achteraf bijna nooit nog te achterhalen is. Voor de CEO is dat een rechtstreeks financieel risico. Een fout die niet vindbaar is kan ook niet rechtgezet worden, en het statiegeld dat verbonden is aan het leeggoed gaat dan ook verloren. Een systeem dat elke beweging als een afzonderlijk record met datum en context bewaart, lost dit op.
 
@@ -109,13 +109,13 @@ De point-to-point uitwerking lost dit voor een deel op. De databases zijn geconn
 
 De meest bekende applicatie voor de gebruiker is de implementatie in het huidige ERP-systeem. Receptiebonnen en leeggoed leven in dezelfde omgeving en er kan afgedwongen worden om leeggoed in te vullen op een receptiebon. Er is geen tweede applicatie nodig tijdens het verwerken van een receptiebon en alle voordelen van de andere twee uitwerkingen zijn ook hier aanwezig. Er wordt veel tijd gewonnen door niet te moeten schakelen en de kans op fouten is miniem door het afdwingen van de waardes, validatie en historiek. De afwegingen zijn minimale ingrepen die eenmaal uitgevoerd moeten worden.
 
-Het beheer van leeggoedpaletten bij Freshfrozen For Pets kan dus het meest efficiënt georganiseerd worden door de modules en gebruikerservaring van de eigen applicatie uit fase 3 verder te laten uitwerken binnen het bestaande ERP-systeem van MAPA, zodat de afdwingbaarheid en de afwezigheid van datasilo's uit fase 1 gecombineerd kunnen worden met de overzichtelijkheid en gebruiksvriendelijkheid van fase 3, om zo alle vier de pijlers van de onderzoeksvraag tegelijk te beantwoorden.
+Het beheer van leeggoedpaletten bij Freshfrozen For Pets kan dus het meest efficiënt georganiseerd worden door de modules en gebruikerservaring van de eigen applicatie uit fase 3 verder te laten uitwerken binnen het bestaande ERP-systeem van MAPA, zodat de afdwingbaarheid en de afwezigheid van datasilo's uit fase 1 gecombineerd kan worden met de overzichtelijkheid en gebruiksvriendelijkheid van fase 3, om zo alle vier de pijlers van de onderzoeksvraag tegelijk te beantwoorden.
 
 \section{Bijdrage van het onderzoek}
 
-Dit onderzoek draagt bij door inzicht te bieden in de mogelijkheden voor het maken van een dedicated digitale oplossing voor een bedrijfsproces. Andere KMO's kunnen deze bachelorproef lezen en kritisch evalueren of een bepaalde uitwerking wel of niet voor hen ook een oplossing kan zijn.
+Dit onderzoek draagt bij door inzicht te bieden in de mogelijkheden voor het maken van een toegewijde digitale oplossing voor een bedrijfsproces. Andere KMO's kunnen deze bachelorproef lezen en kritisch evalueren of een bepaalde uitwerking wel of niet voor hen ook een oplossing kan zijn.
 
-Specifiek voor Freshfrozen biedt deze bachelorproef een oplossing voor hun probleem. De CEO vertelde dat er met de uitwerking in fase 1 zeker verder gewerkt en geïtereerd kan worden. Door de gemaakte eigen PoC heeft Freshfrozen wel al een concreet beeld van wat ze verwachten van de uitwerking in MAPA. 
+Specifiek voor Freshfrozen biedt deze bachelorproef een oplossing voor hun probleem. De CEO vertelde dat er met de uitwerking in fase 1 zeker verder gewerkt en geïtereerd kan worden. Door de eigen PoC heeft Freshfrozen wel al een concreet beeld van wat ze verwachten van de uitwerking in het ERP-systeem van MAPA. 
 
 \section{Discussie}
 

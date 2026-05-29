@@ -10,7 +10,7 @@ Voordat er van start gegaan kan worden, moet eerst duidelijk zijn welke function
 \subsection{Use cases}
 \label{sec:fase3-usecases}
 
-Om duidelijk te maken welke functionaliteiten de PoC nodig heeft, werden use cases opgesteld. De volledige uitwerking van elke use case is omwille van de leesbaarheid van dit hoofdstuk opgenomen in bijlage~\ref{ch:bijlage-usecases}.
+Om duidelijk te maken welke functionaliteiten de PoC nodig heeft, werden use cases opgesteld. De volledige uitwerking van elke use case is omwille van de leesbaarheid van dit hoofdstuk opgenomen in bijlage \ref{ch:bijlage-usecases}.
 
 \subsection{EERD}
 \begin{figure}[H]
@@ -20,11 +20,11 @@ Om duidelijk te maken welke functionaliteiten de PoC nodig heeft, werden use cas
     \caption{\label{fig:eerd}EERD.}
 \end{figure}
 
-Zoals in het EERD te zien is er bewust voor gekozen om twee verschillende stockconcepten van elkaar te scheiden. Enerzijds is er de \textbf{fysieke voorraad}. Dit is hoeveel exemplaren van een bepaald leeggoedtype zich daadwerkelijk in het magazijn bevinden. Deze waarde wordt rechtstreeks op de \texttt{Leeggoed}-entiteit bijgehouden via het attribuut \texttt{aantal}, omdat de fysieke voorraad onafhankelijk is van welke leverancier de stukken oorspronkelijk leverde. Anderzijds is er het \textbf{tegoed per leverancier}: de boekhoudkundige hoeveelheid die nog terug verschuldigd is aan elke individuele leverancier. Die laatste informatie hoort niet op \texttt{Leeggoed} of \texttt{Leverancier} zelf thuis, omdat ze enkel betekenis heeft in de combinatie van beide.
+Zoals in het EERD te zien is er bewust voor gekozen om twee verschillende stockconcepten van elkaar te scheiden. Enerzijds is er de \textbf{fysieke voorraad}. Dit is hoeveel exemplaren van een bepaald leeggoedtype zich daadwerkelijk in het magazijn bevinden. Deze waarde wordt rechtstreeks op de \texttt{Leeggoed}-entiteit bijgehouden via het attribuut \texttt{aantal}, omdat de fysieke voorraad onafhankelijk is van welke leverancier het leeggoed oorspronkelijk leverde. Anderzijds is er het \textbf{tegoed per leverancier}: de boekhoudkundige hoeveelheid die nog terug verschuldigd is aan elke individuele leverancier. Het tegoed hoort niet bij \texttt{Leeggoed} of \texttt{Leverancier} thuis, omdat ze enkel betekenis heeft in de combinatie van beide.
 
 Naast de actuele voorraad is het ook heel belangrijk om inzicht te hebben in de historiek. Zo kan snel gevonden worden waar mogelijks een verkeerde stockbeweging gebeurd is. Elke wijziging in voorraad wordt daarom vastgelegd als een \texttt{Stockbeweging}, die normaal gekoppeld is aan een \texttt{Receptiebon}. Een stockbeweging heeft echter ook de mogelijkheid om geen receptiebon te hebben, zo is het mogelijk om manueel stockcorrecties uit te voeren. Het onderscheid tussen beide gevallen wordt expliciet gemaakt via het \texttt{manueel}-attribuut.
 
-Voor de leverancierspecifieke gegevens is een samengevoegde tabel \texttt{Leeggoed\_Leverancier} ingevoerd die de veel-op-veel-relatie tussen \texttt{Leverancier} en \texttt{Leeggoed} verrijkt met twee attributen: \texttt{prijs} en \texttt{aantal\_tegoed}. De prijs hoort op die plaats omdat hetzelfde leeggoedtype een verschillende waarde kan hebben afhankelijk van de leverancier, en het \texttt{aantal\_tegoed} hoort daar om dezelfde reden: het is enkel zinvol per leverancier-leeggoed-combinatie. Door beide attributen in één tabel te bundelen blijft het schema compact, terwijl elke entiteit nog steeds zuiver verantwoordelijk is voor zijn eigen domein.
+Voor de leverancierspecifieke gegevens is een samengevoegde tabel \texttt{Leeggoed\_Leverancier} ingevoerd die de veel-op-veel-relatie tussen \texttt{Leverancier} en \texttt{Leeggoed} verrijkt met een attribuut: \texttt{aantal\_tegoed}. Het \texttt{aantal\_tegoed} hoort daar omdat het enkel zinvol is per leverancier-leeggoed-combinatie. Op deze manier blijft elke entiteit zuiver verantwoordelijk voor zijn eigen domein.
 
 \section{UCD}
 
@@ -68,7 +68,7 @@ In het bestaande systeem en in de Excel-bestanden zit de fysieke voorraad door e
 
 \section{Uitwerking}
 
-De PoC is uitgewerkt als een Blazor WebAssembly-frontend bovenop een ASP.NET-API met PostgreSQL database. De domeinstructuur volgt rechtstreeks het EERD uit paragraaf~2.2: \texttt{Leeggoed}, \texttt{Leverancier}, \texttt{Leeggoed\_Leverancier} (samengevoegde tabel met \texttt{aantal\_tegoed}), \texttt{Receptiebon} en \texttt{Stockbeweging}. Elke use case uit paragraaf~\ref{sec:fase3-usecases} (volledig uitgewerkt in bijlage~\ref{ch:bijlage-usecases}) is omgezet in één of meerdere schermen, en authenticatie en autorisatie zijn met rolgebaseerde policies (\texttt{Productiechef}, \texttt{FinancieelMedewerker}, \texttt{CEO}) afgedwongen op zowel het API-endpoint als de route in de frontend.
+De PoC is uitgewerkt als een Blazor WebAssembly-frontend bovenop een ASP.NET-API met PostgreSQL database. De domeinstructuur volgt rechtstreeks het EERD uit paragraaf 2.2: \texttt{Leeggoed}, \texttt{Leverancier}, \texttt{Leeggoed\_Leverancier} (samengevoegde tabel met \texttt{aantal\_tegoed}), \texttt{Receptiebon} en \texttt{Stockbeweging}. Elke use case uit paragraaf \ref{sec:fase3-usecases} (volledig uitgewerkt in bijlage \ref{ch:bijlage-usecases}) is omgezet in één of meerdere schermen, en authenticatie en autorisatie zijn met rolgebaseerde policies (\texttt{Productiechef}, \texttt{FinancieelMedewerker}, \texttt{CEO}) afgedwongen op zowel het API-endpoint als de route in de frontend.
 
 \subsection{Aanmelden en navigatie}
 
@@ -168,7 +168,7 @@ De stockcorrectiemodule dient om uitgaand leeggoed af te schrijven. Daarbovenop 
     \caption{\label{fig:poc_stock_correction}Formulier voor een manuele stockcorrectie.}
 \end{figure}
 
-Indien de absolute waarde van de correctie boven een ingestelde drempel (voor de PoC vijftig stuks) ligt, wijst het systeem de eerste poging af en vraagt het expliciete bevestiging via een waarschuwingsbanner met een knop \textit{Bevestigen en doorgaan} (figuur \ref{fig:poc_stock_correction_confirm}). Pas wanneer de gebruiker bevestigt, wordt de correctie effectief geregistreerd. Deze waarschuwing zorgt ervoor dat de gebruiker eerst de ingegeven waarde controleert voordat zij doorgaan zonder de gebruiker volledig te blokkeren voor terechte grote correcties.
+Indien de absolute waarde van de correctie boven een ingestelde drempel (voor de PoC 50 stuks) ligt, wijst het systeem de eerste poging af en vraagt het expliciete bevestiging via een waarschuwingsbanner met een knop \textit{Bevestigen en doorgaan} (figuur \ref{fig:poc_stock_correction_confirm}). Pas wanneer de gebruiker bevestigt, wordt de correctie effectief geregistreerd. Deze waarschuwing zorgt ervoor dat de gebruiker eerst de ingegeven waarde controleert voordat zij doorgaan zonder de gebruiker volledig te blokkeren voor terechte grote correcties.
 
 \begin{figure}[H]
     \centering
@@ -178,14 +178,14 @@ Indien de absolute waarde van de correctie boven een ingestelde drempel (voor de
 \end{figure}
 
 \subsection{Vertaling naar de onderzoeksvraag}
-
+\label{vndo}
 De ontwerpkeuzes hierboven zijn elk gericht op één of meerdere pijlers van de onderzoeksvraag: tijdsbesparing, foutenreductie, gebruiksvriendelijkheid en overzichtelijkheid. De goede en slechte punten van deze uitwerking worden besproken.
 
-\paragraph{Tijdsbesparing.} Lange lijsten van leveranciers en leeggoedtypes worden uitgesloten via doorzoekbare dropdowns waarin de gebruiker direct typt om te filteren, in plaats van te scrollen. Daarbovenop filteren deze vanzelf welke waardes relevant zijn indien al een filter gekozen is. Eén enkel receptiebonformulier laat toe om alle bewegingen van een levering in één keer in te boeken, terwijl in Excel daarvoor doorheen meerdere bestanden gewerkt moest worden. De vrije zoekvelden en de paginering op alle lijsten houden de schermen snel, ook wanneer de historiek aangroeit. 
+\paragraph{Tijdsbesparing.} Lange lijsten van leveranciers en leeggoedtypes worden uitgesloten via doorzoekbare dropdowns waarin de gebruiker direct typt om te filteren, in plaats van te scrollen. Daarbovenop filteren deze vanzelf welke waardes relevant zijn indien al een filter gekozen is. De vrije zoekvelden en de paginering op alle lijsten houden de schermen snel, ook wanneer de historiek aangroeit. 
 
 Zoals daarnet besproken is er geen mogelijkheid om een bulkimport te doen van nieuwe receptiebonnen. De receptiebon zelf invoeren neemt tijd. Dit komt in beide fase 1 en fase 2 niet voor doordat deze met het bestaande systeem samenwerken.
 
-Het systeem helpt alleszins heel veel bij het terugvinden van tegoeden voor specifieke leveranciers, wat in Excel nu niet mogelijk is.
+Het systeem is vooral een meerwaarde bij het terugvinden van tegoeden voor specifieke leveranciers, wat in Excel nu niet mogelijk is.
 
 \paragraph{Foutenreductie.} Validatie gebeurt op twee niveaus: Blazor-formuliervalidatie geeft onmiddellijke feedback aan de gebruiker, en dezelfde regels worden afgedwongen op de server zodat manipulatie via de API niet mogelijk is. De wederzijds filterende dropdowns voorkomen dat de gebruiker een onbestaande combinatie van leverancier en leeggoedtype kiest. Het automatisch leegmaken van bewegingsregels bij het wisselen van leverancier voorkomt dat bewegingen onder de verkeerde leverancier worden geboekt. De bevestigingsstap op grote stockcorrecties vangt typfouten op. Tot slot wordt er voor elke beweging (zowel via een receptiebon als manueel) een log bijgehouden in de stockbewegingen.
 
@@ -195,7 +195,7 @@ Het geheel is een grote verbetering tegenover het huidige systeem met Excel. Vel
 
 \paragraph{Gebruiksvriendelijkheid.} De terminologie van het bestaande ERP-systeem (receptiebon, artikelcode, leverancier, stockcorrectie) is overgenomen. De zijbalk is genummerd en gegroepeerd in \textit{Beheer} en \textit{Overzicht}. Er is zoveel mogelijk op UCD gelet en samengewerkt met een financieel bediende om te itereren op wat het best werkt voor hen.
 
-\paragraph{Overzichtelijkheid.} Op elk scherm is enkel terug te vinden wat daar nodig is. Ook in de navbar is zoveel mogelijk overzicht behouden. Op alle schermen zie je in één oogopslag de informatie die je nodig hebt. Er is ook veel meer informatie dan het huidige systeem en nu ook allemaal samen in plaats van verspreid.
+\paragraph{Overzichtelijkheid.} Op elk scherm is enkel terug te vinden wat daar nodig is. Ook in de navbar is zoveel mogelijk overzicht behouden. Op alle schermen zie je in één oogopslag de informatie die je nodig hebt. Er is ook veel meer informatie dan het huidige systeem en nu ook allemaal op één plek in plaats van verspreid.
 
 \section{Evaluatie}
 
@@ -217,9 +217,9 @@ In deze sectie wordt de PoC van fase 3 beoordeeld aan de hand van de vier scoret
 
 De PoC behaalt op deze pijler de middelste score. De winst zit vooral aan de \emph{raadpleegkant}: doorzoekbare en wederzijds filterende dropdowns vervangen het scrollen door meerdere Excel-bestanden, en het stockoverzicht toont in één scherm welk tegoed een leverancier nog heeft, een vraag die in de Excel-werkwijze vandaag enkele minuten zoeken kost per leverancier.
 
-Het verlies zit aan de \emph{ingavekant}. Omdat MAPA geen export aanbiedt voor receptiebonnen, moet de referentiecode, de leverancier en elke leeggoedlijn manueel ingegeven worden, terwijl die gegevens elders in het ERP-systeem al bestaan. Hierdoor wordt een deel van de tijdswinst opnieuw uitgegeven aan dubbele invoer.
+Het verlies zit aan de \emph{ingavekant}. Omdat MAPA geen export aanbiedt voor receptiebonnen moeten de referentiecodes en de leveranciers manueel ingegeven worden, terwijl die gegevens in het ERP-systeem al bestaan. Hierdoor wordt een deel van de tijdswinst opnieuw uitgegeven aan dubbele invoer.
 
-Vergeleken met de andere fases is dit het zwakste punt van fase 3. \textbf{Fase 1} zou hier maximaal scoren: leeggoed wordt mee op de bestaande receptiebon ingegeven, er is geen tweede ingavestap. \textbf{Fase 2} zit daar dicht bij in de buurt; de referentie en de leveranciersgegevens komen automatisch uit het ERP-systeem, en de gebruiker vult enkel de twee aantallen leeggoed in. Fase 3 is de enige uitwerking die wel een volledige, manuele heringave vraagt en daardoor structureel een lagere tijdsbesparing oplevert dan een uitwerking die met het bestaande systeem kan samenwerken.
+Vergeleken met de andere fases is dit het zwakste punt van fase 3. \textbf{Fase 1} zou hier maximaal scoren: leeggoed wordt mee op de bestaande receptiebon ingegeven, er is geen tweede stap waar data ingevoerd moet worden. \textbf{Fase 2} heeft een vergelijkbare situatie. De receptiebonnen en de leveranciersgegevens komen automatisch uit het ERP-systeem, en de gebruiker vult enkel de twee aantallen betreffende het leeggoed in. Fase 3 is de enige uitwerking die wel een volledige, manuele heringave vraagt en daardoor structureel een lagere tijdsbesparing oplevert dan een uitwerking die met het bestaande systeem kan samenwerken.
 
 \subsection{Gebruiksvriendelijkheid}
 
@@ -255,9 +255,9 @@ De reden dat de hoogste score (\textit{overschrijd verwachtingen}) niet behaald 
 
 Op het vlak van foutenreductie scoort de PoC de middelste score. Validatie gebeurt zowel aan client- als aan serverzijde (artikelcode \texttt{LG\textbackslash d\{3\}}, referentiecode van exact zes tekens, verplichte velden), de wederzijds filterende dropdowns sluiten onbestaande combinaties van leverancier en leeggoedtype uit, het wisselen van leverancier maakt automatisch de reeds toegevoegde leeggoedlijnen leeg, en abnormale stockcorrecties moeten bevestigd worden. Elke beweging, manueel of via een receptiebon, wordt bovendien gelogd in de stockbeweging-tabel, wat in Excel volledig ontbrak.
 
-De reden dat de hoogste score (60\%+) niet behaald wordt, is de manuele invoer van de referentiecode. Zoals in sectie~2.4 (\textit{Vertaling naar de onderzoeksvraag}) beschreven, blijft een typfout in een referentiecode het verschil maken tussen een vindbare en een onvindbare beweging. Zonder integratie met MAPA kan dit knelpunt niet structureel weggenomen worden.
+De reden dat de hoogste score (60\%+) niet behaald wordt, is de manuele invoer van de referentiecode. Zoals in sectie \ref{vndo} (\textit{Vertaling naar de onderzoeksvraag}) beschreven, blijft een typfout in een referentiecode het verschil maken tussen een vindbare en een onvindbare beweging. Zonder integratie met MAPA kan dit knelpunt niet structureel weggenomen worden.
 
-Dit is meteen waar fase 1 en fase 2 fundamenteel sterker staan: in beide gevallen wordt de leeggoedbeweging gekoppeld aan het referentienummer dat het ERP-systeem zelf genereert. De stap waarin een mens een referentiecode overtypt, bestaat daar niet. Bovendien kan in fase 1 een waarschuwing afgedwongen worden bij het afsluiten van een receptiebon zonder leeggoedingave, wat het in de enquête meest genoemde knelpunt (zie sectie~\ref{sec:enquete}) volledig oplost. Fase 3 vangt dit gedeeltelijk op door het stockoverzicht-scherm waarin een ontbrekende boeking snel zichtbaar wordt, maar kan het op het moment van de levering niet \emph{afdwingen}.
+Dit is meteen waar fase 1 en fase 2 fundamenteel sterker staan: in beide gevallen wordt de leeggoedbeweging gekoppeld aan het referentienummer dat het ERP-systeem zelf genereert. De stap waarin een mens een referentiecode overtypt, bestaat daar niet. Bovendien kan in fase 1 een waarschuwing afgedwongen worden bij het afsluiten van een receptiebon zonder leeggoedingave, wat het in de enquête meest genoemde knelpunt (zie sectie \ref{sec:enquete}) volledig oplost. Fase 3 vangt dit gedeeltelijk op door het stockoverzicht-scherm waarin een ontbrekende boeking snel zichtbaar wordt, maar kan het op het moment van de levering niet \emph{afdwingen}.
 
 \subsection{Overzichtelijkheid}
 
@@ -274,6 +274,4 @@ Dit is meteen waar fase 1 en fase 2 fundamenteel sterker staan: in beide gevalle
 \end{table}
 
 Op overzichtelijkheid haalt fase 3 de hoogste score. De opsplitsing van de data in de PoC in hun eigen modules zorgt ervoor dat men weet waar te zoeken. Per pagina kan er gefilterd worden op de benodigde waardes en tijdspannes bij bijvoorbeeld receptiebonnen. Na testen bij een financieel bediende kan er bevestigd worden dat alle data die nodig is voor het verwerken en controleren van de stockbewegingen aanwezig en makkelijk terug te vinden is.
-
-In vergelijking met fase 1 oogt fase 3 wel veel rustiger. Bij fase 1 zouden de modules in het bestaande ERP-systeem terecht komen. Fase 2 staat hier dan ook weer sterker in en is qua layout meer vergelijkbaar met fase 3. In beide fase 2 en fase 3 zijn de modules eigen aan de applicatie.
 

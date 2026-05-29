@@ -14,7 +14,7 @@ In dit hoofdstuk wordt er bekeken hoe een ERP-systeem kan samenwerken met een ex
 
 Figuur \ref{fig:structuur_fase2} toont de opbouw van deze oplossing. Er bestaan twee systemen naast elkaar. Aan de rechterzijde staat het bestaande ERP-systeem van MAPA met zijn eigen database. Aan de linkerzijde komt een nieuw, licht leeggoedsysteem met een eigen, afzonderlijke database. Beide systemen wisselen gegevens uit via API-calls.
 
-Het kernprincipe van deze opzet is dat het ERP-systeem de single source of truth blijft voor alles wat met de levering zelf te maken heeft. Het leeggoedsysteem werkt als een eigen systeem: het is enkel verantwoordelijk voor het beheer van de leeggoedpaletten en haalt alle bijkomende context op uit het ERP-systeem. Ondertussen krijgt ook het ERP-systeem informatie van het leeggoedsysteem binnen. Zo blijft het ERP-systeem de centrale bron van informatie. Zoals in de stand van zaken beschreven, gaat het hier om een point-to-point (PtP) integratie: één bestaand systeem dat informatie uitwisselt met één nieuw systeem.
+Het kernprincipe van deze opzet is dat het ERP-systeem de centrale bron van informatie blijft voor alles wat met de levering zelf te maken heeft. Het leeggoedsysteem werkt als een eigen systeem: het is enkel verantwoordelijk voor het beheer van de leeggoedpaletten en haalt alle bijkomende context op uit het ERP-systeem. Ondertussen krijgt ook het ERP-systeem informatie van het leeggoedsysteem binnen. Zo blijft het ERP-systeem de centrale bron van informatie. Zoals in de stand van zaken beschreven, gaat het hier om een point-to-point (PtP) integratie: één bestaand systeem dat informatie uitwisselt met één nieuw systeem.
 
 In de praktijk betekent dit dat het ERP-systeem één nieuwe module krijgt. Die module leest de database van het leeggoedsysteem uit en toont de stock en stockbewegingen per leeggoedtype en per leverancier binnen het ERP-systeem zelf. Aan de databank, de schermen en de bestaande workflows van het ERP-systeem hoeft verder niets gewijzigd te worden.
 
@@ -27,7 +27,7 @@ Het verloop van een levering ziet er als volgt uit:
 \begin{enumerate}
     \item \textbf{In het ERP-systeem.} De gebruiker verwerkt de receptiebon op de gebruikelijke manier in het ERP-systeem. Daarbij genereert het ERP-systeem een uniek referentienummer voor die receptiebon.
     \item \textbf{In het leeggoedsysteem.} De gebruiker opent het leeggoedsysteem en ziet welke receptiebonnen nog niet in het leeggoedsysteem verwerkt zijn.
-    \item \textbf{De manuele invoer.} Het enige dat de gebruiker zelf invult, zijn de twee aantallen die het ERP-systeem niet kent: het aantal binnengebrachte paletten en het aantal meegegeven paletten.
+    \item \textbf{De manuele invoer.} Het enige dat de gebruiker zelf invult, zijn de twee aantallen die het ERP-systeem niet kent: het aantal leeggoed dat binnengebracht werd en het aantal leeggoed dat meegegeven werd.
     \item \textbf{Het resultaat.} Het leeggoedsysteem bewaart deze stockbeweging in zijn eigen database, gekoppeld aan het referentienummer uit het ERP-systeem.
     \item \textbf{Terug in het ERP-systeem.} De nieuwe module in het ERP-systeem leest de database van het leeggoedsysteem uit en toont de bijgewerkte stock per leeggoedtype. Zo blijft het overzicht beschikbaar binnen het vertrouwde ERP-systeem.
 \end{enumerate}
@@ -85,9 +85,9 @@ Het beheer van leeggoedpaletten is niet enkel een kwestie van losse receptiebonn
 
 Omdat het leeggoedsysteem een eigen database heeft, kan het de volledige historiek van alle stockbewegingen bijhouden. Daaruit volgt eenvoudig het actuele saldo per leverancier en per leeggoedtype. Via de nieuwe module wordt dat overzicht bovendien zichtbaar in het ERP-systeem. Zo levert deze oplossing de historiek die in Excel ontbrak, zonder daarvoor een volwaardige boekhoudkundige module in het ERP-systeem te moeten bouwen.
 
-\subsection{Gebruikerservaring aan het laaddok}
+\subsection{Gebruikerservaring voor de eindgebruiker}
 
-ERP-schermen zijn vaak druk en complex. Zoals in de stand van zaken bij User-Centric Design beschreven, leidt een omslachtige interface tot frustratie en vermijdingsgedrag. Een productiechef die met een tablet aan een laadkade staat, wil niet door meerdere ERP-menu's navigeren om een eenvoudige palettelling te registreren.
+Zoals in de stand van zaken bij User-Centric Design (\ref{ucd}) beschreven, leidt een omslachtige interface tot frustratie en vermijdingsgedrag.
 
 Omdat het leeggoedsysteem losstaat van het ERP-systeem, kan de interface volledig toegespitst worden op die ene taak. De applicatie bestaat in de praktijk uit slechts enkele knoppen: de gebruiker kiest een openstaande receptiebon en vult de twee aantallen in. Doordat de invoer zo beperkt blijft, daalt ook de kans op fouten.
 

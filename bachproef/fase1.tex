@@ -30,11 +30,11 @@ Een bijkomend voordeel van leeggoed als product te behandelen, is dat de ingave 
     \caption{\label{fig:receptiebon} Huidige uitzicht receptiebonscherm.}
 \end{figure}
 
-Dit is het detailscherm van een receptiebon. Daarin staat een lijst van alle producten die bij de levering zijn binnengekomen. In dit scherm wordt dus vermeld welk leeggoed er is binnengekomen.
+Dit is het detailscherm van een receptiebon. Daarin staat een lijst van alle producten die bij de levering zijn binnengekomen. In dit scherm zou dus vermeld welk leeggoed er is binnengekomen bij die levering.
 
 \subsection{Stockoverzicht en historiek}
 
-De tweede module is een dedicated overzichts- en historiekscherm voor leeggoed. Deze module verloopt bewust niet via de gewone voorraadlijst, omdat het beheer van leeggoed een ander karakter heeft dan dat van productieproducten: het draait niet zozeer om één totale voorraad, maar om de stand per leverancier en per leeggoedtype.
+De tweede module is een toegewijd overzichts- en historiekscherm voor leeggoed. Deze module verloopt bewust niet via de gewone voorraadlijst, omdat het beheer van leeggoed een ander karakter heeft dan dat van productieproducten: het draait niet zozeer om één totale voorraad, maar om de stand per leverancier en per leeggoedtype.
 
 Concreet zou de module drie overzichten bundelen. Ten eerste een overzicht per leverancier en per leeggoedtype, met de stand van wat de leverancier nog tegoed heeft. Ten tweede een totaalbeeld per leeggoedtype, dat aangeeft hoeveel paletten van dat type op dat moment in stock zijn. Ten derde een historiek per leverancier, die per datum toont hoeveel leeggoed er binnen en buiten ging. Zoals in hoofdstuk~\ref{ch:fase0} aangegeven, was dit overzicht net wat in het Excel-bestand ontbrak: de CEO vroeg expliciet om per leverancier te kunnen zien hoeveel leeggoed nog openstaat.
 
@@ -48,7 +48,7 @@ Het hoofddoel van deze module is het uitschrijven van leeggoed uit de stock. De 
 
 \subsection{Eén centraal systeem}
 
-Omdat het volledige leeggoedbeheer binnen het ERP-systeem zelf wordt opgenomen, ontstaat er geen tweede systeem dat onderhouden moet worden en is er ook geen koppeling of API-uitwisseling nodig. Het ERP-systeem blijft de enige source of truth voor zowel de leveringen als het leeggoed. Het risico op datasilo's is hier minimaal. Alle gegevens stromen samen in hetzelfde systeem en zijn voor iedereen op dezelfde plaats raadpleegbaar.
+Omdat het volledige leeggoedbeheer binnen het ERP-systeem zelf wordt opgenomen, ontstaat er geen tweede systeem dat onderhouden moet worden en is er ook geen koppeling of API-uitwisseling nodig. Het ERP-systeem blijft de enige centrale bron van informatie voor zowel de leveringen als het leeggoed. Het risico op datasilo's is hier minimaal. Alle gegevens stromen samen in hetzelfde systeem en zijn voor iedereen op dezelfde plaats raadpleegbaar.
 
 \subsection{Vertrouwde interface}
 
@@ -63,4 +63,4 @@ Daarbovenop kan snel gecontroleerd worden op verdachte waardes. Als er bijvoorbe
 
 \subsection{Afweging}
 
-Hier tegenover staat dat deze opzet ingrijpt op kernprocessen van het ERP-systeem. De productfiche moet uitgebreid worden met een extra veld en er komen nieuwe modules bij voor het overzicht, de historiek en de stockcorrectie van leeggoed. Elke aanpassing aan dat soort centrale schermen brengt het risico met zich mee om bestaande, vaak financieel relevante, workflows te verstoren.
+Hier tegenover staat dat deze opzet ingrijpt op kernprocessen van het ERP-systeem. Er komen nieuwe modules bij voor het overzicht, de historiek en de stockcorrectie van leeggoed. Elke aanpassing aan dat soort centrale schermen brengt het risico met zich mee om bestaande, vaak financieel relevante, workflows te verstoren.
