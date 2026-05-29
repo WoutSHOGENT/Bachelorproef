@@ -461,4 +461,81 @@ Het geheel is een grote verbetering tegenover het huidige systeem met Excel. Vel
 
 \section{Evaluatie}
 
+In deze sectie wordt de PoC van fase 3 beoordeeld aan de hand van de vier scoretabellen uit de inleiding (tabellen \ref{tab:tbt}, \ref{tab:tbgeb}, \ref{tab:tbf} en \ref{tab:tbo}). Voor elke pijler wordt de behaalde score gemotiveerd en expliciet vergeleken met wat de theoretische uitwerkingen van fase 1 (directe implementatie in het ERP) en fase 2 (middleware-oplossing) wel of net niet zouden kunnen bereiken.
+
+\subsection{Tijdsbesparing}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{4cm}|p{3cm}|p{3cm}|p{3cm}|}
+        \hline
+        /week & \textbf{15 minuten} & \textbf{30 minuten} & \textbf{60 minuten} \\
+        \hline
+        \textbf{Tijdsbesparing} &  & \textbf{X} &  \\
+        \hline
+    \end{tabular}
+    \caption[Scoretabel tijdsbesparing fase 3]{\label{tab:tbt_f3}Scoretabel tijdsbesparing fase 3}
+\end{table}
+
+De PoC behaalt op deze pijler de middelste score. De winst zit vooral aan de \emph{raadpleegkant}: doorzoekbare en wederzijds filterende dropdowns vervangen het scrollen door meerdere Excel-bestanden, en het stockoverzicht toont in één scherm welk tegoed een leverancier nog heeft, een vraag die in de Excel-werkwijze vandaag enkele minuten zoeken kost per leverancier.
+
+Het verlies zit aan de \emph{ingavekant}. Omdat MAPA geen export aanbiedt voor receptiebonnen, moet de referentiecode, de leverancier en elke leeggoedlijn manueel ingegeven worden, terwijl die gegevens elders in het ERP-systeem al bestaan. Hierdoor wordt een deel van de tijdswinst opnieuw uitgegeven aan dubbele invoer.
+
+Vergeleken met de andere fases is dit het zwakste punt van fase 3. \textbf{Fase 1} zou hier maximaal scoren: leeggoed wordt mee op de bestaande receptiebon ingegeven, er is geen tweede ingavestap. \textbf{Fase 2} zit daar dicht bij in de buurt; de referentie en de leveranciersgegevens komen automatisch uit het ERP-systeem, en de gebruiker vult enkel de twee aantallen leeggoed in. Fase 3 is de enige uitwerking die wel een volledige, manuele heringave vraagt en daardoor structureel een lagere tijdsbesparing oplevert dan een uitwerking die met het bestaande systeem kan samenwerken.
+
+\subsection{Gebruiksvriendelijkheid}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{4cm}|p{3cm}|p{3cm}|p{3cm}|}
+        \hline
+        & \textbf{Men verkiest het vorig systeem} & \textbf{Het wordt verkozen boven Excel} & \textbf{Overschrijd verwachtingen} \\
+        \hline
+        \textbf{Gebruiksvriendelijk-heid} &  & \textbf{X} &  \\
+        \hline
+    \end{tabular}
+    \caption[Scoretabel gebruiksvriendelijkheid fase 3]{\label{tab:tbgeb_f3}Scoretabel gebruiksvriendelijkheid fase 3}
+\end{table}
+
+Fase 3 haalt op deze pijler de middelste score: de PoC wordt duidelijk verkozen boven Excel, maar overschrijdt de verwachtingen niet. De interface is volgens UCD opgebouwd en iteratief gevalideerd met een financieel bediende. De terminologie van het bestaande ERP-systeem (receptiebon, artikelcode, leverancier, stockcorrectie) blijft behouden, de zijbalk is genummerd en gegroepeerd in \textit{Beheer} en \textit{Overzicht}, en elk scherm bevat enkel de velden die voor het leeggoedproces relevant zijn. Tegenover Excel is dat een duidelijke vooruitgang: de gebruiker hoeft niet langer het juiste spreadsheet in de juiste Dropbox-map terug te vinden, ingaven gebeuren op één plek en validatie geeft onmiddellijke feedback.
+
+De reden dat de hoogste score (\textit{overschrijd verwachtingen}) niet behaald wordt, ligt vooral aan twee zaken die in de praktijk wel degelijk een drempel blijven. Ten eerste moet de gebruiker, anders dan in fase 1 of fase 2, de receptiebonreferentie en de leverancier volledig manueel ingeven, terwijl die gegevens elders al bestaan. Dat voelt voor de eindgebruiker eerder als een \emph{extra} stap dan als een vereenvoudiging van het bestaande proces. Ten tweede betekent een losse applicatie ook een tweede systeem naast het ERP: opnieuw inloggen, opnieuw navigeren en bewust schakelen tussen twee omgevingen. Voor een eindgebruiker die de hele dag al in het ERP-systeem werkt, is dat schakelen op zich al genoeg om de score onder \emph{overschrijd verwachtingen} te houden, hoe goed de PoC zelf ook is.
+
+\subsection{Foutenreductie}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{4cm}|p{3cm}|p{3cm}|p{3cm}|}
+        \hline
+        & \textbf{Evenveel fouten} & \textbf{40\% minder fouten} & \textbf{60\%+ minder fouten} \\
+        \hline
+        \textbf{Foutenreductie} &  & \textbf{X} &  \\
+        \hline
+    \end{tabular}
+    \caption[Scoretabel foutenreductie fase 3]{\label{tab:tbf_f3}Scoretabel foutenreductie fase 3}
+\end{table}
+
+Op het vlak van foutenreductie scoort de PoC de middelste score. Validatie gebeurt zowel aan client- als aan serverzijde (artikelcode \texttt{LG\textbackslash d\{3\}}, referentiecode van exact zes tekens, verplichte velden), de wederzijds filterende dropdowns sluiten onbestaande combinaties van leverancier en leeggoedtype uit, het wisselen van leverancier maakt automatisch de reeds toegevoegde leeggoedlijnen leeg, en abnormale stockcorrecties moeten bevestigd worden. Elke beweging, manueel of via een receptiebon, wordt bovendien gelogd in de stockbeweging-tabel, wat in Excel volledig ontbrak.
+
+De reden dat de hoogste score (60\%+) niet behaald wordt, is de manuele invoer van de referentiecode. Zoals in sectie~2.4 (\textit{Vertaling naar de onderzoeksvraag}) beschreven, blijft een typfout in een referentiecode het verschil maken tussen een vindbare en een onvindbare beweging. Zonder integratie met MAPA kan dit knelpunt niet structureel weggenomen worden.
+
+Dit is meteen waar fase 1 en fase 2 fundamenteel sterker staan: in beide gevallen wordt de leeggoedbeweging gekoppeld aan het referentienummer dat het ERP-systeem zelf genereert. De stap waarin een mens een referentiecode overtypt, bestaat daar niet. Bovendien kan in fase 1 een waarschuwing afgedwongen worden bij het afsluiten van een receptiebon zonder leeggoedingave, wat het in de enquête meest genoemde knelpunt (zie sectie~\ref{sec:enquete}) volledig oplost. Fase 3 vangt dit gedeeltelijk op door het stockoverzicht-scherm waarin een ontbrekende boeking snel zichtbaar wordt, maar kan het op het moment van de levering niet \emph{afdwingen}.
+
+\subsection{Overzichtelijkheid}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{4cm}|p{3cm}|p{3cm}|p{3cm}|}
+        \hline
+        & \textbf{Het systeem is weinig overzichtelijk} & \textbf{50\% van de eindgebruikers vind snel data terug} & \textbf{Alle eindgebruikers vinden alle data terug} \\
+        \hline
+        \textbf{Overzichtelijkheid} &  &  & \textbf{X} \\
+        \hline
+    \end{tabular}
+    \caption[Scoretabel overzichtelijkheid fase 3]{\label{tab:tbo_f3}Scoretabel overzichtelijkheid fase 3}
+\end{table}
+
+Op overzichtelijkheid haalt fase 3 de hoogste score. De opsplitsing van de data in de PoC in hun eigen modules zorgt ervoor dat men weet waar te zoeken. Per pagina kan er gefilterd worden op de benodigde waardes en tijdspannes bij bijvoorbeeld receptiebonnen. Na testen bij een financieel bediende kan er bevestigd worden dat alle data die nodig is voor het verwerken en controleren van de stockbewegingen aanwezig en makkelijk terug te vinden is.
+
+In vergelijking met fase 1 oogt fase 3 wel veel rustiger. Bij fase 1 zouden de modules in het bestaande ERP-systeem terecht komen. Fase 2 staat hier dan ook weer sterker in en is qua layout meer vergelijkbaar met fase 3. In beide 2 en 3 zijn de modules eigen aan de applicatie.
 
