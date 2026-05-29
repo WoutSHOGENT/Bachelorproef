@@ -69,7 +69,7 @@ De eerste is het \textbf{centraliseren van bedrijfsprocessen in één ERP-systee
 
 De tweede best-practice is het \textbf{bouwen van een aangepaste digitale oplossing met moderne webtechnologie}, specifiek voor KMO's. \textcite{Machado2023} beschrijft .NET met Blazor WebAssembly als een geschikte technologische stack voor beheerapplicaties, vooral door de voordelen op vlak van beveiliging en snelheid. \textcite{Amaro2025} gaat een stap verder en stelt dat het uitwerken van zelfs één klein bedrijfsproces als katalysator kan dienen voor de bredere digitale maturiteit van een KMO.
 
-De derde best-practice is het \textbf{vermijden van data silo's}. \textcite{Rahman2025} en \textcite{JeleelOjuade2024} waarschuwen dat het ontwikkelen van systemen in isolatie ervoor zorgt dat data niet langer doorheen de verschillende departementen van een bedrijf stroomt. In het geval van Freshfrozen zou dat betekenen dat een leverancier die in het ERP-systeem wordt toegevoegd ook nog manueel in de leeggoedapplicatie ingegeven moet worden. Een uitwerking die ervoor zorgt dat alle data in éénzelfde systeem blijft is dus gewenst.
+De derde best-practice is het \textbf{vermijden van datasilo's}. \textcite{Rahman2025} en \textcite{JeleelOjuade2024} waarschuwen dat het ontwikkelen van systemen in isolatie ervoor zorgt dat data niet langer doorheen de verschillende departementen van een bedrijf stroomt. In het geval van Freshfrozen zou dat betekenen dat een leverancier die in het ERP-systeem wordt toegevoegd ook nog manueel in de leeggoedapplicatie ingegeven moet worden. Een uitwerking die ervoor zorgt dat alle data in éénzelfde systeem blijft is dus gewenst.
 
 De vierde best-practice is \textbf{User-Centric Design (UCD)}. \textcite{Rahman2025} beschrijft dat een ERP- of beheerapplicatie die de eindgebruiker uit het oog verliest tot frustratie, inefficiëntie en uiteindelijk vermijdingsgedrag leidt. Goede praktijken die andere bedrijven daarbij hanteren zijn het overnemen van de bestaande terminologie en het respecteren van het mentale model van de gebruiker (iconen, flow, gewone benamingen).
 
@@ -100,7 +100,7 @@ De eigen applicatie is gebouwd om het probleem van Freshfrozen op te lossen en d
 
 \begin{itemize}
     \item Afdwingbaarheid
-    \item Data silo's
+    \item Datasilo's
 \end{itemize}
 
 De eigen applicatie kan niet afdwingen dat de gebruiker het leeggoed invult voor elke receptiebon. Dit is dan ook een gevolg van de tweede pijler. Referentiecodes van receptiebonnen moeten zelf worden ingevuld en pas daarna kan het invullen van de cijfers afgedwongen worden. Daarbovenop kan een referentiecode verkeerd ingevuld worden en kan de applicatie out-of-sync raken met de huidige staat van de ERP-database. Al deze factoren zorgen ervoor dat bij deze uitwerking mogelijks tijd verloren gaat en fouten ontstaan.
@@ -109,7 +109,7 @@ De point-to-point uitwerking lost dit voor een deel op. De databases zijn geconn
 
 De meest bekende applicatie voor de gebruiker is de implementatie in het huidige ERP-systeem. Receptiebonnen en leeggoed leven in dezelfde omgeving en er kan afgedwongen worden om leeggoed in te vullen op een receptiebon. Er is geen tweede applicatie nodig tijdens het verwerken van een receptiebon en alle voordelen van de andere twee uitwerkingen zijn ook hier aanwezig. Er wordt veel tijd gewonnen door niet te moeten schakelen en de kans op fouten is miniem door het afdwingen van de waardes, validatie en historiek. De afwegingen zijn minimale ingrepen die eenmaal uitgevoerd moeten worden.
 
-Het beheer van leeggoedpaletten bij Freshfrozen For Pets kan dus het meest efficiënt georganiseerd worden door de modules en gebruikerservaring van de eigen applicatie uit fase 3 verder te laten uitwerken binnen het bestaande ERP-systeem van MAPA, zodat de afdwingbaarheid en de afwezigheid van data silo's uit fase 1 gecombineerd kunnen worden met de overzichtelijkheid en gebruiksvriendelijkheid van fase 3, om zo alle vier de pijlers van de onderzoeksvraag tegelijk te beantwoorden.
+Het beheer van leeggoedpaletten bij Freshfrozen For Pets kan dus het meest efficiënt georganiseerd worden door de modules en gebruikerservaring van de eigen applicatie uit fase 3 verder te laten uitwerken binnen het bestaande ERP-systeem van MAPA, zodat de afdwingbaarheid en de afwezigheid van datasilo's uit fase 1 gecombineerd kunnen worden met de overzichtelijkheid en gebruiksvriendelijkheid van fase 3, om zo alle vier de pijlers van de onderzoeksvraag tegelijk te beantwoorden.
 
 \section{Bijdrage van het onderzoek}
 
