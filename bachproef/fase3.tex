@@ -83,7 +83,7 @@ Bij het opstarten van de applicatie krijgt de gebruiker bij ontbreken van een se
 
 \subsection{Beheer van basisgegevens: leveranciers en leeggoedtypes}
 
-Voordat de receptiebon en stockcorrecties uitgevoerd kunnen worden, moeten de leveranciers en de leeggoedtypes gekend zijn. Beide schermen bestaan uit een zoekbare lijst en een afzonderlijk aanmaakformulier (figuren \ref{fig:suppliers_list} en \ref{fig:pallets_list}). De artikelcode van een leeggoedtype wordt server-zijdig gevalideerd tegen het patroon \texttt{LG\textbackslash d\{3\}} (dit patroon betekent ''LG'' gevolgd door 3 cijfers 0-9), zodat alle latere referenties consistent blijven. Bij het toevoegen van een leverancier zijn enkel de naam en het adres verplicht: de overige velden uit het oorspronkelijke ERP-scherm zijn weggelaten omdat ze voor het leeggoedbeheer geen meerwaarde hebben.
+Voordat de receptiebon en stockcorrecties uitgevoerd kunnen worden, moeten de leveranciers en de leeggoedtypes gekend zijn. Beide schermen bestaan uit een zoekbare lijst en een afzonderlijk aanmaakformulier (figuren \ref{fig:suppliers_list} en \ref{fig:pallets_list}). De artikelcode van een leeggoedtype wordt server-zijdig gevalideerd tegen het patroon \texttt{LG\textbackslash d\{3\}} (dit patroon betekent \texttt{LG} gevolgd door drie cijfers 0-9), zodat alle latere referenties consistent blijven. Bij het toevoegen van een leverancier zijn enkel de naam en het adres verplicht: de overige velden uit het oorspronkelijke ERP-scherm zijn weggelaten omdat ze voor het leeggoedbeheer geen meerwaarde hebben.
 
 \begin{figure}[H]
     \centering
@@ -117,7 +117,7 @@ Op figuur \ref{fig:poc_receipts_list} zien we het receptiebonoverzicht. Per rij 
     \caption{\label{fig:poc_receipt_detail}Detailscherm van een receptiebon.}
 \end{figure}
 
-Op het aanmaakscherm (figuur \ref{fig:poc_receipt_create}) geeft de gebruiker de referentie in (server-zijdig gevalideerd op exact zes tekens), kiest een leverancier uit een doorzoekbare dropdown en voegt vervolgens één of meerdere leeggoedbewegingen toe. Per receptiebon kan elk leeggoedtype slechts één keer voorkomen, en wanneer de gebruiker tijdens het opstellen van een bon van leverancier verandert, worden de reeds toegevoegde regels automatisch verwijderd. Beide regels voorkomen dat bewegingen per ongeluk op de verkeerde combinatie van leverancier en leeggoedtype worden geboekt. De juistheid van de referentie hangt hier wel volledig af van de gebruiker. Er is geen manier om de receptiebonnen te gebruiken die al in MAPA zitten. Een mogelijk idee was om een csv/xml export te kunnen importeren naar in de PoC, maar MAPA biedt deze feature niet aan voor de receptiebonnen.
+Op het aanmaakscherm (figuur \ref{fig:poc_receipt_create}) geeft de gebruiker de referentie in (server-zijdig gevalideerd op exact zes tekens), kiest een leverancier uit een doorzoekbare dropdown en voegt vervolgens één of meerdere leeggoedbewegingen toe. Per receptiebon kan elk leeggoedtype slechts één keer voorkomen, en wanneer de gebruiker tijdens het opstellen van een bon van leverancier verandert, worden de reeds toegevoegde regels automatisch verwijderd. Beide regels voorkomen dat bewegingen per ongeluk op de verkeerde combinatie van leverancier en leeggoedtype worden geboekt. De juistheid van de referentie hangt hier wel volledig af van de gebruiker. Er is geen manier om de receptiebonnen te gebruiken die al in MAPA zitten. Een mogelijk idee was om een csv/xml-export te kunnen importeren in de PoC, maar MAPA biedt deze feature niet aan voor de receptiebonnen.
 
 \begin{figure}[H]
     \centering
@@ -189,7 +189,7 @@ Het systeem helpt alleszins heel veel bij het terugvinden van tegoeden voor spec
 
 \paragraph{Foutenreductie.} Validatie gebeurt op twee niveaus: Blazor-formuliervalidatie geeft onmiddellijke feedback aan de gebruiker, en dezelfde regels worden afgedwongen op de server zodat manipulatie via de API niet mogelijk is. De wederzijds filterende dropdowns voorkomen dat de gebruiker een onbestaande combinatie van leverancier en leeggoedtype kiest. Het automatisch leegmaken van bewegingsregels bij het wisselen van leverancier voorkomt dat bewegingen onder de verkeerde leverancier worden geboekt. De bevestigingsstap op grote stockcorrecties vangt typfouten op. Tot slot wordt er voor elke beweging (zowel via een receptiebon als manueel) een log bijgehouden in de stockbewegingen.
 
-Het manueel ingeven van referentiecodes voor receptiebonnen is en blijft het grootste knelpunt voor foutenreductie. Hoewel het systeem perfect blijft werken kan een foute referentiecode ervoor zorgen dat een fout maar niet gevonden wordt. Stel, men zoekt receptiebon 260102 in de historiek omdat men vermoed dat daar iets misgelopen kan zijn. Als er dan geen receptiebon 260102 bestaat, maar wel 260120 door het misstypen van de referentiecode, wordt de fout moeilijk terug te vinden.
+Het manueel ingeven van referentiecodes voor receptiebonnen is en blijft het grootste knelpunt voor foutenreductie. Hoewel het systeem perfect blijft werken kan een foute referentiecode ervoor zorgen dat een fout maar niet gevonden wordt. Stel, men zoekt receptiebon 260102 in de historiek omdat men vermoedt dat daar iets misgelopen kan zijn. Als er dan geen receptiebon 260102 bestaat, maar wel 260120 door het misstypen van de referentiecode, wordt de fout moeilijk terug te vinden.
 
 Het geheel is een grote verbetering tegenover het huidige systeem met Excel. Velden worden gevalideerd, er is een historiek en de totale tegoeden worden in overzicht bijgehouden per leverancier.  
 
@@ -227,7 +227,7 @@ Vergeleken met de andere fases is dit het zwakste punt van fase 3. \textbf{Fase 
     \centering
     \begin{tabular}{|p{4cm}|p{3cm}|p{3cm}|p{3cm}|}
         \hline
-        & \textbf{Men verkiest het vorige systeem} & \textbf{Het wordt verkozen boven Excel} & \textbf{Overschrijd verwachtingen} \\
+        & \textbf{Men verkiest het vorige systeem} & \textbf{Het wordt verkozen boven Excel} & \textbf{Overschrijdt verwachtingen} \\
         \hline
         \textbf{Gebruiksvriendelijk-heid} &  & \textbf{X} &  \\
         \hline
