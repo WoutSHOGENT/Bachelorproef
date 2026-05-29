@@ -1,0 +1,388 @@
+\chapter{Use cases}
+\label{ch:bijlage-usecases}
+
+Deze bijlage bevat de volledige uitwerking van de use cases die werden opgesteld tijdens de analyse van de PoC in fase 3 (zie hoofdstuk~\ref{ch:fase3}).
+
+\section{Receptiebon verwerken}
+\label{uc:receptiebon-verwerken}
+
+    \vspace{0.5em}
+
+    \begin{itemize}[leftmargin=3.5cm, labelsep=0.5cm, nosep]
+        \item[\textbf{Primaire actor:}] Productiechef, financieel bediende
+        \item[\textbf{Stakeholders:}] CEO
+        \item[\textbf{Precondities:}] De gebruiker is ingelogd
+        \item[\textbf{Postcondities:}] Een receptiebon is verwerkt
+    \end{itemize}
+
+    \paragraph{Normaal verloop}
+    \begin{enumerate}[nosep]
+        \item De gebruiker wenst een receptiebon te verwerken.
+        \item De gebruiker geeft een referentiecode in.
+        \item De gebruiker kiest de juiste leverancier.
+        \item De gebruiker kiest alle leeggoedtypes die van toepassing zijn.
+        \item de gebruiker kiest de hoeveelheden voor elk leeggoedtype.
+        \item Het systeem valideert volgens DR\_RECEPTIEBON.
+        \item Het systeem registreert de receptiebon en de bijhorende stockbewegingen.
+        \item Het systeem werkt het tegoed van de leverancier en de fysieke voorraad bij.
+        \item Het systeem toont het detailscherm van de zonet aangemaakte receptiebon.
+    \end{enumerate}
+
+    \paragraph{Alternatieve verlopen}
+    \begin{itemize}[nosep]
+        \item[5A.] Het systeem detecteert dat de validatie volgens DR\_RECEPTIEBON faalt.
+        \begin{itemize}
+            \item[5A1.] Het systeem toont een gepaste melding.
+            \item[5A2.] We keren terug naar stap 2.
+        \end{itemize}
+    \end{itemize}
+
+    \paragraph{Domeinspecifieke regels}
+    DR\_RECEPTIEBON
+    \begin{itemize}
+        \item referentiecode
+        \begin{itemize}
+            \item verplicht
+            \item exact 6 tekens lang
+        \end{itemize}
+        \item leverancier
+        \begin{itemize}
+            \item verplicht
+            \item moet bestaan in het systeem
+        \end{itemize}
+        \item leeggoedbewegingen
+        \begin{itemize}
+            \item verplicht
+            \item aantal moet groter zijn dan nul
+        \end{itemize}
+    \end{itemize}
+
+    \vspace{1cm}
+\pagebreak
+\section{Historiek bekijken}
+\label{uc:historiek-bekijken}
+
+    \vspace{0.5em}
+
+    \begin{itemize}[leftmargin=3.5cm, labelsep=0.5cm, nosep]
+        \item[\textbf{Primaire actor:}] Productiechef, financieel bediende, CEO
+        \item[\textbf{Stakeholders:}] /
+        \item[\textbf{Precondities:}] De gebruiker is ingelogd
+        \item[\textbf{Postcondities:}] De gebruiker kan de historiek van stockbewegingen bezichtigen.
+    \end{itemize}
+
+    \paragraph{Normaal verloop}
+    \begin{enumerate}[nosep]
+        \item de gebruiker wil de historiek van stockbewegingen bekijken.
+        \item De gebruiker navigeert naar het scherm voor historiek.
+        \item De gebruiker kiest het gewenste leeggoedtype waar de historiek van bezichtigd wil worden.
+        \item Het systeem toont alle historiek voor het gekozen leeggoedtype.
+    \end{enumerate}
+
+    \paragraph{Alternatieve verlopen}
+    /
+
+    \paragraph{Domeinspecifieke regels}
+    /
+
+    \vspace{1cm}
+
+\section{Tegoed bekijken}
+\label{uc:tegoed-bekijken}
+
+    \vspace{0.5em}
+
+    \begin{itemize}[leftmargin=3.5cm, labelsep=0.5cm, nosep]
+        \item[\textbf{Primaire actor:}] Productiechef, financieel bediende, CEO
+        \item[\textbf{Stakeholders:}] /
+        \item[\textbf{Precondities:}] De gebruiker is ingelogd
+        \item[\textbf{Postcondities:}] De gebruiker kan de stock van alle leeggoedtypes voor elke leverancier bezichtigen.
+    \end{itemize}
+
+    \paragraph{Normaal verloop}
+    \begin{enumerate}[nosep]
+        \item de gebruiker wil het tegoed van alle leeggoedtypes per leverancier bekijken.
+        \item De gebruiker navigeert naar het scherm voor stockoverzicht.
+        \item Het systeem toont de totale stock van elk leeggoedtype per leverancier.
+    \end{enumerate}
+
+    \paragraph{Alternatieve verlopen}
+    /
+
+    \paragraph{Domeinspecifieke regels}
+    /
+
+    \vspace{1cm}
+\pagebreak
+\section{Stock filteren}
+\label{uc:stock-filteren}
+
+    \vspace{0.5em}
+
+    \begin{itemize}[leftmargin=3.5cm, labelsep=0.5cm, nosep]
+        \item[\textbf{Primaire actor:}] Productiechef, financieel bediende, CEO
+        \item[\textbf{Stakeholders:}] /
+        \item[\textbf{Precondities:}] De gebruiker is ingelogd
+        \item[\textbf{Postcondities:}] De gebruiker kan een gefilterde lijst van stock bezichtigen.
+    \end{itemize}
+
+    \paragraph{Normaal verloop}
+    \begin{enumerate}[nosep]
+        \item de gebruiker wil het tegoed voor een specifieke leverancier bezichtigen.
+        \item De gebruiker navigeert naar het scherm voor stockbeheer.
+        \item Het systeem toont de totale stock van elk leeggoedtype per leverancier.
+        \item De gebruiker kiest de gewenste filters.
+        \item Het systeem valideert de filters volgens DR\_STOCK\_FILTERS.
+        \item het systeem toont alle stock voor de gekozen filters.
+    \end{enumerate}
+
+    \paragraph{Alternatieve verlopen}
+    \begin{itemize}[nosep]
+        \item[5A.] De validatie volgens DR\_STOCK\_FILTERS faalt.
+        \begin{itemize}
+            \item[5A1.] Het systeem toont een gepaste melding.
+            \item[5A2.] We keren terug naar stap 4
+        \end{itemize}
+
+        \item[5B.] Het systeem detecteert dat voor de gekozen filters geen resultaten zijn.
+        \begin{itemize}
+            \item[5B1.] Het systeem toont een gepaste melding.
+        \end{itemize}
+    \end{itemize}
+
+    \paragraph{Domeinspecifieke regels}
+    DR\_STOCK\_FILTERS
+    \begin{itemize}
+        \item Leverancier
+        \begin{itemize}
+            \item gekozen leverancier moet bestaan in het systeem
+        \end{itemize}
+        \item Leeggoedtype
+        \begin{itemize}
+            \item gekozen leeggoedtype moet bestaan in het systeem
+        \end{itemize}
+    \end{itemize}
+
+    \vspace{1cm}
+\pagebreak
+\section{Stockcorrectie uitvoeren}
+\label{uc:stockcorrectie-uitvoeren}
+
+    \begin{itemize}[leftmargin=3.5cm, labelsep=0.5cm, nosep]
+        \item[\textbf{Primaire actor:}] Productiechef, financieel bediende, CEO
+        \item[\textbf{Stakeholders:}] /
+        \item[\textbf{Precondities:}] De gebruiker is ingelogd
+        \item[\textbf{Postcondities:}] De gebruiker heeft de stock van een leeggoedtype voor een specifieke leverancier aangepast.
+    \end{itemize}
+
+    \paragraph{Normaal verloop}
+    \begin{enumerate}[nosep]
+        \item De gebruiker wil de stock van een leeggoedtype voor een specifieke leverancier aanpassen
+        \item De gebruiker navigeert naar het scherm voor stockcorrecties.
+        \item De gebruiker geeft het gewenste leeggoedtype en de leverancier in waarvoor een stockcorrectie uitgevoerd moet worden.
+        \item Het systeem valideert volgens DR\_STOCKCORRECTIE\_FILTERS.
+        \item De gebruiker geeft de gegevens van de correctie in.
+        \item Het systeem valideert volgens DR\_STOCKCORRECTIE.
+        \item Het systeem voert de stockcorrectie uit.
+        \item Het systeem toont een gepaste melding.
+    \end{enumerate}
+
+    \paragraph{Alternatieve verlopen}
+    \begin{itemize}[nosep]
+        \item[6A.] het systeem detecteerd dat de validatie volgens DR\_STOCKCORRECTIE\_FILTERS faalt.
+        \begin{itemize}
+            \item[6A1.] Het systeem toont een gepaste melding.
+            \item[6A2.] We keren terug naar stap 5
+        \end{itemize}
+        \item[6B.] Het systeem detecteert dat voor de gekozen filters geen resultaten zijn.
+        \begin{itemize}
+            \item[6B1.] Het systeem toont een gepaste melding.
+            \item[6B2.] We keren terug naar stap 5
+        \end{itemize}
+        \item[8A.] De validatie volgens DR\_STOCKCORRECTIE faalt.
+        \begin{itemize}
+            \item[8A1.] Het systeem toont een gepaste melding.
+            \item[8A2.] We keren terug naar stap 7
+        \end{itemize}
+
+        \item[8B.] Het systeem detecteert een verdachte correctie volgens DR\_STOCKCORRECTIE\_VERDACHT
+        \begin{itemize}
+            \item[8B1.] Het systeem vraagt om een bevesteging.
+            \begin{itemize}
+                \item[8B1A.] De gebruiker bevestigd de actie.
+                \begin{itemize}
+                    \item[8B1A1.] Het systeem toont een gepaste melding
+                    \item[8B1A2.] We gaan verder naar stap 9
+                \end{itemize}
+                \item[8B1B.] De gebruiker bevestigd niet.
+                \begin{itemize}
+                    \item[8B1B1.] Het systeem toont een gepaste melding.
+                    \item[8B1B2.] We keren terug naar stap 7
+                \end{itemize}
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+
+    \paragraph{Domeinspecifieke regels}
+    DR\_STOCKCORRECTIE\_FILTERS
+    \begin{itemize}
+        \item Leverancier
+        \begin{itemize}
+            \item gekozen leverancier moet bestaan in het systeem
+        \end{itemize}
+        \item Leeggoedtype
+        \begin{itemize}
+            \item gekozen leeggoedtype moet bestaan in het systeem
+        \end{itemize}
+    \end{itemize}
+    \\
+    DR\_STOCKCORRECTIE
+     \begin{itemize}
+        \item Hoeveelheid
+        \begin{itemize}
+            \item verplicht
+            \item moet een geheel getal zijn
+            \item mag niet nul zijn
+        \end{itemize}
+    \end{itemize}
+    \\
+
+    \vspace{1cm}
+
+\section{Leverancier aanmaken}
+\label{uc:leverancier-aanmaken}
+
+\vspace{0.5em}
+
+\begin{itemize}[leftmargin=3.5cm, labelsep=0.5cm, nosep]
+    \item[\textbf{Primaire actor:}] Financieel bediende, Productiechef, CEO
+    \item[\textbf{Stakeholders:}] /
+    \item[\textbf{Precondities:}] De gebruiker is ingelogd
+    \item[\textbf{Postcondities:}] Een nieuwe leverancier is toegevoegd aan het systeem.
+\end{itemize}
+
+\paragraph{Normaal verloop}
+\begin{enumerate}[nosep]
+    \item De gebruiker wil een nieuwe leverancier aanmaken.
+    \item De gebruiker navigeert naar het scherm voor leveranciers.
+    \item De gebruiker kiest de optie om een nieuwe leverancier toe te voegen.
+    \item De gebruiker vult de naam en het adres van de leverancier in.
+    \item Het systeem valideert volgens DR\_LEVERANCIER.
+    \item Het systeem registreert de leverancier.
+\end{enumerate}
+
+\paragraph{Alternatieve verlopen}
+\begin{itemize}[nosep]
+    \item[5A.] De validatie volgens DR\_LEVERANCIER faalt.
+    \begin{itemize}
+        \item[5A1.] Het systeem toont een gepaste melding.
+        \item[5A2.] We keren terug naar stap 4.
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Domeinspecifieke regels}
+DR\_LEVERANCIER
+\begin{itemize}
+    \item naam
+    \begin{itemize}
+        \item verplicht
+    \end{itemize}
+    \item adres
+    \begin{itemize}
+        \item verplicht
+    \end{itemize}
+\end{itemize}
+
+\vspace{1cm}
+\pagebreak
+
+\section{Leeggoedtype aanmaken}
+\label{uc:leeggoedtype-aanmaken}
+
+\vspace{0.5em}
+
+\begin{itemize}[leftmargin=3.5cm, labelsep=0.5cm, nosep]
+    \item[\textbf{Primaire actor:}] Financieel bediende, Productiechef, CEO
+    \item[\textbf{Stakeholders:}] /
+    \item[\textbf{Precondities:}] De gebruiker is ingelogd
+    \item[\textbf{Postcondities:}] Een nieuw leeggoedtype is toegevoegd aan het systeem.
+\end{itemize}
+
+\paragraph{Normaal verloop}
+\begin{enumerate}[nosep]
+    \item De gebruiker wil een nieuw leeggoedtype aanmaken.
+    \item De gebruiker navigeert naar het scherm voor leeggoedtypes.
+    \item De gebruiker kiest de optie om een nieuw leeggoedtype toe te voegen.
+    \item De gebruiker geeft de artikelcode en de naam van het leeggoedtype in.
+    \item Het systeem valideert volgens DR\_LEEGGOEDTYPE.
+    \item Het systeem registreert het leeggoedtype en toont een gepaste melding.
+\end{enumerate}
+
+\paragraph{Alternatieve verlopen}
+\begin{itemize}[nosep]
+    \item[5A.] De validatie volgens DR\_LEEGGOEDTYPE faalt.
+    \begin{itemize}
+        \item[5A1.] Het systeem toont een gepaste melding.
+        \item[5A2.] We keren terug naar stap 4.
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Domeinspecifieke regels}
+DR\_LEEGGOEDTYPE
+\begin{itemize}
+    \item artikelcode
+    \begin{itemize}
+        \item verplicht
+        \item moet voldoen aan het regex patroon \texttt{LG\textbackslash d\{3\}}
+        \item moet uniek zijn binnen het systeem
+    \end{itemize}
+    \item naam
+    \begin{itemize}
+        \item verplicht
+        \item moet uniek zijn binnen het systeem
+    \end{itemize}
+\end{itemize}
+
+\vspace{1cm}
+
+\section{Inloggen}
+\label{uc:inloggen}
+
+    \vspace{0.5em}
+
+    \begin{itemize}[leftmargin=3.5cm, labelsep=0.5cm, nosep]
+        \item[\textbf{Primaire actor:}] Productiechef, financieel bediende, CEO
+        \item[\textbf{Stakeholders:}] /
+        \item[\textbf{Precondities:}] /
+        \item[\textbf{Postcondities:}] De gebruiker is aangemeld
+    \end{itemize}
+
+    \paragraph{Normaal verloop}
+    \begin{enumerate}[nosep]
+        \item De gebruiker wenst zich aan te melden.
+        \item Het systeem vraagt email en wachtwoord.
+        \item De gebruiker voert de gegevens in.
+        \item Het systeem valideert volgens DR\_AANMELDEN
+    \end{enumerate}
+
+    \paragraph{Alternatieve verlopen}
+    \begin{itemize}[nosep]
+        \item[4A.] Het systeem detecteert dat de email en/of wachtwoord niet ingevuld zijn
+        \begin{itemize}
+            \item[4A1.] Het systeem toont een gepaste melding.
+            \item[4A2.] We keren terug naar stap 2
+        \end{itemize}
+
+        \item[4B.] Het systeem detecteert dat de email niet overeenstemt met het bijhorend wachtwoord
+        \begin{itemize}
+            \item[4B1.] Het systeem toont een gepaste melding.
+            \item[4B1.] We keren terug naar stap 2
+        \end{itemize}
+    \end{itemize}
+
+    \paragraph{Domeinspecifieke regels}
+    DR\_AANMELDEN
+    \begin{itemize}
+        \item email en wachtwoord zijn verplicht
+        \item email en wachtwoord moeten overeenstemmen.
+    \end{itemize}
