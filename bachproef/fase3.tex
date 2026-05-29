@@ -323,16 +323,141 @@ Een aantal elementen uit het bestaande scherm sluiten goed aan bij de behoeften 
 
 \subsection{Wat we aanpassen}
 
-Doordat het systeem nog nieuw is kan er zoals in de stand van zaken beschreven een onboarding bijkomen. Bij het eerste gebruik krijgt de gebruiker een korte rondleiding door de schermen die voor het leeggoedbeheer relevant zijn. Zo wordt er meteen duidelijk waar hij moet zijn voor welke taak en moet hij niet eerst rondzoeken in een onbekende interface.
+Elk scherm wordt bewust beperkt tot de gegevens die voor het leeggoedbeheer relevant zijn. De bestaande receptiebon in het ERP toont ook factuurgegevens, transportdetails en lotnummers, informatie die in de leeggoedapplicatie niet nuttig is. Door enkel de identificatie van de receptiebon, de gekozen leverancier en de invoervelden voor de leeggoedbeweging te tonen, kan de gebruiker sneller en met minder kans op fouten zijn taak voltooien.
 
-Daarnaast voorzien we tooltips bij velden en knoppen waarvan de functie niet meteen voor zich spreekt. Wanneer de gebruiker bijvoorbeeld met de muis over de knop voor een stockcorrectie zweeft, verschijnt er een korte uitleg over wat die actie doet. Op die manier hoeft hij niet apart documentatie te raadplegen om met het systeem aan de slag te kunnen.
-
-Tot slot wordt elk scherm bewust beperkt tot de informatie die voor de leeggoedtaak relevant is. De bestaande schermen in het bestaande ERP-systeem bevatten ook gegevens die voor andere afdelingen bedoeld zijn, zoals factuurgegevens, transportdetails en lotnummers. Voor de gebruiker van deze PoC is dat ruis die de aandacht afleidt. Door enkel de identificatie van de receptiebon en de invoervelden voor de leeggoedbeweging te tonen, kan hij sneller en met minder kans op fouten zijn taak voltooien.
+In het bestaande systeem en in de Excel-bestanden zit de fysieke voorraad door elkaar met het tegoed per leverancier. Conform het EERD krijgen beide in de PoC een eigen scherm: een \textbf{Stockoverzicht} dat het actuele tegoed per combinatie van leverancier en leeggoedtype toont, en een \textbf{Stockbewegingen}-scherm met de chronologische historiek. Op die manier hoeft de gebruiker niet langer rond te zoeken om enerzijds de huidige stand en anderzijds de oorzaak van een afwijking terug te vinden, dat zijn twee verschillende vragen en dus twee verschillende schermen.
 
 
 \section{Uitwerking}
 
-TODO
+De PoC is uitgewerkt als een Blazor WebAssembly-frontend bovenop een ASP.NET-API met PostgreSQL database. De domeinstructuur volgt rechtstreeks het EERD uit paragraaf~2.2: \texttt{Leeggoed}, \texttt{Leverancier}, \texttt{Leeggoed\_Leverancier} (samengevoegde tabel met \texttt{aantal\_tegoed}), \texttt{Receptiebon} en \texttt{Stockbeweging}. Elke use case uit paragraaf~2.1 is omgezet in één of meerdere schermen, en authenticatie en autorisatie zijn met rolgebaseerde policies (\texttt{Productiechef}, \texttt{FinancieelMedewerker}, \texttt{CEO}) afgedwongen op zowel het API-endpoint als de route in de frontend.
+
+\subsection{Aanmelden en navigatie}
+
+Bij het opstarten van de applicatie krijgt de gebruiker bij ontbreken van een sessie automatisch het inlogscherm te zien. Na een succesvolle aanmelding bouwt de navigatiebalk (navbar) zich op (figuur \ref{fig:sidenav}). Alle modules zijn genummerd binnen twee duidelijke groepen, \textit{Beheer} en \textit{Overzicht}. De nummers voor de modules in de navbar duiden ook aan hoe de flow binnen de applicatie verloopt. Bijvoorbeeld: de gebruiker zal eerst een receptiebon toevoegen waarbij leeggoed binnenkomt via de receptiebonmodule en vervolgens het leeggoed afschrijven die de leverancier terug meeneemt door de stockcorrectiemodule te gebruiken.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.4\textwidth]
+    {images/poc/sidenav}
+    \caption{\label{fig:sidenav}Navigatiebalk van de PoC.}
+\end{figure}
+
+\subsection{Beheer van basisgegevens: leveranciers en leeggoedtypes}
+
+Voordat de receptiebon en stockcorrecties uitgevoerd kunnen worden, moeten de leveranciers en de leeggoedtypes gekend zijn. Beide schermen bestaan uit een zoekbare lijst en een afzonderlijk aanmaakformulier (figuren \ref{fig:suppliers_list} en \ref{fig:pallets_list}). De artikelcode van een leeggoedtype wordt server-zijdig gevalideerd tegen het patroon \texttt{LG\textbackslash d\{3\}} (dit patroon betekent ''LG'' gevolgd door 3 cijfers 0-9), zodat alle latere referenties consistent blijven. Bij het toevoegen van een leverancier zijn enkel de naam en het adres verplicht: de overige velden uit het oorspronkelijke ERP-scherm zijn weggelaten omdat ze voor het leeggoedbeheer geen meerwaarde hebben.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]
+    {images/poc/leveranciers}
+    \caption{\label{fig:suppliers_list}Lijst van leveranciers met vrije zoekbalk.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]
+    {images/poc/leeggoedtypes}
+    \caption{\label{fig:pallets_list}Lijst van leeggoedtypes met fysieke voorraad per type.}
+\end{figure}
+
+\subsection{Verwerking van een receptiebon}
+
+op figuur \ref{fig:poc_receipts_list} zien we het receptiebonoverzicht. Per rij wordt de referentie, de leverancier, het ontvangstmoment en het totaal aan ingeboekte stuks getoond. Een vrije zoekbalk laat toe zowel op referentie als op leveranciersnaam te filteren, en de tabel is gepagineerd op 20 rijen om de laadtijd kort te houden bij groeiende historiek. Doorklikken op een rij opent het detailscherm met de algemene info en de tabel van bewegingen die op die bon werden geregistreerd (figuur \ref{fig:poc_receipt_detail}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]
+    {images/poc/receptiebonnen_lijst}
+    \caption{\label{fig:poc_receipts_list}Overzicht van receptiebonnen met zoekfunctie.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]
+    {images/poc/receptiebon_detail}
+    \caption{\label{fig:poc_receipt_detail}Detailscherm van een receptiebon.}
+\end{figure}
+
+Op het aanmaakscherm (figuur \ref{fig:poc_receipt_create}) geeft de gebruiker de referentie in (server-zijdig gevalideerd op exact zes tekens), kiest een leverancier uit een doorzoekbare dropdown en voegt vervolgens één of meerdere leeggoedbewegingen toe. Per receptiebon kan elk leeggoedtype slechts één keer voorkomen, en wanneer de gebruiker tijdens het opstellen van een bon van leverancier verandert, worden de reeds toegevoegde regels automatisch verwijderd. Beide regels voorkomen dat bewegingen per ongeluk op de verkeerde combinatie van leverancier en leeggoedtype worden geboekt. De juistheid van de referentie hangt hier wel volledig af van de gebruiker. Er is geen manier om de receptiebonnen te gebruiken die al in MAPA zitten. Een mogelijk idee was om een csv/xml export te kunnen importeren naar in de PoC, maar MAPA biedt deze feature niet aan voor de receptiebonnen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]
+    {images/poc/receptiebon_nieuw}
+    \caption{\label{fig:poc_receipt_create}Aanmaakscherm van een nieuwe receptiebon.}
+\end{figure}
+
+Bij het opslaan worden de receptiebon en de bijhorende stockbewegingen weggeschreven, het tegoed van de leverancier bijgewerkt en de fysieke voorraad van elk leeggoedtype aangepast. Vervolgens wordt de gebruiker doorgestuurd naar het detailscherm van de zonet aangemaakte bon, zodat hij meteen een visuele bevestiging krijgt van wat geboekt werd.
+
+\subsection{Stockoverzicht}
+
+Het stockoverzicht (figuur \ref{fig:poc_stock_overview}) toont per combinatie van leverancier en leeggoedtype hoeveel stuks zij nog verschuldigd zijn. Bovenaan staan twee doorzoekbare dropdowns: één voor de leverancier en één voor het leeggoedtype. De twee dropdowns filteren elkaar wederzijds: kiest de gebruiker eerst een leverancier, dan worden in de tweede dropdown enkel de leeggoedtypes getoond waarmee die leverancier effectief gekoppeld is, en omgekeerd. Wanneer de gebruiker filtert wordt onderaan ook een totaal getoond, zodat het samengevatte tegoed in één oogopslag zichtbaar is.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]
+    {images/poc/stockoverzicht}
+    \caption{\label{fig:poc_stock_overview}Stockoverzicht}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]
+    {images/poc/stockoverzicht_filter}
+    \caption{\label{fig:poc_stock_filter}Cross filtering}
+\end{figure}
+
+\subsection{Stockhistoriek}
+
+Het scherm met stockbewegingen (figuur \ref{fig:poc_stock_history}) hergebruikt dezelfde doorzoekbare dropdowns als het overzicht en breidt ze uit met een datumbereik, een bronfilter (manueel of via receptiebon uitgevoerd) en een vrije zoekbalk. Elke beweging wordt chronologisch getoond met haar bron als gekleurde tag en, indien van toepassing, de referentie van de receptiebon waaraan ze gekoppeld is. Positieve en negatieve hoeveelheden worden respectievelijk in groen en rood weergegeven, zodat afwijkende correcties direct opvallen. Met deze feature kan de gebruiker eventueel foute bewegingen terugvinden en corigeren. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]
+    {images/poc/stockbewegingen}
+    \caption{\label{fig:poc_stock_history}Stockbewegingen met datumbereik, bronfilter en kleurgecodeerde hoeveelheid.}
+\end{figure}
+
+\subsection{Stockcorrectie}
+
+De stockcorrectiemodule dient om uitgaand leeggoed af te schrijven. Daarbovenop dient het ook, zoals de naam zelf zegt, voor correcties bij een eventueel foute beweging. Het scherm (figuur \ref{fig:poc_stock_correction}) gebruikt dezelfde wederzijds filterende dropdowns voor leverancier en leeggoedtype. De gebruiker geeft vervolgens een getal in: positief om stock bij te boeken, negatief om af te schrijven; nul wordt geweigerd.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]
+    {images/poc/stockcorrectie}
+    \caption{\label{fig:poc_stock_correction}Formulier voor een manuele stockcorrectie.}
+\end{figure}
+
+Indien de absolute waarde van de correctie boven een ingestelde drempel (voor de PoC vijftig stuks) ligt, wijst het systeem de eerste poging af en vraagt het expliciete bevestiging via een waarschuwingsbanner met een knop \textit{Bevestigen en doorgaan} (figuur \ref{fig:poc_stock_correction_confirm}). Pas wanneer de gebruiker bevestigt, wordt de correctie effectief geregistreerd. Deze waarschuwing zorgt ervoor dat de gebruiker eerst de ingegeven waarde controleert voordat zij doorgaan zonder de gebruiker volledig te blokkeren voor terechte grote correcties.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]
+    {images/poc/stockcorrectie_bevestigen}
+    \caption{\label{fig:poc_stock_correction_confirm}Bevestigingsstap bij een verdacht grote correctie.}
+\end{figure}
+
+\subsection{Vertaling naar de onderzoeksvraag}
+
+De ontwerpkeuzes hierboven zijn elk gericht op één of meerdere pijlers van de onderzoeksvraag: tijdsbesparing, foutenreductie, gebruiksvriendelijkheid en overzichtelijkheid. De goede en slechte punten van deze uitwerking worden besproken.
+
+\paragraph{Tijdsbesparing.} Lange lijsten van leveranciers en leeggoedtypes worden uitgesloten via doorzoekbare dropdowns waarin de gebruiker direct typt om te filteren, in plaats van te scrollen. Daarbovenop filteren deze vanzelf welke waardes relevant zijn indien al een filter gekozen is. Eén enkel receptiebonformulier laat toe om alle bewegingen van een levering in één keer in te boeken, terwijl in Excel daarvoor doorheen meerdere bestanden gewerkt moest worden. De vrije zoekvelden en de paginering op alle lijsten houden de schermen snel, ook wanneer de historiek aangroeit. 
+
+Zoals daarnet besproken is er geen mogelijkheid om een bulkimport te doen van nieuwe receptiebonnen. De receptiebon zelf invoeren neemt tijd. Dit komt in beide fase 1 en fase 2 niet voor doordat deze met het bestaande systeem samen werken.
+
+Het systeem helpt allesinds heel veel bij het terugvinden van tegoeden voor specifieke leveranciers, wat in Excel nu niet mogelijk is.
+
+\paragraph{Foutenreductie.} Validatie gebeurt op twee niveaus: Blazor-formuliervalidatie geeft onmiddellijke feedback aan de gebruiker, en dezelfde regels worden afgedwongen op de server zodat manipulatie via de API niet mogelijk is. De wederzijds filterende dropdowns voorkomen dat de gebruiker een onbestaande combinatie van leverancier en leeggoedtype kiest. Het automatisch leegmaken van bewegingsregels bij het wisselen van leverancier voorkomt dat bewegingen onder de verkeerde leverancier worden geboekt. De bevestigingsstap op grote stockcorrecties vangt typfouten op. Tot slot wordt er voor elke beweging (zowel via een receptiebon als manueel) een log bijgehouden in de stockbewegingen.
+
+Het manueel ingeven van referentiecodes voor receptiebonnen is en blijft het grootste knelpunt voor foutenreductie. Hoewel het systeem perfect blijft werken kan een foute referentiecode ervoor zorgen dat een fout maar niet gevonden wordt. Stel, men zoekt receptiebon 260102 in de historiek omdat men vermoed dat daar iets misgelopen kan zijn. Als er dan geen receptiebon 260102 bestaat, maar wel 260120 door het misstypen van de referentiecode, wordt de fout moeilijk terug te vinden.
+
+Het geheel is een grote verbetering tegenover het huidige systeem met Excel. Velden worden gevalideerd, er is een historiek en de totale tegoeden worden in overzicht bijgehouden per leverancier.  
+
+\paragraph{Gebruiksvriendelijkheid.} De terminologie van het bestaande ERP-systeem (receptiebon, artikelcode, leverancier, stockcorrectie) is overgenomen. De zijbalk is genummerd en gegroepeerd in \textit{Beheer} en \textit{Overzicht}. Er is zoveel mogelijk op UCD gelet en samengewerkt met een financieel bediende om te itereren op wat het best werkt voor hen.
+
+\paragraph{Overzichtelijkheid.} Op elk scherm is enkel terug te vinden wat daar nodig is. Ook in de navbar is zoveel mogelijk overzicht behouden. Op alle schermen zie je in één oogopslag de informatie die je nodig hebt. Er is ook veel meer informatie dan het huidige systeem en nu ook allemaal samen in plaats van verspreid.
 
 \section{Evaluatie}
 
