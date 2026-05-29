@@ -7,7 +7,7 @@ In dit hoofdstuk wordt bekeken hoe het leeggoedbeheer rechtstreeks in het bestaa
 
 Bij deze opzet bestaat er maar één systeem. Het bestaande ERP-systeem van MAPA blijft de centrale toepassing waarin alle gegevens beheerd worden. Er komt geen tweede applicatie naast te staan en er is dus ook geen koppeling of data-uitwisseling tussen verschillende systemen nodig. Het leeggoedbeheer wordt volledig binnen het ERP-systeem opgevangen door drie uitbreidingen op de bestaande functionaliteit.
 
-De eerste uitbreiding is bij het productbeheer: leeggoed wordt als een product opgenomen in de bestaande artikellijst. De tweede uitbreiding voorziet een nieuwe module die per leverancier en per leeggoedtype toont hoeveel stock er nog tegoed is en welke bewegingen er in het verleden plaatsvonden. De derde uitbreiding voorziet een afzonderlijke stockcorrectiemodule voor leeggoed, in hoofdzaak bedoeld om paletten uit de stock te schrijven wanneer een leverancier ze komt ophalen.
+De eerste uitbreiding is bij het productbeheer: leeggoed wordt als een product opgenomen in de bestaande artikellijst. De tweede uitbreiding voorziet een nieuwe module die per leverancier en per leeggoedtype toont hoeveel stock er nog tegoed is en welke bewegingen er in het verleden plaatsvonden. De derde uitbreiding voorziet een afzonderlijke stockcorrectiemodule voor leeggoed, in hoofdzaak bedoeld om leeggoed uit de stock te schrijven wanneer een leverancier ze komt ophalen.
 
 Aan de databank, de schermen en de bestaande workflows van het ERP-systeem worden enkele gerichte aanpassingen gedaan, maar de algemene opzet van het systeem blijft hetzelfde. De gebruiker werkt vanuit de vertrouwde omgeving.
 
@@ -40,7 +40,7 @@ Concreet zou de module drie overzichten bundelen. Ten eerste een overzicht per l
 
 \subsection{Stockcorrectie}
 
-Niet elke beweging van leeggoed gebeurt op het ogenblik van een levering. Wanneer een leverancier ook paletten meeneemt, moet die teruggave alsnog uit de stock geboekt kunnen worden. Daarvoor zou een aparte stockcorrectiemodule voor leeggoed voorzien worden.
+Niet elke beweging van leeggoed gebeurt op het ogenblik van een levering. Wanneer een leverancier ook leeggoed meeneemt, moet die teruggave alsnog uit de stock geboekt kunnen worden. Daarvoor zou een aparte stockcorrectiemodule voor leeggoed voorzien worden.
 
 Het hoofddoel van deze module is het uitschrijven van leeggoed uit de stock. De gebruiker geeft een leverancierscode en het type leeggoed in waardoor de stock van het desbetreffende leeggoedtype daalt. Omdat het in essentie om een stockcorrectie gaat, kan dezelfde module in principe ook gebruikt worden voor een correctie naar boven, bijvoorbeeld wanneer bij een telling een verschil opgemerkt wordt. Aangezien de reguliere ingave van leeggoed steeds via de bestaande receptiebon verloopt, is de hoofdtaak van deze module dus om leeggoed uit te schrijven.
 

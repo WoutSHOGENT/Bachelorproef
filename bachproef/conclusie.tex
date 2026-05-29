@@ -18,7 +18,7 @@
 
 In de introductie werden enkele deelvragen opgesteld die zouden leiden naar een duidelijke uitwerking voor de hoofdonderzoeksvraag en de technische uitwerking van de PoC. Hieronder zijn die vragen beantwoord.
 
-\subsection{Hoe verloopt het beheer van leeggoedpaletten binnen Freshfrozen For Pets op dit moment, en waar treden de meeste inefficiënties en fouten op?}
+\subsection{Hoe verloopt het beheer van leeggoed binnen Freshfrozen For Pets op dit moment, en waar treden de meeste inefficiënties en fouten op?}
 
 Het beheer van leeggoed gebeurt op dit moment volledig in Microsoft Excel. Per leverancier wordt bijgehouden welk leeggoed binnenkomt van de desbetreffende leverancier. Wanneer een levering binnenkomt voert de productiechef of een financieel bediende de correcte gegevens in. De waarde die genoteerd wordt overschrijft een andere waarde. Daar vinden we de eerste fout. Waarden die ook betrekking hebben op vorige leveringen worden destructief overschreven en zijn nadien niet meer beschikbaar. Daarbovenop is het bij bepaalde leveranciers niet voorspelbaar hoeveel leeggoed ze leveren en ook terug meenemen, deze waardes zijn daardoor dynamisch. De meeste fouten gebeuren dus bij het ingeven van aantallen bij het in en uitschrijven van leeggoed, maar ook het feit dat af en toe een waarde bij de verkeerde leverancier belandt. Aangezien er geen historiek is, kan deze fout ook niet rechtgezet worden.
 
@@ -86,12 +86,12 @@ De tweede verbetering is het bijhouden van een \textbf{volledige historiek van a
 De overkoepelende onderzoeksvraag van deze bachelorproef luidt: 
 \\
 \\
-\emph{``Hoe kan het beheer van leeggoedpaletten bij Freshfrozen For Pets efficiënter georganiseerd worden, met als focus om tijdbesparing, foutenreductie, procesmatige gebruiksvriendelijkheid en overzichtelijkheid te verbeteren?''}
+\emph{``Hoe kan het beheer van leeggoed bij Freshfrozen For Pets efficiënter georganiseerd worden, met als focus om tijdbesparing, foutenreductie, procesmatige gebruiksvriendelijkheid en overzichtelijkheid te verbeteren?''}
 \\
 \\
 Door de antwoorden op de deelvragen, de drie fases en de evaluatie volgens de scoretabellen uit de inleiding kan deze vraag nu beantwoord worden.
 
-Het korte antwoord op deze vraag is dat het beheer van leeggoedpaletten bij Freshfrozen efficiënter georganiseerd kan worden door een centrale technische oplossing te maken die invoer afdwingt en een bewegingshistoriek en overzicht van tegoeden invoert.
+Het korte antwoord op deze vraag is dat het beheer van leeggoed bij Freshfrozen efficiënter georganiseerd kan worden door een centrale technische oplossing te maken die invoer afdwingt en een bewegingshistoriek en overzicht van tegoeden invoert.
 \\
 \\
 Doorheen deze bachelorproef zijn drie manieren onderzocht om dit probleem op te lossen: een directe implementatie in het bestaande ERP-systeem, een point-to-point uitwerking en een eigen applicatie. Ze hebben alle drie hun eigen voor- en nadelen die meer invloed hebben op het tweede deel van de onderzoeksvraag: de tijdsbesparing, foutenreductie, gebruiksvriendelijkheid en overzichtelijkheid. 
@@ -109,7 +109,7 @@ De point-to-point uitwerking lost dit voor een deel op. De databases zijn geconn
 
 De meest bekende applicatie voor de gebruiker is de implementatie in het huidige ERP-systeem. Receptiebonnen en leeggoed leven in dezelfde omgeving en er kan afgedwongen worden om leeggoed in te vullen op een receptiebon. Er is geen tweede applicatie nodig tijdens het verwerken van een receptiebon en alle voordelen van de andere twee uitwerkingen zijn ook hier aanwezig. Er wordt veel tijd gewonnen door niet te moeten schakelen en de kans op fouten is miniem door het afdwingen van de waardes, validatie en historiek. De afwegingen zijn minimale ingrepen die eenmaal uitgevoerd moeten worden.
 
-Het beheer van leeggoedpaletten bij Freshfrozen For Pets kan dus het meest efficiënt georganiseerd worden door de modules en gebruikerservaring van de eigen applicatie uit fase 3 verder te laten uitwerken binnen het bestaande ERP-systeem van MAPA, zodat de afdwingbaarheid en de afwezigheid van datasilo's uit fase 1 gecombineerd kan worden met de overzichtelijkheid en gebruiksvriendelijkheid van fase 3, om zo alle vier de pijlers van de onderzoeksvraag tegelijk te beantwoorden.
+Het beheer van leeggoed bij Freshfrozen For Pets kan dus het meest efficiënt georganiseerd worden door de modules en gebruikerservaring van de eigen applicatie uit fase 3 verder te laten uitwerken binnen het bestaande ERP-systeem van MAPA, zodat de afdwingbaarheid en de afwezigheid van datasilo's uit fase 1 gecombineerd kan worden met de overzichtelijkheid en gebruiksvriendelijkheid van fase 3, om zo alle vier de pijlers van de onderzoeksvraag tegelijk te beantwoorden.
 
 \section{Bijdrage van het onderzoek}
 
