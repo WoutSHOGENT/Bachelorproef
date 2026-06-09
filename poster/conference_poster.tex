@@ -9,78 +9,97 @@
 % Info over de opleiding
 \course{Bachelorproef}
 \studyprogramme{toegepaste informatica}
-\academicyear{2022-2023}
+\academicyear{2025-2026}
 \institution{Hogeschool Gent, Valentin Vaerwyckweg 1, 9000 Gent}
 
 % Info over de bachelorproef
-\title{Titel van uw bachelorproef}
-\subtitle{Ondertitel (eventueel)}
-\author{Voornaam Naam}
-\email{voornaam.familienaam@student.hogent.be}
-\supervisor{Voornaam Naam}
-\cosupervisor{Voornaam Naam (Bedrijf)}
+\title{Optimalisatie van het beheer van leeggoedpalletten bij Freshfrozen For Pets}
+\subtitle{Een onderzoek naar een digitale oplossing voor foutenreductie en gebruiksvriendelijkheid}
+\author{Wout Schelstraete}
+\email{wout.schelstraete@student.hogent.be}
+\supervisor{Mevr. L. Lewyllie}
+\cosupervisor{Dhr. P. Kemseke (Freshfrozen For Pets)}
 
 % Indien ingevuld, wordt deze informatie toegevoegd aan het einde van de
 % abstract. Zet in commentaar als je dit niet wilt.
-\specialisation{Systeem- en Netwerkbeheer}
-\keywords{Lambda-calculus, Scheme}
-\projectrepo{https://github.com/user/repo}
+%\specialisation{Systeem- en Netwerkbeheer}
+%\keywords{Leeggoedbeheer, ERP, Blazor WebAssembly, KMO, Foutenreductie}
+%\projectrepo{https://github.com/user/repo}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-It's only a model.
-You don't vote for kings. Who's that then? We found them. Ni! Ni! Ni! Ni!
-The nose? On second thoughts, let's not go there. It is a silly place. Bloody Peasant! And the hat. She's a witch! Where'd you get the coconuts?
+Freshfrozen For Pets is een West-Vlaamse KMO die verse maaltijden voor honden en katten produceert. Leveringen komen binnen op of in leeggoed dat na gebruik teruggestuurd moet worden naar de leverancier. Dat leeggoed wordt vandaag volledig in Microsoft Excel beheerd, met per leverancier een eigen spreadsheet. Die werkwijze is foutgevoelig: invoer is niet afdwingbaar, waarden worden destructief overschreven, er is geen historiek en het ERP-systeem kent het leeggoed niet. Deze bachelorproef onderzoekt hoe dat beheer efficiënter kan, met focus op tijdsbesparing, foutenreductie, gebruiksvriendelijkheid en overzichtelijkheid. Drie scenario's werden uitgewerkt: een directe integratie in het bestaande ERP, een middleware-koppeling en een standalone-applicatie (proof-of-concept met Blazor WebAssembly, ASP.NET en PostgreSQL). De optimale oplossing combineert de overzichtelijke modules van de eigen applicatie met de afdwingbaarheid van een directe integratie in het ERP-systeem.
 \end{abstract}
 
 \begin{multicols}{2} % This is how many columns your poster will be broken into, a portrait poster is generally split into 2 columns
 
 \section{Introductie}
 
-Be quiet! Found them? In Mercia?! The coconut's tropical! But you are dressed as one… Well, what do you want? Knights of Ni, we are but simple travelers who seek the enchanter who lives beyond these woods.
+Freshfrozen For Pets is een KMO die verse maaltijden voor huisdieren produceert. Voor die productie wordt vlees geleverd door meerdere leveranciers. De bestellingen komen binnen op \emph{leeggoed} (pallets) dat na gebruik terug naar de leverancier moet. Wie welk leeggoed nog tegoed heeft, wordt bijgehouden in Excel, met per leverancier een apart bestand.
+\\
+Het beheer in Excel brengt structurele risico's met zich mee:
+\begin{itemize}
+    \item De invoer is op geen enkel moment \textbf{afdwingbaar}, waardoor leeggoedbewegingen vergeten worden.
+    \item Waarden worden \textbf{destructief overschreven}: er is geen historiek of audit-spoor.
+    \item De data is \textbf{versnipperd} over losse spreadsheets, een totaaloverzicht ontbreekt.
+\end{itemize}
+Onopgemerkte fouten leiden tot administratieve inefficiëntie en financieel verlies via een incorrecte teruggave van statiegeld.
 
-Well, what do you want? It's only a model. Camelot! We found them. We shall say `Ni' again to you, if you do not appease us.
+\section{Onderzoeksvraag}
 
-The nose? Shut up! Burn her! I am your king. You don't vote for kings.
+``Hoe kan het beheer van leeggoed bij Freshfrozen For Pets efficiënter georganiseerd worden, met als focus om tijdbesparing, foutenreductie, procesmatige gebruiksvriendelijkheid en overzichtelijkheid te verbeteren?''
 
-You can't expect to wield supreme power just `cause some watery tart threw a sword at you! Well, we did do the nose. I don't want to talk to you no more, you empty-headed animal food trough water! I fart in your general direction! Your mother was a hamster and your father smelt of elderberries! Now leave before I am forced to taunt you a second time!
+\section{Methodologie}
 
-Why do you think that she is a witch? We want a shrubbery!! I don't want to talk to you no more, you empty-headed animal food trough water! I fart in your general direction! Your mother was a hamster and your father smelt of elderberries! Now leave before I am forced to taunt you a second time!
+Het onderzoek start met een \textbf{intern onderzoek} (fase 0) bij Freshfrozen: interviews met de CEO, de productiechef en een financieel bediende, een enquête bij de dagelijkse gebruikers en overleg met ERP-leverancier MAPA. Daarna worden drie technologische scenario's onderzocht:
 
-\section{Experimenten}
+\begin{enumerate}
+    \item \textbf{Directe integratie}. Leeggoedbeheer rechtstreeks in het bestaande ERP-systeem.
+    \item \textbf{Middleware}. Een apart leeggoedsysteem dat via een point-to-point-integratie met het ERP communiceert.
+    \item \textbf{Standalone-applicatie}. Een onafhankelijke proof-of-concept (PoC).
+\end{enumerate}
 
-A newt? Camelot! Why? No, no, no! Yes, yes. A bit. But she's got a wart.
+Uit het overleg met MAPA bleek dat een concrete uitvoering van fase 1 en fase 2 niet mogelijk was door licentie- en codebase-restricties. Deze fases werden daarom theoretisch uitgewerkt. De PoC van fase 3 werd wel volledig geïmplementeerd en iteratief gevalideerd met een eindgebruiker.
 
-Shut up! I dunno. Must be a king. Who's that then? Look, my liege! On second thoughts, let's not go there. It is a silly place.
+\section{De proof-of-concept (Fase 3)}
 
-Shut up! Will you shut up?! No, no, no! Yes, yes. A bit. But she's got a wart. He hasn't got shit all over him. It's only a model. It's only a model.
+De PoC is gebouwd met een Blazor WebAssembly-frontend bovenop een ASP.NET-API met een PostgreSQL-database. De applicatie biedt onder meer:
 
-Bring her forward! I don't want to talk to you no more, you empty-headed animal food trough water! I fart in your general direction! Your mother was a hamster and your father smelt of elderberries! Now leave 
-
-\section{Sectie met figuur}
-
-De {\LaTeX} figure-omgeving bepaalt zelf waar een afbeelding komt en dat is meestal niet op de plek in de tekst waar de figure-omgeving gedefinieerd wordt. Als je wilt forceren dat afbeeldingen toch in de flow van de tekst blijven, dan kan je dat zoals hieronder:
+\begin{itemize}
+    \item Een \textbf{stockoverzicht} dat per leverancier en leeggoedtype het openstaande tegoed toont.
+    \item Een \textbf{stockhistoriek} met datumbereik, bronfilter en kleurgecodeerde bewegingen, zodat foute bewegingen teruggevonden worden.
+    \item Validatie aan \textbf{client- en serverzijde}, wederzijds filterende dropdowns en een bevestigingsstap bij verdacht grote correcties.
+\end{itemize}
 
 \begin{center}
   \captionsetup{type=figure}
-  \includegraphics[width=1.0\linewidth]{grail}
-  \captionof{figure}{He hasn't got shit all over him. The nose? Where'd you get the coconuts? What do you mean? We shall say `Ni' again to you, if you do not appease us}
+  \includegraphics[width=1.0\linewidth]{../bachproef/images/poc/stockoverzicht}
+  \captionof{figure}{Stockoverzicht van de PoC: het openstaande tegoed per leverancier en per leeggoedtype, met wederzijds filterende dropdowns.}
 \end{center}
 
-Let er wel op dat dit tot problemen met bladschikking kan leiden.
+\section{Resultaten}
 
-\section{Conclusies}
+De PoC werd geëvalueerd op de vier pijlers van de onderzoeksvraag:
 
-Don't underestimate the Force. Oh God, my uncle. How am I ever gonna explain this? I suggest you try it again, Luke. This time, let go your conscious self and act on instinct. Don't be too proud of this technological terror you've constructed. The ability to destroy a planet is insignificant next to the power of the Force.
+\begin{itemize}
+    \item \textbf{Overzichtelijkheid:} alle data op één plek, opgedeeld in eigen modules.
+    \item \textbf{Gebruiksvriendelijkheid:} verkozen boven Excel, dankzij vertrouwde ERP-terminologie en User-Centric Design.
+    \item \textbf{Foutenreductie:} validatie, logging en historiek zijn een goede toevoeging, maar de manuele ingave voor referentiecodes van receptiebonnen en geen mogelijkheid tot afdwingen van invoer blijft een knelpunt.
+    \item \textbf{Tijdsbesparing:} winst bij het raadplegen, maar verlies door de manuele ingave van referentiecodes van receptiebonnen.
+\end{itemize}
+
+De zwakke punten van de standalone-applicatie (geen afdwingbaarheid, een tweede systeem naast het ERP, dubbele invoer) zijn net de sterktes van een directe integratie in het ERP.
+
+\section{Conclusie}
+
+Het beheer van leeggoed kan het efficiëntst georganiseerd worden door de modules en gebruikerservaring van de eigen applicatie (fase 3) verder te laten uitwerken binnen het bestaande ERP-systeem van MAPA (fase 1)}. Zo worden de afdwingbaarheid en het ontbreken van datasilo's uit fase 1 gecombineerd met de overzichtelijkheid en gebruiksvriendelijkheid uit fase 3, en worden de vier pijlers van de onderzoeksvraag tegelijk beantwoord.
 
 \section{Toekomstig onderzoek}
 
-I care. So, what do you think of her, Han? No! Alderaan is peaceful. We have no weapons. You can't possibly… I have traced the Rebel spies to her. Now she is my only link to finding their secret base.
-
-Kid, I've flown from one side of this galaxy to the other. I've seen a lot of strange stuff, but I've never seen anything to make me believe there's one all-powerful Force controlling everything. There's no mystical energy field that controls my destiny. It's all a lot of simple tricks and nonsense. You are a part of the Rebel Alliance and a traitor! Take her away! 
+De uitwerking van fase 1 en de screenshots van de PoC worden met MAPA gedeeld als concreet vervolgtraject voor Freshfrozen. Elke case is echter anders: deze drie implementatiemethodes vormen een leidraad, geen definitief antwoord op elk bedrijfsproces. Een proces dat los staat van een bestaand systeem kan beter wel standalone uitgewerkt worden.
 
 \end{multicols}
 \end{document}
